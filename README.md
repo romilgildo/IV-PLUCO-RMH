@@ -11,4 +11,5 @@ En cuanto a la seguridad de nuestra plataforma los objetivos son: Permitir tener
 ###Infraestuctura
 
 En mi infraestructura, realizaré un despliegue de un sistema de organización y gestión de datos de los usuarios, que los tendremos alojados en otro servidor independiente con las bases de datos en SQL. Estas bases de datos deberá contener información sobre las asignaturas matriculadas e información personal del usuario, y dicho acceso a datos tendrá sus respectivos permisos. 
+Consistirá en una base de datos sobre Azure, que tendrá acceso mediante una página web.
 
