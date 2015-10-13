@@ -10,9 +10,13 @@ En cuanto a la seguridad de nuestra plataforma los objetivos son: Permitir tener
 
 ###Infraestuctura
 
-En mi infraestructura, realizaré un despliegue sobre Azure de un sistema de organización y gestión de datos de los usuarios, que los tendremos alojados en un servidor independiente con una base de datos MySQL. Estas bases de datos deberá contener información sobre las asignaturas matriculadas e información personal del usuario.
-Dicho sistema permitirá recuperar la información de los usuarios, consultar sus datos asociados, modificar los datos, además de los procesos asociados a dar de alta o baja a los usuarios. Irá instalado sobre una máquina virtual que actúa como servidor, y que tendrá acceso a la información almacenada mediante una página web, cuyo servidor web podría estar alojado en un servidor distinto al de la base de datos, con el objetivo de repartir la carga y dar mayor seguridad a la infraestructura. 
-La aplicación usará Python como lenguaje de programación. Además utilizaremos Django como framework para agilizar el desarrollo de la web.  
+En mi infraestructura, realizaré un despliegue sobre Azure de un sistema de organización y gestión de datos de los usuarios de la plataforma, y que permitirá recuperar la información de los usuarios, consultar sus datos asociados, modificar los datos, además de los procesos asociados a dar de alta o baja a los usuarios. 
+
+Irá instalado sobre una máquina virtual que actúa como servidor, y que tendrá acceso a la información almacenada mediante una página web, cuyo servidor web podría estar alojado en un servidor distinto al de la base de datos, con el objetivo de repartir la carga y dar mayor seguridad a la infraestructura. 
+
+La base de datos usada será MySQL y que deberá contener información sobre las asignaturas matriculadas e información personal de los usuarios. 
+
+Como lenguaje de programación se usará Python. Además utilizaremos Django como framework para agilizar el desarrollo web.  
 
 El resto de mis compañeros deberán crear: 
 
