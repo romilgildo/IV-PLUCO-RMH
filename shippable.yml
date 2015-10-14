@@ -1,0 +1,18 @@
+# Distribucion de desarrollo
+build_environment: Ubuntu 14.04
+
+# Lenguaje de programacion
+language: python
+
+# Version Python
+python:
+  - "2.7"
+  - "3"
+
+# Provisionamiento de la maquina
+install:  
+  - sudo pip install nose
+  
+# Ejecucion de prueba
+script:
+ - nosetests test.py
