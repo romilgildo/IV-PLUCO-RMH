@@ -7,7 +7,6 @@ language: python
 # Version Python
 python:
   - "2.7"
-  - "3"
 
 # Provisionamiento de la maquina
 install:  
