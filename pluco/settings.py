@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'pluco.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'plucodb'
-        'USER': 'root',
-        'PASSWORD': 'rumahi885115',
-        'HOST': 'pluco-db.cloudapp.net',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
