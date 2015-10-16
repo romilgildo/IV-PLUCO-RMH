@@ -1,6 +1,27 @@
-sudo apt-get install python-setuptools python-dev build-essential
-sudo apt-get install python-pip
-sudo pip install --upgrade virtualenv   # instalamos entorno virtual
-sudo pip install nose   # instalamos programa para pruebas
-geany test.py   # creamos fichero test donde se realizan las pruebas
-geany shippable.yml   # creamos fichero de configuración de integración continua
+// INSTALACION LAMP
+sudo apt-get update   # actualizamos repositorios
+sudo apt -get install apache2   # instalar apache
+sudo apt-get install mysql-server mysql-client   # instalar mysql
+sudo mysql_secure_installation   # asegurar mysql
+sudo apt-get install libapache2-mod-php5 php5 php5-mcrypt   # instalamos php
+sudo php5enmod mcrypt
+sudo service apache2 restart   # reiniciar apache
+sudo apt-get install phpmyadmin   # instalar phpmyadmin
+
+// INSTALACION PYTHON
+sudo apt-get install python-setuptools python-dev build-essential   # instalar python
+sudo apt-get install python-pip   # instalar gestor de paquetes, "pip freeze" para ver modulos instalados
+sudo pip install --upgrade virtualenv   # instalar entorno virtual
+sudo apt-get install python-mysqldb   # instalar driver para mysql
+virtualenv ENV   # crear entorno virtual
+cd ENV
+source bin/activate   # activar entorno virtual, "deactivate" para desactivar
+cd ~/IV/IV-PLUCO-RMH/
+
+// INTEGRACION CONTINUA
+pip install nose   # instalar programa para pruebas
+geany test.py   # crear fichero test donde se realizan las pruebas
+geany shippable.yml   # crear fichero de configuración de integración continua
+
+// MONTAR APLICACION DJANGO
+pip install Django   # instalar django
