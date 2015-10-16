@@ -1,0 +1,6 @@
+sudo apt-get install python-setuptools python-dev build-essential
+sudo apt-get install python-pip
+sudo pip install --upgrade virtualenv   # instalamos entorno virtual
+sudo pip install nose   # instalamos programa para pruebas
+geany test.py   # creamos fichero test donde se realizan las pruebas
+geany shippable.yml   # creamos fichero de configuración de integración continua
