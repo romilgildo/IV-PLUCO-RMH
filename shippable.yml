@@ -14,4 +14,4 @@ install:
   
 # Ejecucion de prueba
 script:
- - nosetests test.py
+ - nosetests test/test.py
