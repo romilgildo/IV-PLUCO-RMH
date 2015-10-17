@@ -14,13 +14,14 @@ Crear una máquina virtual, y abrir puertos para http, ssh y mysql
 // INSTALACION PYTHON
 sudo apt-get install python-setuptools python-dev build-essential   # instalar python
 sudo apt-get install python-pip   # instalar gestor de paquetes, "pip freeze" para ver modulos instalados
-sudo pip install --upgrade virtualenv   # instalar entorno virtual
 sudo apt-get install python-mysqldb   # instalar driver para mysql
+sudo pip install --upgrade virtualenv   # instalar entorno virtual
+
+//Creacion de entorno virtual Python
 virtualenv ENV   # crear entorno virtual
 cd ENV
 source bin/activate   
 # activar entorno virtual, se debe hacer siempre al inicio para programar dentro del entorno, "deactivate" para desactivar
-cd ~/IV/IV-PLUCO-RMH/
 
 // INTEGRACION CONTINUA
 pip install nose   # instalar programa para pruebas
