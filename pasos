@@ -27,11 +27,14 @@ geany shippable.yml   # crear fichero de configuración de integración continua
 pip install Django   # instalar django
 django-admin startproject pluco   # crear proyecto
 cd pluco
-//
+
+// Configurar Mysql
 geany pluco/settings.py   # editamos base de datos, en mi caso datos de mysql, que la he instalado en Azure
 mysql -u root -p   # acceder a mysql
 > CREATE DATABASE plucodb;
 > quit
 sudo nano /etc/mysql/my.cnf   # se hace en Azure para modificar la bind address
 sudo /etc/init.d/mysql restart
-//
+
+python manage.py migrate   # configurar las bases de datos
+python manage.py runserver 0.0.0.0:8000   # arrancar servidor web!!
