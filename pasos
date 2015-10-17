@@ -8,6 +8,9 @@ sudo php5enmod mcrypt
 sudo service apache2 restart   # reiniciar apache
 sudo apt-get install phpmyadmin   # instalar phpmyadmin
 
+// CONFIGURACION MAQUINA AZURE
+Crear una máquina virtual, y abrir puertos para http, ssh y mysql
+
 // INSTALACION PYTHON
 sudo apt-get install python-setuptools python-dev build-essential   # instalar python
 sudo apt-get install python-pip   # instalar gestor de paquetes, "pip freeze" para ver modulos instalados
@@ -15,7 +18,8 @@ sudo pip install --upgrade virtualenv   # instalar entorno virtual
 sudo apt-get install python-mysqldb   # instalar driver para mysql
 virtualenv ENV   # crear entorno virtual
 cd ENV
-source bin/activate   # activar entorno virtual, "deactivate" para desactivar
+source bin/activate   
+# activar entorno virtual, se debe hacer siempre al inicio para programar dentro del entorno, "deactivate" para desactivar
 cd ~/IV/IV-PLUCO-RMH/
 
 // INTEGRACION CONTINUA
@@ -32,9 +36,15 @@ cd pluco
 geany pluco/settings.py   # editamos base de datos, en mi caso datos de mysql, que la he instalado en Azure
 mysql -u root -p   # acceder a mysql
 > CREATE DATABASE plucodb;
+> use mysql   # usa base de datos concreta
+> GRANT ALL PRIVILEGES ON *.* TO admin@"%" IDENTIFIED BY 'manager' WITH GRANT OPTION;   
+# crea un usuario con todos los privilegios, donde la palabra que va despues de "identified by" es la pass, y lo de despues del @ es el host
+> FLUSH PRIVILEGES;   # refresca privilegios
 > quit
-sudo nano /etc/mysql/my.cnf   # se hace en Azure para modificar la bind address
+sudo nano /etc/mysql/my.cnf   # se hace en Azure para modificar la bind address a 0.0.0.0
+sudo nano /etc/hosts.allow   # añadimos la linea "mysqld: all" para permitir entrada desde cualquier ordenador
 sudo /etc/init.d/mysql restart
+mysql -h pluco-db.cloudapp.net -u admin -p   # comprobamos que tenemos acceso
 
 python manage.py migrate   # configurar las bases de datos
 python manage.py runserver 0.0.0.0:8000   # arrancar servidor web!!
