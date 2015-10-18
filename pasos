@@ -34,7 +34,7 @@ django-admin startproject pluco   # crear proyecto
 cd pluco
 
 // Configurar Mysql
-geany pluco/settings.py   # editamos base de datos, en mi caso datos de mysql, que la he instalado en Azure
+geany pluco/settings.py   # editar base de datos, en mi caso datos de mysql, que la he instalado en Azure
 mysql -u root -p   # acceder a mysql
 > CREATE DATABASE plucodb;
 > use mysql   # usa base de datos concreta
@@ -50,3 +50,12 @@ mysql -h pluco-db.cloudapp.net -u admin -p   # comprobamos que tenemos acceso
 python manage.py migrate   # configurar las bases de datos
 python manage.py runserver 0.0.0.0:8000   # arrancar servidor web!!
 python manage.py startapp plucoapp   # crear aplicacion
+geany pluco/settings.py   # añadir la nueva app a la lista
+geany plucoapp/models.py   # crear los objetos
+
+// Cada vez que se cambien los modelos se debe hacer esto
+python manage.py makemigrations plucoapp   # preparar modelos para base de datos
+python manage.py sqlmigrate plucoapp 0001   # crear las tablas oportunas
+python manage.py migrate   # introducir las tablas a la base de datos
+
+
