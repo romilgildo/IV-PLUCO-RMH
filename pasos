@@ -49,3 +49,4 @@ mysql -h pluco-db.cloudapp.net -u admin -p   # comprobamos que tenemos acceso
 
 python manage.py migrate   # configurar las bases de datos
 python manage.py runserver 0.0.0.0:8000   # arrancar servidor web!!
+python manage.py startapp plucoapp   # crear aplicacion
