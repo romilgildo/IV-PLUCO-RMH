@@ -57,5 +57,3 @@ geany plucoapp/models.py   # crear los objetos
 python manage.py makemigrations plucoapp   # preparar modelos para base de datos
 python manage.py sqlmigrate plucoapp 0001   # crear las tablas oportunas
 python manage.py migrate   # introducir las tablas a la base de datos
-
-
