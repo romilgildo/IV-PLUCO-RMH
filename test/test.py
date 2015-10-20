@@ -1,3 +1,5 @@
+from nose import with_setup
+
 def setup_func():
     "set up test fixtures"
 
