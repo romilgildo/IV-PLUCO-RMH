@@ -14,5 +14,4 @@ install:
   
 # Ejecucion de prueba
 script:
- - export DJANGO_SETTINGS_MODULE=pluco.settings
  - nosetests

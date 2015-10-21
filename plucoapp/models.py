@@ -1,3 +1,8 @@
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pluco.settings")
+# Uncomment below for Django 1.7 +
+import django
+django.setup()
 from django.db import models
 
 # Create your models here.

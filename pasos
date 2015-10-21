@@ -34,6 +34,7 @@ django-admin startproject pluco   # crear proyecto
 cd pluco
 
 // Configurar Mysql
+ssh romi@pluco-db.cloudapp.net   # instalar servidor mysql en Azure mediante ssh
 geany pluco/settings.py   # editar base de datos, en mi caso datos de mysql, que la he instalado en Azure
 mysql -u root -p   # acceder a mysql
 > CREATE DATABASE plucodb;

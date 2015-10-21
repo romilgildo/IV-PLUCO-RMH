@@ -2,7 +2,6 @@ from models import Estudiante
 from models import Profesor
 from models import Asignatura
 from nose.tools import assert_equal
-from django.test import TestCase
 
 # Create your tests here.
 
