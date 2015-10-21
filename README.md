@@ -107,3 +107,9 @@ script:
  ```
  
  El fichero shippable.yml actualizado se encuentra [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/shippable.yml).
+ 
+ Aquí tenemos una captura de como está funcionando correctamente la integración contínua:
+ 
+ ![Integracion Continua Shippable](https://www.dropbox.com/s/s02yu9vycleuogg/ShippableCI.PNG?dl=1)
+ 
+ 
