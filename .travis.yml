@@ -11,9 +11,9 @@ branches:     # decidimos que TravisCI solo compruebe los test del master de git
 notifications:   # Notificamos los resultados de los test por correo
   recipients:
     - rubenmartin1991@gmail.com
-    email:
-      on_success: change
-      on_failure: always
+  email:
+    on_success: change
+    on_failure: always
 before_install:   # Instalación de dependencias
   - sudo apt-get install libmysqlclient-dev
   - sudo apt-get install python-dev
