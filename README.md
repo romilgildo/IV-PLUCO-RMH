@@ -76,3 +76,34 @@ El archivo actualizado está [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/
 El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
 
 En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) ya que me pareció muy sencillo su manejo, pero existen otros sistemas iguales de buenos como [Travis](https://travis-ci.org/) o [Jenkins](https://jenkins-ci.org/). 
+
+Para que nuestro sistema de CI funcione, debemos crear primero el fichero en formato YML correspondiente dentro del repositorio, que en mi caso sería este:
+
+```
+# Distribucion de desarrollo
+build_environment: Ubuntu 14.04
+
+# Lenguaje de programacion
+language: python
+
+# Version Python
+python:
+  - "2.7"
+
+# Provisionamiento de la maquina
+install:  
+  - sudo apt-get install libmysqlclient-dev
+  - sudo apt-get install python-dev
+  - pip install MySQL-python
+  - pip install Django 
+  - pip install nose
+  
+before_script:
+  - export DJANGO_SETTINGS_MODULE=pluco.settings
+  
+# Ejecucion de pruebas
+script:
+ - nosetests
+ ```
+ 
+ El fichero shippable.yml actualizado se encuentra [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/shippable.yml).
