@@ -48,7 +48,6 @@ sudo /etc/init.d/mysql restart
 mysql -h pluco-db.cloudapp.net -u admin -p   # comprobamos que tenemos acceso
 
 python manage.py migrate   # configurar las bases de datos
-python manage.py runserver 0.0.0.0:8000   # arrancar servidor web!!
 python manage.py startapp plucoapp   # crear aplicacion
 geany pluco/settings.py   # añadir la nueva app a la lista
 geany plucoapp/models.py   # crear los objetos
@@ -57,3 +56,5 @@ geany plucoapp/models.py   # crear los objetos
 python manage.py makemigrations plucoapp   # preparar modelos para base de datos
 python manage.py sqlmigrate plucoapp 0001   # crear las tablas oportunas
 python manage.py migrate   # introducir las tablas a la base de datos
+
+python manage.py runserver 0.0.0.0:8000   # arrancar servidor web!!
