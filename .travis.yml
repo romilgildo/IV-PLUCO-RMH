@@ -1,22 +1,22 @@
 # Selección del lenguaje, en nuestro caso python. 
 language: python   
 python:
-	- "2.7"
-    - "3.4"   
+  - "2.7"
+  - "3.4"   
 script:       # El script que ejecutaremos para que nuestro código funcione y corra los test.
-	- nosetests
+  - nosetests
 branches:     # decidimos que TravisCI solo compruebe los test del master de github.
-    only:
-        - master
+  - only:
+    - master
 notifications:   # Notificamos los resultados de los test por correo
-    recipients:
-        - rubenmartin1991@gmail.com
+  recipients:
+    - rubenmartin1991@gmail.com
     email:
-        on_success: change
-        on_failure: always
+      on_success: change
+      on_failure: always
 before_install:   # Instalación de dependencias
-	- sudo apt-get install libmysqlclient-dev
-	- sudo apt-get install python-dev
-	- pip install MySQL-python
-	- pip install Django 
-	- pip install nose
+  - sudo apt-get install libmysqlclient-dev
+  - sudo apt-get install python-dev
+  - pip install MySQL-python
+  - pip install Django 
+  - pip install nose
