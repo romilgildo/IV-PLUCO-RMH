@@ -34,6 +34,8 @@ Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyect
 
 ## Práctica 2 [![Travis](https://secure.travis-ci.org/romilgildo/IV-PLUCO-RMH.png)](http://travis-ci.org/romilgildo/IV-PLUCO-RMH)
 
+### Sistema de pruebas: Nose
+
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas [Nose](https://nose.readthedocs.org/en/latest/), que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
 
 El código que he creado por ahora, pero que podrá ir creciendo conforme vaya avanzando el proyecto es este:
@@ -75,9 +77,11 @@ El archivo actualizado está [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/
 
 El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
 
-En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) ya que me pareció muy sencillo su manejo, pero existen otros sistemas iguales de buenos como [Travis](https://travis-ci.org/) o [Jenkins](https://jenkins-ci.org/). 
+En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) y [Travis](https://travis-ci.org/), ya que me parecieron muy sencillo su manejo y muy completos, aunque también se podrían usar otros sistemas iguales de buenos como puede ser [Jenkins](https://jenkins-ci.org/). 
 
-Para que nuestro sistema de CI funcione, debemos crear primero el fichero en formato YML correspondiente dentro del repositorio, que en mi caso sería este:
+### Integración contínua: Shippable
+
+Para que nuestro sistema de CI funcione, debemos crear primero el fichero en formato YML correspondiente dentro del repositorio, llamado "shippable.yml" y que en mi caso sería este:
 
 ```
 # Distribucion de desarrollo
@@ -104,12 +108,54 @@ before_script:
 # Ejecucion de pruebas
 script:
  - nosetests
- ```
+```
  
- El fichero shippable.yml actualizado se encuentra [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/shippable.yml).
+El fichero shippable.yml actualizado se encuentra [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/shippable.yml).
  
- Aquí tenemos una captura de como está funcionando correctamente la integración contínua:
+Aquí tenemos una captura de como está funcionando correctamente la integración contínua:
  
- ![Integracion Continua Shippable](https://www.dropbox.com/s/s02yu9vycleuogg/ShippableCI.PNG?dl=1)
- 
- 
+![Integracion Continua Shippable](https://www.dropbox.com/s/s02yu9vycleuogg/ShippableCI.PNG?dl=1)
+
+### Integración contínua: Travis
+
+Con este sistema hacemos lo mismo que con el anterior, crear el fichero YML que en este caso se llamará ".travis.yml", con el siguiente contenido:
+
+```
+# Selección del lenguaje, en nuestro caso python. 
+language: python   
+
+python:
+  - "2.7" 
+
+install:   # Instalación de dependencias
+  - sudo apt-get install libmysqlclient-dev
+  - sudo apt-get install python-dev
+  - pip install --upgrade pip
+  - pip install MySQL-python
+  - pip install Django 
+  - pip install nose  
+  
+before_script:
+  - export DJANGO_SETTINGS_MODULE=pluco.settings
+
+script:       # El script que ejecutaremos para que nuestro código funcione y corra los test.
+  - nosetests
+
+branches:     # decidimos que TravisCI solo compruebe los test del master de github.
+  - only:
+    - master
+
+notifications:   # Notificamos los resultados de los test por correo
+  recipients:
+    - rubenmartin1991@gmail.com
+  email:
+    on_success: change
+    on_failure: always
+
+```
+
+[Aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/.travis.yml) teneis el fichero actualizado.
+
+Y por último una captura con la última modificación hecha al código del repositorio y que hizo pasar los test en Travis:
+
+![Integracion Continua Travis](https://www.dropbox.com/s/gtt7w9vrilja1wr/TravisCI.PNG?dl=1)
