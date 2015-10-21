@@ -14,4 +14,4 @@ install:
   
 # Ejecucion de prueba
 script:
- - nosetests
+ - python manage.py runserver 0.0.0.0:8000
