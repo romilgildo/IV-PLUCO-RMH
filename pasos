@@ -58,4 +58,6 @@ python manage.py makemigrations plucoapp   # preparar modelos para base de datos
 python manage.py sqlmigrate plucoapp 0001   # crear las tablas oportunas
 python manage.py migrate   # introducir las tablas a la base de datos
 
+// Para ejecutar
+export DJANGO_SETTINGS_MODULE=pluco.settings   # definir una variable que corrige un error
 python manage.py runserver 0.0.0.0:8000   # arrancar servidor web!!
