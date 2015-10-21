@@ -2,6 +2,10 @@
 
 Autor: Rubén Martín Hidalgo
 
+[Apuntado en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
+
+## Práctica 1
+
 ###Introducción
 
 Se trata de una plataforma académica de compartición de archivos de la Universidad de Granada, que permite la colaboración en grupo entre los usuarios del sistema. Ofrece servicios de almacenamiento de archivos en la nube, y de mensajería y foros para la resolución de dudas, potenciando la interacción de los usuarios, y agrupando a los mismos por grupos, por ejemplo de asignaturas o cursos.
@@ -28,4 +32,47 @@ El resto de mis compañeros deberán crear:
 
 Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyecto, y realizar el despliegue correcto sobre cualquier infraestructura virtual.
 
-[Apuntados en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
+## Práctica 2
+
+Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas [Nose](https://nose.readthedocs.org/en/latest/), que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
+
+El código que he creado por ahora, pero que podrá ir creciendo conforme vaya avanzando el proyecto es este:
+
+```
+from models import Estudiante
+from models import Profesor
+from models import Asignatura
+from nose.tools import assert_equal
+
+# Create your tests here.
+
+class Test:
+	def calcularCuadrado(self, numero):
+		return numero*numero
+		
+	def testCuadrado(self):
+		cuadrado = Test()
+		response = cuadrado.calcularCuadrado(4)
+		assert_equal(response, 16)
+
+	def testCrearEstudiante(self):
+		usuario = Estudiante('nuevoE')
+		response = usuario.nombre
+		assert_equal(response, 'nuevoE') 
+		
+	def testCrearProfesor(self):
+		usuario = Profesor('nuevoP')
+		response = usuario.nombre
+		assert_equal(response, 'nuevoP') 
+		
+	def testCrearAsignatura(self):
+		asig = Asignatura('nuevaA')
+		response = asig.nombre
+		assert_equal(response, 'nuevaA') 
+```
+
+El archivo actualizado está [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/plucoapp/tests.py), dentro del repositorio.
+
+El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
+
+En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) ya que me pareció muy sencillo su manejo, pero existen otros sistemas iguales de buenos como [Travis](https://travis-ci.org/) o [Jenkins](https://jenkins-ci.org/). 
