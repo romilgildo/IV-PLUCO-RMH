@@ -10,8 +10,9 @@ python:
 
 # Provisionamiento de la maquina
 install:  
-  - sudo pip install nose
+  - pip install Django 
+  - pip install nose
   
 # Ejecucion de prueba
 script:
- - python manage.py runserver 0.0.0.0:8000
+ - nosetests
