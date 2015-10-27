@@ -77,6 +77,10 @@ class Test:
 
 El archivo actualizado está [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/plucoapp/tests.py), dentro del repositorio.
 
+Aquí vemos como la aplicación pasa el test de prueba:
+
+![Ejecucion Nosetest](https://www.dropbox.com/s/uaqyie3raze79ib/nosetest.png?dl=1)
+
 El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
 
 En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) y [Travis](https://travis-ci.org/), ya que me parecieron muy sencillo su manejo y muy completos, aunque también se podrían usar otros sistemas iguales de buenos como puede ser [Jenkins](https://jenkins-ci.org/). 
