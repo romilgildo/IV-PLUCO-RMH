@@ -2,6 +2,8 @@
 
 Autor: Rubén Martín Hidalgo
 
+[![Travis](https://secure.travis-ci.org/romilgildo/IV-PLUCO-RMH.png)](http://travis-ci.org/romilgildo/IV-PLUCO-RMH) [![Shippable](https://img.shields.io/shippable/561d708d1895ca44741d9f63.svg)](https://app.shippable.com/projects/561d708d1895ca44741d9f63)
+
 [Apuntado en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
 
 ## Práctica 1
@@ -32,7 +34,7 @@ El resto de mis compañeros deberán crear:
 
 Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyecto, y realizar el despliegue correcto sobre cualquier infraestructura virtual.
 
-## Práctica 2 [![Travis](https://secure.travis-ci.org/romilgildo/IV-PLUCO-RMH.png)](http://travis-ci.org/romilgildo/IV-PLUCO-RMH) [![Shippable](https://img.shields.io/shippable/561d708d1895ca44741d9f63.svg)](https://app.shippable.com/projects/561d708d1895ca44741d9f63)
+## Práctica 2 
 
 ### Sistema de pruebas: Nose
 
