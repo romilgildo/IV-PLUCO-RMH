@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+# se puede hacer con patterns ('', ...)
 urlpatterns = [
+	url(r'^plucoapp/', include('plucoapp.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
