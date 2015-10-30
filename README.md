@@ -51,18 +51,10 @@ from nose.tools import assert_equal
 # Create your tests here.
 
 class Test:
-	def calcularCuadrado(self, numero):
-		return numero*numero
-		
-	def testCuadrado(self):
-		cuadrado = Test()
-		response = cuadrado.calcularCuadrado(4)
-		assert_equal(response, 16)
-
 	def testCrearEstudiante(self):
-		usuario = Estudiante('nuevoE')
-		response = usuario.nombre
-		assert_equal(response, 'nuevoE') 
+		usuario = Estudiante(nombre='nuevoE', dni='12345678A')
+		assert_equal(usuario.nombre, 'nuevoE')
+		assert_equal(usuario.dni, '12345678A')
 		
 	def testCrearProfesor(self):
 		usuario = Profesor('nuevoP')
