@@ -51,7 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'pluco.urls'
+ROOT_URLCONF = 'plucoapp.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'pluco.wsgi.application'
+WSGI_APPLICATION = 'plucoapp.wsgi.application'
 
 
 # Database
