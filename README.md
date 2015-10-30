@@ -101,7 +101,7 @@ install:
   - pip install nose
   
 before_script:
-  - export DJANGO_SETTINGS_MODULE=pluco.settings
+  - export DJANGO_SETTINGS_MODULE=plucoapp.settings
   
 # Ejecucion de pruebas
 script:
@@ -134,7 +134,7 @@ install:   # Instalación de dependencias
   - pip install nose  
   
 before_script:
-  - export DJANGO_SETTINGS_MODULE=pluco.settings
+  - export DJANGO_SETTINGS_MODULE=plucoapp.settings
 
 script:       # El script que ejecutaremos para que nuestro código funcione y corra los test.
   - nosetests
