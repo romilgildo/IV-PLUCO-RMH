@@ -36,6 +36,26 @@ Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyect
 
 ## Segundo hito
 
+### Herramienta de construcción
+
+He creado un Makefile con las opciones de limpieza, realización de tests y ejecución del servidor. El contenido del archivo es el siguiente:
+
+```
+clean:
+	rm -rf *~*
+	find . -name '*.pyc' -exec rm {} \;
+
+test: 
+	export DJANGO_SETTINGS_MODULE=plucoapp.settings
+	nosetests
+	
+run:
+	python manage.py runserver 0.0.0.0:8000
+
+```
+
+Y [este](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) el archivo actualizado.
+
 ### Sistema de pruebas: Nose
 
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas [Nose](https://nose.readthedocs.org/en/latest/), que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
