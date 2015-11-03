@@ -54,6 +54,8 @@ run:
 
 Y [este](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) el archivo actualizado.
 
+Para ejecutar la herramienta de construcción, simplemente debemos escribir en la terminal el comando *make* seguido de la opción que queramos (clean, test, run...).
+
 ### Sistema de pruebas: Nose
 
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas [Nose](https://nose.readthedocs.org/en/latest/), que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
