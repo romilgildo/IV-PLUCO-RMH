@@ -6,8 +6,6 @@ Autor: Rubén Martín Hidalgo
 
 [Apuntado en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
 
-## Primer hito
-
 ###Introducción
 
 Se trata de una plataforma académica de compartición de archivos de la Universidad de Granada, que permite la colaboración en grupo entre los usuarios del sistema. Ofrece servicios de almacenamiento de archivos en la nube, y de mensajería y foros para la resolución de dudas, potenciando la interacción de los usuarios, y agrupando a los mismos por grupos, por ejemplo de asignaturas o cursos.
@@ -34,31 +32,9 @@ El resto de mis compañeros deberán crear:
 
 Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyecto, y realizar el despliegue correcto sobre cualquier infraestructura virtual.
 
-## Segundo hito
+### Sistema de pruebas: [Nose](https://nose.readthedocs.org/en/latest/)
 
-### Herramienta de construcción
-
-He creado un Makefile con las opciones de limpieza, realización de tests y ejecución del servidor. El contenido del archivo es el siguiente:
-
-```
-clean:
-	rm -rf *~* && find . -name '*.pyc' -exec rm {} \;
-
-test: 
-	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
-	
-run:
-	python manage.py runserver 0.0.0.0:8000
-
-```
-
-Y [este](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) el archivo actualizado.
-
-Para ejecutar la herramienta de construcción, simplemente debemos escribir en la terminal el comando *make* seguido de la opción que queramos (clean, test, run...).
-
-### Sistema de pruebas: Nose
-
-Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas [Nose](https://nose.readthedocs.org/en/latest/), que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
+Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas Nose, que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
 
 El código que he creado por ahora, pero que podrá ir creciendo conforme vaya avanzando el proyecto es este:
 
@@ -93,11 +69,31 @@ Aquí vemos como la aplicación pasa el test de prueba:
 
 ![Ejecucion Nosetest](https://www.dropbox.com/s/uaqyie3raze79ib/nosetest.png?dl=1)
 
+### Herramienta de construcción
+
+He creado un Makefile con las opciones de limpieza, realización de tests y ejecución del servidor. El contenido del archivo es el siguiente:
+
+```
+clean:
+	rm -rf *~* && find . -name '*.pyc' -exec rm {} \;
+
+test: 
+	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
+	
+run:
+	python manage.py runserver 0.0.0.0:8000
+
+```
+
+Y [este](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) el archivo actualizado en el repositorio.
+
+Para ejecutar la herramienta de construcción, simplemente debemos escribir en la terminal el comando *make* seguido de la opción que queramos (clean, test, run...).
+
 El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
 
-En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) y [Travis](https://travis-ci.org/), ya que me parecieron muy sencillo su manejo y muy completos, aunque también se podrían usar otros sistemas iguales de buenos como puede ser [Jenkins](https://jenkins-ci.org/). 
+En mi caso, estoy haciendo la integración contínua con Shippable y Travis, ya que me parecieron muy sencillo su manejo y muy completos, aunque también se podrían usar otros sistemas iguales de buenos como puede ser [Jenkins](https://jenkins-ci.org/). 
 
-### Integración contínua: Shippable
+### Integración contínua: [Shippable](https://www.shippable.com/)
 
 Para que nuestro sistema de CI funcione, debemos crear primero el fichero en formato YML correspondiente dentro del repositorio, llamado "shippable.yml" y que en mi caso sería este:
 
@@ -125,7 +121,7 @@ before_script:
   
 # Ejecucion de pruebas
 script:
- - nosetests
+ - make test
 ```
  
 El fichero shippable.yml actualizado se encuentra [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/shippable.yml).
@@ -134,7 +130,7 @@ Aquí tenemos una captura de como está funcionando correctamente la integració
  
 ![Integracion Continua Shippable](https://www.dropbox.com/s/s02yu9vycleuogg/ShippableCI.PNG?dl=1)
 
-### Integración contínua: Travis
+### Integración contínua: [Travis](https://travis-ci.org/)
 
 Con este sistema hacemos lo mismo que con el anterior, crear el fichero YML que en este caso se llamará ".travis.yml", con el siguiente contenido:
 
@@ -157,7 +153,7 @@ before_script:
   - export DJANGO_SETTINGS_MODULE=plucoapp.settings
 
 script:       # El script que ejecutaremos para que nuestro código funcione y corra los test.
-  - nosetests
+  - make test
 
 branches:     # decidimos que TravisCI solo compruebe los test del master de github.
   - only:
@@ -177,3 +173,7 @@ notifications:   # Notificamos los resultados de los test por correo
 Y por último una captura con la última modificación hecha al código del repositorio y que hizo pasar los test en Travis:
 
 ![Integracion Continua Travis](https://www.dropbox.com/s/gtt7w9vrilja1wr/TravisCI.PNG?dl=1)
+
+### Despliegue en un PaaS: Heroku
+
+Primero nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora.

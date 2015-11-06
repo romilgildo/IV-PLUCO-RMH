@@ -11,12 +11,9 @@ install:   # Instalación de dependencias
   - pip install MySQL-python
   - pip install Django 
   - pip install nose  
-  
-before_script:
-  - export DJANGO_SETTINGS_MODULE=plucoapp.settings
 
 script:       # El script que ejecutaremos para que nuestro código funcione y corra los test.
-  - nosetests
+  - make test
 
 branches:     # decidimos que TravisCI solo compruebe los test del master de github.
   - only:

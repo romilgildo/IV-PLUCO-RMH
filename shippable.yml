@@ -16,9 +16,6 @@ install:
   - pip install Django 
   - pip install nose
   
-before_script:
-  - export DJANGO_SETTINGS_MODULE=plucoapp.settings
-  
 # Ejecucion de pruebas
 script:
- - nosetests
+ - make test
