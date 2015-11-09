@@ -116,9 +116,6 @@ install:
   - pip install Django 
   - pip install nose
   
-before_script:
-  - export DJANGO_SETTINGS_MODULE=plucoapp.settings
-  
 # Ejecucion de pruebas
 script:
  - make test
@@ -148,9 +145,6 @@ install:   # Instalación de dependencias
   - pip install MySQL-python
   - pip install Django 
   - pip install nose  
-  
-before_script:
-  - export DJANGO_SETTINGS_MODULE=plucoapp.settings
 
 script:       # El script que ejecutaremos para que nuestro código funcione y corra los test.
   - make test
@@ -174,6 +168,7 @@ Y por último una captura con la última modificación hecha al código del repo
 
 ![Integracion Continua Travis](https://www.dropbox.com/s/gtt7w9vrilja1wr/TravisCI.PNG?dl=1)
 
-### Despliegue en un PaaS: Heroku
+### Despliegue en un PaaS: [Heroku](https://www.heroku.com/)
 
 Primero nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora.
+
