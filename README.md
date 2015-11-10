@@ -4,17 +4,19 @@ Autor: Rubén Martín Hidalgo
 
 [![Travis](https://secure.travis-ci.org/romilgildo/IV-PLUCO-RMH.png)](http://travis-ci.org/romilgildo/IV-PLUCO-RMH) [![Shippable](https://img.shields.io/shippable/561d708d1895ca44741d9f63.svg)](https://app.shippable.com/projects/561d708d1895ca44741d9f63)
 
+[![Heroku](https://www.herokucdn.com/deploy/button.png)](http://pluco-db.herokuapp.com/)
+
 [Apuntado en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
 
-###Introducción
+### Introducción
 
 Se trata de una plataforma académica de compartición de archivos de la Universidad de Granada, que permite la colaboración en grupo entre los usuarios del sistema. Ofrece servicios de almacenamiento de archivos en la nube, y de mensajería y foros para la resolución de dudas, potenciando la interacción de los usuarios, y agrupando a los mismos por grupos, por ejemplo de asignaturas o cursos.
 
-###Seguridad
+### Seguridad
 
 En cuanto a la seguridad de nuestra plataforma los objetivos son: Permitir tener un sistema seguro en el que se separen datos sensibles y credenciales de los usuarios, y por otra parte archivos de los mismos. Además tendremos una web con foros que si es atacada no compremete la privacidad de los usuarios ni sus archivos.
 
-###Infraestuctura
+### Infraestuctura
 
 En mi infraestructura, realizaré un despliegue sobre Azure de un sistema de organización y gestión de datos de los usuarios de la plataforma, y que permitirá recuperar la información de los usuarios, consultar sus datos asociados, modificar los datos, además de los procesos asociados a dar de alta o baja a los usuarios. 
 
@@ -229,6 +231,7 @@ requirements.txt:
 ```
 MySQL-python==1.2.3
 Django==1.8.5
+nose==1.3.7
 gunicorn==19.3.0
 ```
 
