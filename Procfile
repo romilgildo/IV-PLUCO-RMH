@@ -1,1 +1,1 @@
-web: make runserver
+web: gunicorn plucoapp.wsgi --log-file -
