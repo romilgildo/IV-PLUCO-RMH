@@ -172,3 +172,4 @@ Y por último una captura con la última modificación hecha al código del repo
 
 Primero nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora.
 
+Esta es la aplicación ya desplegada en Heroku: [https://pluco.herokuapp.com/](https://pluco.herokuapp.com/)

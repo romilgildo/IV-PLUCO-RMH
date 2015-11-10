@@ -13,8 +13,5 @@ install:
 test: 
 	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
 	
-runlocal:
+run:
 	python manage.py runserver 0.0.0.0:8000
-
-runserver:
-	python manage.py runserver
