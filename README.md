@@ -32,6 +32,39 @@ El resto de mis compañeros deberán crear:
 
 Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyecto, y realizar el despliegue correcto sobre cualquier infraestructura virtual.
 
+### Instalación de MySQL en Azure
+
+Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. Para ello he seguido los siguientes pasos:
+
+1. Crear una máquina virtual, y abrir puertos para http, ssh y mysql dentro de Azure.
+
+2. Conectar por ssh a la máquina de azure con: *ssh romi@pluco-db.cloudapp.net*  
+
+3. Instsalar MySQL con: *sudo apt-get install mysql-server mysql-client* 
+
+4. Editamos fichero *settings.py* de nuestra app para que conecte con la base de datos: 
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysql',
+        'USER': 'root',
+        'PASSWORD': '****',
+        'HOST': 'pluco-db.cloudapp.net',
+        'PORT': '3306',
+    }
+}
+```
+
+5. Modificamos la "bind address" a 0.0.0.0 dentro de */etc/mysql/my.cnf*
+
+6. Añadimos la linea "mysqld: all" al fichero */etc/hosts.allow* para permitir entrada desde cualquier ordenador
+
+7. Reiniciamos MySQL con: *sudo /etc/init.d/mysql restart*
+
+8. Comprobamos que tenemos acceso con: *mysql -h pluco-db.cloudapp.net -u root -p*
+
 ### Sistema de pruebas: [Nose](https://nose.readthedocs.org/en/latest/)
 
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas Nose, que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
@@ -170,6 +203,33 @@ Y por último una captura con la última modificación hecha al código del repo
 
 ### Despliegue en un PaaS: [Heroku](https://www.heroku.com/)
 
-Primero nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora.
+Nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora. Se deben añadir los siguientes archivos:
 
-Esta es la aplicación ya desplegada en Heroku: [https://pluco.herokuapp.com/](https://pluco.herokuapp.com/)
+Procfile:
+
+```
+web: gunicorn plucoapp.wsgi --log-file -
+```
+
+requirements.txt:
+
+```
+MySQL-python==1.2.3
+Django==1.8.5
+gunicorn==19.3.0
+```
+
+Y tras habernos registrado en Heroku, ejecutamos *make deploy* dentro de nuestra app, que hace lo siguiente:
+
+```
+wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh   # descargar herramienta heroku CLI
+heroku login
+heroku create
+git add .
+git commit -m "despliegue en heroku"
+git push heroku master
+heroku ps:scale web=1
+heroku open
+``` 
+
+Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/](https://pluco-db.herokuapp.com/)
