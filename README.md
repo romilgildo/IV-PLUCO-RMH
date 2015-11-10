@@ -222,7 +222,7 @@ gunicorn==19.3.0
 Y tras habernos registrado en Heroku, ejecutamos *make deploy* dentro de nuestra app, que hace lo siguiente:
 
 ```
-wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh   # descargar herramienta heroku CLI
+wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh   
 heroku login
 heroku create
 git add .
@@ -233,3 +233,17 @@ heroku open
 ``` 
 
 Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/](https://pluco-db.herokuapp.com/)
+
+Ahora añadimos un proceso de integración contínua junto al despliegue automático mediante [Snap CI](https://snap-ci.com/).
+
+Realizamos la siguiente configuración desde la interfaz web:
+
+![Configuracion Snap 1](https://www.dropbox.com/s/r9amrlau1zoapyp/herokupluco1.PNG?dl=1)
+
+![Configuracion Snap 2](https://www.dropbox.com/s/3hm99md20w60boj/herokupluco2.PNG?dl=1)
+
+![Configuracion Snap 3](https://www.dropbox.com/s/c9y6eri9b9585bg/herokupluco3.PNG?dl=1)
+
+Y ya tenemos la integración contínua que despliega la aplicación al hacer git push a nuestro repositorio de GitHub, siempre que esta pase los tests.
+
+![Snap CI funcionando](https://www.dropbox.com/s/p7pibp4axd9x6p8/herokuplucoFunciona.PNG?dl=1)
