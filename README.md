@@ -65,6 +65,17 @@ DATABASES = {
 
 8. Comprobamos que tenemos acceso con: *mysql -h pluco-db.cloudapp.net -u root -p*
 
+### Instalación local de la app
+
+Para ejecutar la aplicación en nuestro propio ordenador, ejecutamos los siguientes comandos:
+
+```
+$ git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
+$ cd IV-PLUCO-RMH/
+$ make install
+$ make run
+```
+
 ### Sistema de pruebas: [Nose](https://nose.readthedocs.org/en/latest/)
 
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas Nose, que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
@@ -97,6 +108,8 @@ class Test:
 ```
 
 El archivo actualizado está [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/plucoapp/tests.py), dentro del repositorio.
+
+Para ejecutar los tests localmente, hacer *make test*.
 
 Aquí vemos como la aplicación pasa el test de prueba:
 
