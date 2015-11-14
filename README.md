@@ -221,13 +221,13 @@ Y por último una captura con la última modificación hecha al código del repo
 
 Nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora. Se deben añadir los siguientes archivos:
 
-Procfile:
+[Procfile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Procfile):
 
 ```
 web: gunicorn plucoapp.wsgi --log-file -
 ```
 
-requirements.txt:
+[requirements.txt](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/requirements.txt):
 
 ```
 MySQL-python==1.2.3
@@ -251,7 +251,15 @@ heroku open
 
 Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/](https://pluco-db.herokuapp.com/)
 
-Ahora añadimos un proceso de integración contínua junto al despliegue automático mediante [Snap CI](https://snap-ci.com/).
+Ahora añadimos un proceso de integración contínua junto al despliegue automático mediante, que se puede hacer desde el mismo Heroku o con [Snap CI](https://snap-ci.com/).
+
+Con HEROKU:
+
+Conectamos la app de Heroku con GitHub con la siguiente configuración:
+
+![Integracion continua Heroku](https://www.dropbox.com/s/6cbgxzb0pznv4vf/appHerokuGithub.PNG?dl=1)
+
+Con SNAP CI:
 
 Realizamos la siguiente configuración desde la interfaz web:
 
