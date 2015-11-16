@@ -25,7 +25,7 @@ class Profesor(models.Model):
 	
 class Asignatura(models.Model):
 	nombre = models.CharField (max_length=100, blank=True)
-	id = models.AutoField(primary_key=True)
+	nombre_id = models.CharField (max_length=30, default='nombre_id', primary_key=True)
 	
 	def __init__(self, nuevo):
 		self.nombre = nuevo

@@ -1,0 +1,9 @@
+{% if lista_profesores %}
+    <ul>
+    {% for profesor in lista_profesores %}
+        <li><a href="/profesores/{{ profesor.dni }}/">{{ profesor.nombre }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay profesores disponibles</p>
+{% endif %}

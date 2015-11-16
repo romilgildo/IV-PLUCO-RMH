@@ -20,6 +20,10 @@ from plucoapp import views
 urlpatterns = patterns ('',
     url(r'^$', views.index, name='index'),
     url(r'^asignaturas/$', views.listaAsignaturas, name='lista_asignaturas'),
-    url(r'^asignaturas/(?P<asig_nombre>[a-zA-Z0-9-]+)/$', views.getAsignatura, name='asignatura'),
+    url(r'^asignaturas/(?P<nombre_id>[a-zA-Z0-9-]+)/$', views.getAsignatura, name='asignatura'),
+	url(r'^estudiantes/$', views.listaEstudiantes, name='lista_estudiantes'),
+    url(r'^estudiantes/(?P<dni>[a-zA-Z0-9-]+)/$', views.getEstudiante, name='estudiante'),
+    url(r'^profesores/$', views.listaProfesores, name='lista_profesores'),
+    url(r'^profesores/(?P<dni>[a-zA-Z0-9-]+)/$', views.getProfesor, name='profesor'),
     url(r'^admin/', include(admin.site.urls)),
 )

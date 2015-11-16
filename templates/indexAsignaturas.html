@@ -1,7 +1,7 @@
-{% if lista_ultimas_asignaturas %}
+{% if lista_asignaturas %}
     <ul>
-    {% for asignatura in lista_ultimas_asignaturas %}
-        <li><a href="/asignaturas/{{ asignatura.id }}/">{{ asignatura.nombre }}</a></li>
+    {% for asignatura in lista_asignaturas %}
+        <li><a href="/asignaturas/{{ asignatura.nombre_id }}/">{{ asignatura.nombre }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
