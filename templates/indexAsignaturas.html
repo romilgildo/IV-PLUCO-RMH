@@ -1,0 +1,9 @@
+{% if lista_ultimas_asignaturas %}
+    <ul>
+    {% for asignatura in lista_ultimas_asignaturas %}
+        <li><a href="/asignaturas/{{ asignatura.id }}/">{{ asignatura.nombre }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay asignaturas disponibles</p>
+{% endif %}

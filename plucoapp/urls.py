@@ -19,5 +19,7 @@ from plucoapp import views
 
 urlpatterns = patterns ('',
     url(r'^$', views.index, name='index'),
+    url(r'^asignaturas/$', views.listaAsignaturas, name='lista_asignaturas'),
+    url(r'^asignaturas/(?P<asig_nombre>[a-zA-Z0-9-]+)/$', views.getAsignatura, name='asignatura'),
     url(r'^admin/', include(admin.site.urls)),
 )
