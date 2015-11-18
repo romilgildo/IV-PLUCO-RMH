@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% if lista_asignaturas %}
     <ul>
     {% for asignatura in lista_asignaturas %}
@@ -5,5 +9,7 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No hay asignaturas disponibles</p>
+    <div class="alert alert-danger" role="alert"><p>No hay asignaturas disponibles</p></div>
 {% endif %}
+
+{% endblock %}

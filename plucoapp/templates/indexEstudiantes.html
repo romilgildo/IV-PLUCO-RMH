@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% if lista_estudiantes %}
     <ul>
     {% for estudiante in lista_estudiantes %}
@@ -5,5 +9,7 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No hay estudiantes disponibles</p>
+    <div class="alert alert-danger" role="alert"><p>No hay estudiantes disponibles</p></div>
 {% endif %}
+
+{% endblock %}
