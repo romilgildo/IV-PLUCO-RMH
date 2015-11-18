@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url, patterns
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from plucoapp import views
 
@@ -27,3 +28,5 @@ urlpatterns = patterns ('',
     url(r'^profesores/(?P<dni>[a-zA-Z0-9-]+)/$', views.getProfesor, name='profesor'),
     url(r'^admin/', include(admin.site.urls)),
 )
+
+urlpatterns += staticfiles_urlpatterns()
