@@ -5,4 +5,5 @@ RUN sudo apt-get update
 RUN sudo apt-get install -y git
 RUN sudo apt-get install -y build-essential
 RUN sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
+RUN cd IV-PLUCO-RMH && git pull
 RUN cd IV-PLUCO-RMH && make install

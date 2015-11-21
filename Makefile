@@ -30,5 +30,5 @@ heroku:
 docker:
 	sudo apt-get update
 	sudo apt-get install -y docker.io
-	sudo docker pull romilgildo/pluco-db
-	sudo docker run -t -i romilgildo/pluco-db /bin/bash
+	sudo docker pull romilgildo/pluco
+	sudo docker run -t -i romilgildo/pluco /bin/bash
