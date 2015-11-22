@@ -116,7 +116,7 @@ Para ejecutar los tests localmente, hacer *make test*.
 
 Aquí vemos como la aplicación pasa el test de prueba:
 
-![Ejecucion Nosetest](https://www.dropbox.com/s/uaqyie3raze79ib/nosetest.png?dl=1)
+![Ejecucion Nosetest](http://i628.photobucket.com/albums/uu6/romilgildo/nosetest_zpsa0tx2byz.png)
 
 ### Herramienta de construcción
 
@@ -174,7 +174,7 @@ El fichero shippable.yml actualizado se encuentra [aquí](https://github.com/rom
  
 Aquí tenemos una captura de como está funcionando correctamente la integración contínua:
  
-![Integracion Continua Shippable](https://www.dropbox.com/s/s02yu9vycleuogg/ShippableCI.PNG?dl=1)
+![Integracion Continua Shippable](http://i628.photobucket.com/albums/uu6/romilgildo/ShippableCI_zpsa4v35zyr.png)
 
 ### Integración contínua: [Travis](https://travis-ci.org/)
 
@@ -215,7 +215,7 @@ notifications:   # Notificamos los resultados de los test por correo
 
 Y por último una captura con la última modificación hecha al código del repositorio y que hizo pasar los test en Travis:
 
-![Integracion Continua Travis](https://www.dropbox.com/s/gtt7w9vrilja1wr/TravisCI.PNG?dl=1)
+![Integracion Continua Travis](http://i628.photobucket.com/albums/uu6/romilgildo/TravisCI_zpsrnjbk0vt.png)
 
 ### Despliegue en un PaaS: [Heroku](https://www.heroku.com/)
 
@@ -257,18 +257,59 @@ Con HEROKU:
 
 Conectamos la app de Heroku con GitHub con la siguiente configuración:
 
-![Integracion continua Heroku](https://www.dropbox.com/s/6cbgxzb0pznv4vf/appHerokuGithub.PNG?dl=1)
+![Integracion continua Heroku](http://i628.photobucket.com/albums/uu6/romilgildo/appHerokuGithub_zpskissoi5r.png)
 
 Con SNAP CI:
 
 Realizamos la siguiente configuración desde la interfaz web:
 
-![Configuracion Snap 1](https://www.dropbox.com/s/r9amrlau1zoapyp/herokupluco1.PNG?dl=1)
+![Configuracion Snap 1](http://i628.photobucket.com/albums/uu6/romilgildo/herokupluco1_zpsypnuxm5w.png)
 
-![Configuracion Snap 2](https://www.dropbox.com/s/3hm99md20w60boj/herokupluco2.PNG?dl=1)
+![Configuracion Snap 2](http://i628.photobucket.com/albums/uu6/romilgildo/herokupluco2_zpsqgme34c8.png)
 
-![Configuracion Snap 3](https://www.dropbox.com/s/c9y6eri9b9585bg/herokupluco3.PNG?dl=1)
+![Configuracion Snap 3](http://i628.photobucket.com/albums/uu6/romilgildo/herokupluco3_zpsft62am70.png)
 
 Y ya tenemos la integración contínua que despliega la aplicación al hacer git push a nuestro repositorio de GitHub, siempre que esta pase los tests.
 
-![Snap CI funcionando](https://www.dropbox.com/s/p7pibp4axd9x6p8/herokuplucoFunciona.PNG?dl=1)
+![Snap CI funcionando](http://i628.photobucket.com/albums/uu6/romilgildo/herokuplucoFunciona_zpsqldqyeza.png)
+
+### Entorno de pruebas: [Docker](https://www.docker.com/)
+
+Docker es una plataforma que automatiza el despliegue de aplicaciones dentro de contenedores software, permitiendo probarla en un entorno aislado para posteriormente desplegarla a producción rápidamente.
+
+Para ello, Docker usa un fichero dentro del código de la aplicación llamado *Dockerfile* para la construcción de la imagen, que en mi caso contiene lo siguiente:
+
+```
+FROM ubuntu:14.04
+MAINTAINER Ruben Martin Hidalgo <rubenmartin1991@gmail.com>
+
+RUN sudo apt-get update
+RUN sudo apt-get install -y git
+RUN sudo apt-get install -y build-essential
+RUN sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
+RUN cd IV-PLUCO-RMH && git pull
+RUN cd IV-PLUCO-RMH && make install
+```
+
+[Aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Dockerfile) lo tendrás actualizado en el repositorio.
+
+Todos los cambios realizados cobre el código del repositorio, se integran en tiempo real y de manera totalmente automatizada mediante Docker Hub, que rehará el build por su cuenta cada vez que hagamos "git push".
+
+Para crear el entorno de pruebas, se debe ejecutar el comando:
+
+`make docker`
+
+Esto hará lo siguiente: 
+
+```
+$ sudo apt-get update
+$ sudo apt-get install -y docker.io
+$ sudo docker pull romilgildo/pluco
+$ sudo docker run -t -i romilgildo/pluco /bin/bash
+```
+
+Es decir, instala Docker, crea el contenedor con la aplicación instalada en él, y arranca el entorno de pruebas. Dentro de este bastará con hacer "make run" dentro del directorio de la aplicación para probar su correcto funcionamiento.
+
+La imagen en Docker es [esta](https://hub.docker.com/r/romilgildo/pluco/) y aquí teneis una captura de la construcción automática de la imagen funcionando:
+
+![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/automatedbuildDocker_zps8efsoio0.png)
