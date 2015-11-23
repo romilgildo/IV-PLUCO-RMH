@@ -37,36 +37,15 @@ Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyect
 
 ### Instalación de MySQL en Azure
 
-Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. Para ello he seguido los siguientes pasos:
+Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. 
 
-1. Crear una máquina virtual, y abrir puertos para http, ssh y mysql dentro de Azure.
+[Más info](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/MySQL.md)
 
-2. Conectar por ssh a la máquina de azure con: *ssh romi@pluco-db.cloudapp.net*  
+### Herramienta de construcción
 
-3. Instsalar MySQL con: *sudo apt-get install mysql-server mysql-client* 
+Para ello, he creado un [Makefile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) con las opciones de limpieza, realización de tests, ejecución del servidor y opciones de despliegue.
 
-4. Editamos fichero *settings.py* de nuestra app para que conecte con la base de datos: 
-
-```
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysql',
-        'USER': 'root',
-        'PASSWORD': '****',
-        'HOST': 'pluco-db.cloudapp.net',
-        'PORT': '3306',
-    }
-}
-```
-
-5. Modificamos la "bind address" a 0.0.0.0 dentro de */etc/mysql/my.cnf*
-
-6. Añadimos la linea "mysqld: all" al fichero */etc/hosts.allow* para permitir entrada desde cualquier ordenador
-
-7. Reiniciamos MySQL con: *sudo /etc/init.d/mysql restart*
-
-8. Comprobamos que tenemos acceso con: *mysql -h pluco-db.cloudapp.net -u root -p*
+Para ejecutar la herramienta de construcción, simplemente debemos escribir en la terminal el comando *make* seguido de la opción que queramos (clean, test, run...).
 
 ### Instalación local de la app
 
@@ -83,233 +62,38 @@ $ make run
 
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas Nose, que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
 
-El código que he creado por ahora, pero que podrá ir creciendo conforme vaya avanzando el proyecto es este:
+Aquí está el archivo [tests.py](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/plucoapp/tests.py) actualizado con los tests correspondientes.
 
-```
-from models import Estudiante
-from models import Profesor
-from models import Asignatura
-from nose.tools import assert_equal
+Para ejecutar los tests localmente, hacer `make test`.
 
-# Create your tests here.
-
-class Test:
-	def testCrearEstudiante(self):
-		usuario = Estudiante(nombre='nuevoE', dni='12345678A')
-		assert_equal(usuario.nombre, 'nuevoE')
-		assert_equal(usuario.dni, '12345678A')
-		
-	def testCrearProfesor(self):
-		usuario = Profesor('nuevoP')
-		response = usuario.nombre
-		assert_equal(response, 'nuevoP') 
-		
-	def testCrearAsignatura(self):
-		asig = Asignatura('nuevaA')
-		response = asig.nombre
-		assert_equal(response, 'nuevaA') 
-```
-
-El archivo actualizado está [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/plucoapp/tests.py), dentro del repositorio.
-
-Para ejecutar los tests localmente, hacer *make test*.
-
-Aquí vemos como la aplicación pasa el test de prueba:
+Aquí vemos como la aplicación pasa el test de pruebas:
 
 ![Ejecucion Nosetest](http://i628.photobucket.com/albums/uu6/romilgildo/nosetest_zpsa0tx2byz.png)
 
-### Herramienta de construcción
-
-He creado un Makefile con las opciones de limpieza, realización de tests y ejecución del servidor. El contenido del archivo es el siguiente:
-
-```
-clean:
-	rm -rf *~* && find . -name '*.pyc' -exec rm {} \;
-
-test: 
-	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
-	
-run:
-	python manage.py runserver 0.0.0.0:8000
-
-```
-
-Y [este](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) el archivo actualizado en el repositorio.
-
-Para ejecutar la herramienta de construcción, simplemente debemos escribir en la terminal el comando *make* seguido de la opción que queramos (clean, test, run...).
+### Integración contínua 
 
 El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
 
-En mi caso, estoy haciendo la integración contínua con Shippable y Travis, ya que me parecieron muy sencillo su manejo y muy completos, aunque también se podrían usar otros sistemas iguales de buenos como puede ser [Jenkins](https://jenkins-ci.org/). 
+En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) y [Travis](https://travis-ci.org/), ya que me parecieron muy sencillos en cuanto a su manejo y muy completos, aunque también se podrían usar otros sistemas iguales de buenos como puede ser [Jenkins](https://jenkins-ci.org/). 
 
-### Integración contínua: [Shippable](https://www.shippable.com/)
-
-Para que nuestro sistema de CI funcione, debemos crear primero el fichero en formato YML correspondiente dentro del repositorio, llamado "shippable.yml" y que en mi caso sería este:
-
-```
-# Distribucion de desarrollo
-build_environment: Ubuntu 14.04
-
-# Lenguaje de programacion
-language: python
-
-# Version Python
-python:
-  - "2.7"
-
-# Provisionamiento de la maquina
-install:  
-  - sudo apt-get install libmysqlclient-dev
-  - sudo apt-get install python-dev
-  - pip install MySQL-python
-  - pip install Django 
-  - pip install nose
-  
-# Ejecucion de pruebas
-script:
- - make test
-```
- 
-El fichero shippable.yml actualizado se encuentra [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/shippable.yml).
- 
-Aquí tenemos una captura de como está funcionando correctamente la integración contínua:
- 
-![Integracion Continua Shippable](http://i628.photobucket.com/albums/uu6/romilgildo/ShippableCI_zpsa4v35zyr.png)
-
-### Integración contínua: [Travis](https://travis-ci.org/)
-
-Con este sistema hacemos lo mismo que con el anterior, crear el fichero YML que en este caso se llamará ".travis.yml", con el siguiente contenido:
-
-```
-# Selección del lenguaje, en nuestro caso python. 
-language: python   
-
-python:
-  - "2.7" 
-
-install:   # Instalación de dependencias
-  - sudo apt-get install libmysqlclient-dev
-  - sudo apt-get install python-dev
-  - pip install --upgrade pip
-  - pip install MySQL-python
-  - pip install Django 
-  - pip install nose  
-
-script:       # El script que ejecutaremos para que nuestro código funcione y corra los test.
-  - make test
-
-branches:     # decidimos que TravisCI solo compruebe los test del master de github.
-  - only:
-    - master
-
-notifications:   # Notificamos los resultados de los test por correo
-  recipients:
-    - rubenmartin1991@gmail.com
-  email:
-    on_success: change
-    on_failure: always
-
-```
-
-[Aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/.travis.yml) teneis el fichero actualizado.
-
-Y por último una captura con la última modificación hecha al código del repositorio y que hizo pasar los test en Travis:
-
-![Integracion Continua Travis](http://i628.photobucket.com/albums/uu6/romilgildo/TravisCI_zpsrnjbk0vt.png)
+[Más info](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/integracionContinua.md)
 
 ### Despliegue en un PaaS: [Heroku](https://www.heroku.com/)
 
-Nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora. Se deben añadir los siguientes archivos:
-
-[Procfile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Procfile):
-
-```
-web: gunicorn plucoapp.wsgi --log-file -
-```
-
-[requirements.txt](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/requirements.txt):
-
-```
-MySQL-python==1.2.3
-Django==1.8.5
-nose==1.3.7
-gunicorn==19.3.0
-```
-
-Y tras habernos registrado en Heroku, ejecutamos *make deploy* dentro de nuestra app, que hace lo siguiente:
-
-```
-wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh   
-heroku login
-heroku create
-git add .
-git commit -m "despliegue en heroku"
-git push heroku master
-heroku ps:scale web=1
-heroku open
-``` 
+Nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora.
 
 Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/](https://pluco-db.herokuapp.com/)
 
-Ahora añadimos un proceso de integración contínua junto al despliegue automático mediante, que se puede hacer desde el mismo Heroku o con [Snap CI](https://snap-ci.com/).
-
-Con HEROKU:
-
-Conectamos la app de Heroku con GitHub con la siguiente configuración:
-
-![Integracion continua Heroku](http://i628.photobucket.com/albums/uu6/romilgildo/appHerokuGithub_zpskissoi5r.png)
-
-Con SNAP CI:
-
-Realizamos la siguiente configuración desde la interfaz web:
-
-![Configuracion Snap 1](http://i628.photobucket.com/albums/uu6/romilgildo/herokupluco1_zpsypnuxm5w.png)
-
-![Configuracion Snap 2](http://i628.photobucket.com/albums/uu6/romilgildo/herokupluco2_zpsqgme34c8.png)
-
-![Configuracion Snap 3](http://i628.photobucket.com/albums/uu6/romilgildo/herokupluco3_zpsft62am70.png)
-
-Y ya tenemos la integración contínua que despliega la aplicación al hacer git push a nuestro repositorio de GitHub, siempre que esta pase los tests.
-
-![Snap CI funcionando](http://i628.photobucket.com/albums/uu6/romilgildo/herokuplucoFunciona_zpsqldqyeza.png)
+[Más info](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md)
 
 ### Entorno de pruebas: [Docker](https://www.docker.com/)
 
 Docker es una plataforma que automatiza el despliegue de aplicaciones dentro de contenedores software, permitiendo probarla en un entorno aislado para posteriormente desplegarla a producción rápidamente.
 
-Para ello, Docker usa un fichero dentro del código de la aplicación llamado *Dockerfile* para la construcción de la imagen, que en mi caso contiene lo siguiente:
-
-```
-FROM ubuntu:14.04
-MAINTAINER Ruben Martin Hidalgo <rubenmartin1991@gmail.com>
-
-RUN sudo apt-get update
-RUN sudo apt-get install -y git
-RUN sudo apt-get install -y build-essential
-RUN sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
-RUN cd IV-PLUCO-RMH && git pull
-RUN cd IV-PLUCO-RMH && make install
-```
-
-[Aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Dockerfile) lo tendrás actualizado en el repositorio.
-
-Todos los cambios realizados cobre el código del repositorio, se integran en tiempo real y de manera totalmente automatizada mediante Docker Hub, que rehará el build por su cuenta cada vez que hagamos "git push".
+La imagen de la app en Docker es [esta](https://hub.docker.com/r/romilgildo/pluco/)
 
 Para crear el entorno de pruebas, se debe ejecutar el comando:
 
 `make docker`
 
-Esto hará lo siguiente: 
-
-```
-$ sudo apt-get update
-$ sudo apt-get install -y docker.io
-$ sudo docker pull romilgildo/pluco
-$ sudo docker run -t -i romilgildo/pluco /bin/bash
-```
-
-Es decir, instala Docker, crea el contenedor con la aplicación instalada en él, y arranca el entorno de pruebas. Dentro de este bastará con hacer "make run" dentro del directorio de la aplicación para probar su correcto funcionamiento.
-
-La imagen en Docker es [esta](https://hub.docker.com/r/romilgildo/pluco/) y aquí teneis una captura de la construcción automática de la imagen funcionando:
-
-![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/automatedbuildDocker_zps8efsoio0.png)
+[Más info](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md)
