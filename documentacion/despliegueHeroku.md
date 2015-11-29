@@ -32,7 +32,7 @@ heroku open
 
 Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/](https://pluco-db.herokuapp.com/)
 
-Ahora añadimos un proceso de integración contínua junto al despliegue automático mediante, que se puede hacer desde el mismo Heroku o con [Snap CI](https://snap-ci.com/).
+Ahora añadimos un proceso de integración contínua para que cada vez que hagamos "push" a nuestro repositorio, se realice el despliegue automático. Esta configuración se puede hacer desde el mismo Heroku o con [Snap CI](https://snap-ci.com/).
 
 Con HEROKU:
 
