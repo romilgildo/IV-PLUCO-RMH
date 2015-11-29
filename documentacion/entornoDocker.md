@@ -18,7 +18,7 @@ Luego en la web de [Docker Hub](https://hub.docker.com/), creamos un "Automated 
 
 [Esta](https://hub.docker.com/r/romilgildo/pluco/) es la imagen Docker y aquí teneis una captura de la construcción automática de la imagen funcionando:
 
-![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/automatedbuildDocker_zps8efsoio0.png)
+![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/dockerFuncionando_zpsulkp8xbi.png)
 
 A partir de ahora, todos los cambios realizados cobre el código del repositorio, se integran en tiempo real y de manera totalmente automatizada mediante Docker Hub, que rehará el build por su cuenta cada vez que hagamos "git push".
 
@@ -39,4 +39,4 @@ Es decir, instala Docker, crea el contenedor con la aplicación instalada en él
 
 Aquí una muestra del funcionamiento de nuestra app dentro del contenedor, donde accedemos introduciendo la IP del contenedor Docker en el navegador del sistema anfitrión:
 
-![Pluco funcionando en Docker](https://www.dropbox.com/s/ibfqh4rl7f0ggfo/plucoenDocker.PNG?dl=1)
+![Pluco funcionando en Docker](http://i628.photobucket.com/albums/uu6/romilgildo/plucoenDocker_zps32fcyw8u.png)
