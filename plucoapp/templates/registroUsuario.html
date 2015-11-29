@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <div class="container" style="max-width: 35%">
+            <form role="form" class="form" method="post" action="{% url 'registro_usuario' %}">
+                {% csrf_token %}
+                <table>{{ form }}</table>
+                <br><br>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                         <input class="btn btn-primary" type="submit" value="Sign up"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ 
+    {% if form.errors %}
+        <p>{{ form.errors }}</p>
+    {% endif %}
+ 
+{% endblock %}

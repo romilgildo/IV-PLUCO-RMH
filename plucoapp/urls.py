@@ -26,6 +26,7 @@ urlpatterns = patterns ('',
     url(r'^estudiantes/(?P<dni>[a-zA-Z0-9-]+)/$', views.getEstudiante, name='estudiante'),
     url(r'^profesores/$', views.listaProfesores, name='lista_profesores'),
     url(r'^profesores/(?P<dni>[a-zA-Z0-9-]+)/$', views.getProfesor, name='profesor'),
+    url(r'^nuevousuario$', views.registroUsuario, name='registro_usuario'),
     url(r'^admin/', include(admin.site.urls)),
 )
 
