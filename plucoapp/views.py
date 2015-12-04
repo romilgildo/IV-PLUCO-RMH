@@ -1,8 +1,8 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
-from django.contrib.auth.models import User
-from .forms import NewUserForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import UserCreationForm
 from .models import Asignatura, Estudiante, Profesor
 
 # Create your views here.
@@ -36,17 +36,15 @@ def getProfesor(request, dni):
 	
 def registroUsuario(request): 
 	if request.method == 'POST':  # If the form has been submitted...
-		form = NewUserForm(request.POST) 
+		form = UserCreationForm(request.POST) 
 		if form.is_valid():  # All validation rules pass
 			# Process the data in form.cleaned_data
-			username = form.cleaned_data["username"]
-			email = form.cleaned_data["email"]
-			password = form.cleaned_data["password"]
-			user = User.objects.create_user(username, email, password)
-			user.save()  # Save new user attributes
+			form.save()  # Save new user attributes
 			
-			return HttpResponseRedirect('/')  # Redirect after POST
+			return HttpResponseRedirect('registrocorrecto')  # Redirect after POST
 	else: 
-		form = NewUserForm() 
+		form = UserCreationForm() 
 	return render_to_response('registroUsuario.html', {'form': form}, context_instance=RequestContext(request)) 
 
+def usuarioRegistrado(request):
+	return render(request, 'usuarioRegistrado.html')

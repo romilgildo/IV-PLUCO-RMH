@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url, patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
 from plucoapp import views
 
 urlpatterns = patterns ('',
@@ -27,6 +28,9 @@ urlpatterns = patterns ('',
     url(r'^profesores/$', views.listaProfesores, name='lista_profesores'),
     url(r'^profesores/(?P<dni>[a-zA-Z0-9-]+)/$', views.getProfesor, name='profesor'),
     url(r'^nuevousuario$', views.registroUsuario, name='registro_usuario'),
+    url(r'^registrocorrecto$', views.usuarioRegistrado, name='registro_correcto'),
+    url(r'^login$', login, {'template_name': 'index.html', }, name="login"),
+    url(r'^logout$', logout, {'template_name': 'index.html', }, name="logout"),
     url(r'^admin/', include(admin.site.urls)),
 )
 
