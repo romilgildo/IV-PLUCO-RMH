@@ -31,4 +31,4 @@ docker:
 	sudo apt-get update
 	sudo apt-get install -y docker.io
 	sudo docker pull romilgildo/pluco
-	sudo docker run -t -i romilgildo/pluco /bin/bash
+	sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
