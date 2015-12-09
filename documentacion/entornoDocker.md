@@ -18,11 +18,11 @@ Luego en la web de [Docker Hub](https://hub.docker.com/), creamos un "Automated 
 
 [Esta](https://hub.docker.com/r/romilgildo/pluco/) es la imagen Docker y aquí teneis una captura de la construcción automática de la imagen funcionando:
 
-![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/dockerFuncionando_zpsulkp8xbi.png)
+![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/dockerFuncionando_zpsulkp8xbi.png~original)
 
 A partir de ahora, todos los cambios realizados cobre el código del repositorio, se integran en tiempo real y de manera totalmente automatizada mediante Docker Hub, que rehará el build por su cuenta cada vez que hagamos "git push".
 
-# Creación del entorno de pruebas en local
+### Creación del entorno de pruebas en local
 
 Para crear el entorno de pruebas en nuestro ordenador, se debe ejecutar el comando:
 
@@ -41,9 +41,9 @@ Es decir, instala Docker, crea el contenedor con la aplicación instalada en él
 
 Aquí una muestra del funcionamiento de nuestra app dentro del contenedor local, donde accedemos introduciendo la IP del contenedor Docker en el navegador del sistema anfitrión:
 
-![Pluco funcionando en Docker](http://i628.photobucket.com/albums/uu6/romilgildo/plucoenDocker_zps32fcyw8u.png)
+![Pluco funcionando en Docker](http://i628.photobucket.com/albums/uu6/romilgildo/plucoenDocker_zps32fcyw8u.png~original)
 
-# Creación del entorno de pruebas en Azure
+### Creación del entorno de pruebas en Azure
 
 Para la instalación en una máquina virtual de Azure debemos seguir los siguientes pasos:, basta con crearla, y luego conectar a ella por ssh, clonar el repositorio, y hacer `make docker` dentro del directorio de la app. También necesitamos abrir el puerto que usa el servidor de Python y el de Docker. Todo este proceso se automatizará en los próximos hitos, con scripts de automatización y provisionamiento de la máquina virtual. 
 
