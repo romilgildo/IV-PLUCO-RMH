@@ -41,7 +41,7 @@ Aquí una muestra del funcionamiento de nuestra app dentro del contenedor local,
 
 ![Pluco funcionando en Docker](http://i628.photobucket.com/albums/uu6/romilgildo/plucoenDocker_zps32fcyw8u.png)
 
-Para la instalación en una máquina virtual de Azure, basta con crearla, por ejemplo desde el panel de control web (o mediante línea de comandos con la orden `azure  vm  create` que veremos más adelante) y luego conectar a ella por ssh, clonar el repositorio, y hacer `make docker` dentro del directorio de la app. También necesitamos abrir el puerto que usa el servidor de Python. Todo este proceso se automatizará en los próximos hitos, con scripts de automatización y provisionamiento de la máquina virtual. 
+Para la instalación en una máquina virtual de Azure, basta con crearla, por ejemplo desde el panel de control web (o mediante línea de comandos con la orden `azure  vm  create` que veremos más adelante) y luego conectar a ella por ssh, clonar el repositorio, y hacer `make docker` dentro del directorio de la app. También necesitamos abrir el puerto que usa el servidor de Python y el de Docker. Todo este proceso se automatizará en los próximos hitos, con scripts de automatización y provisionamiento de la máquina virtual. 
 
 Contenedor creado en Azure:
 
@@ -88,6 +88,18 @@ Y ya vemos que la extensión de Docker en Azure funciona.
 
 ![Extensión creada](http://i628.photobucket.com/albums/uu6/romilgildo/extensionFunciona_zpshvazhnsn.png)
 
-Comprobamos también que haya conexión con el contenedor Docker instalado en Azure.
+Comprobamos también que haya conexión con el contenedor Docker instalado en Azure con `docker --tls -H tcp://pluco-db.cloudapp.net:2376 info`
 
 ![Conexión correcta con el contendor](http://i628.photobucket.com/albums/uu6/romilgildo/conexionDockerAzure_zpsophi8bna.png)
+
+Por último, para poder conectar a nuestra aplicación funcionando desde el contenedor Docker creado, solo debemos arrancar el contenedor de la siguiente forma:
+
+`sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash`
+
+Donde le indicamos que el puerto 8000 del contenedor corresponderá al 8000 de la máquina virtual, de forma que podamos tener acceso a él. 
+
+Ya solo entramos al directorio de la app y arrancamos el servidor. 
+
+`cd IV-PLUCO-RMH && make run`
+
+Aquí tenemos desplegado el contenedor Docker instalado en una máquina de Azure y disponible de manera online: [http://pluco-db.cloudapp.net:8000/](http://pluco-db.cloudapp.net:8000/)

@@ -92,6 +92,8 @@ Docker es una plataforma que automatiza el despliegue de aplicaciones dentro de 
 
 La imagen de la app en Docker es [esta](https://hub.docker.com/r/romilgildo/pluco/)
 
+Aquí está funcionando el entorno de pruebas instalado en Azure: [http://pluco-db.cloudapp.net:8000/](http://pluco-db.cloudapp.net:8000/)
+
 Para crear el entorno de pruebas, se debe ejecutar el comando:
 
 `make docker`
