@@ -28,7 +28,7 @@ Luego en la web de [Docker Hub](https://hub.docker.com/), creamos un "Automated 
 
 [Esta](https://hub.docker.com/r/romilgildo/pluco/) es la imagen Docker y aquí teneis una captura de la construcción automática de la imagen funcionando:
 
-![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/dockerFuncionando_zpsulkp8xbi.png~original)
+![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/automatedbuildDocker_zpsh8ttavhh.png~original)
 
 A partir de ahora, todos los cambios realizados cobre el código del repositorio, se integran en tiempo real y de manera totalmente automatizada mediante Docker Hub, que rehará el build por su cuenta cada vez que hagamos "git push".
 
@@ -77,7 +77,7 @@ Contenedor creado en Azure:
 
 Puertos abiertos en Azure:
 
-![Puertos abiertos en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/puertosAbiertosAzure_zpscbqlzbb2.png)
+![Puertos abiertos en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/puertosAbiertosAzure_zpswdzdpte8.png)
 
 Por último, para poder conectar a nuestra aplicación funcionando desde el contenedor Docker creado, solo debemos arrancar el contenedor de la siguiente forma:
 
