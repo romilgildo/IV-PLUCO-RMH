@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
-from .models import Asignatura, Estudiante, Profesor
+from .models import Asignatura, Usuario
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def getAsignatura(request, nombre_id):
 	return HttpResponse("Asignatura %s" % nombre_id)
 	
 def listaEstudiantes(request):
-	lista_estudiantes = Estudiante.objects.all()
+	lista_estudiantes = Usuario.objects.filter(tipo='ESTUDIANTE')
 	context = {'lista_estudiantes': lista_estudiantes}
 	return render(request, 'indexEstudiantes.html', context)
     
@@ -27,7 +27,7 @@ def getEstudiante(request, dni):
 	return HttpResponse("Estudiante con DNI = %s" % dni)
 
 def listaProfesores(request):
-	lista_profesores = Profesor.objects.all()
+	lista_profesores = Usuario.objects.filter(tipo='PROFESOR')
 	context = {'lista_profesores': lista_profesores}
 	return render(request, 'indexProfesores.html', context)
     
@@ -45,6 +45,23 @@ def registroUsuario(request):
 	else: 
 		form = UserCreationForm() 
 	return render_to_response('registroUsuario.html', {'form': form}, context_instance=RequestContext(request)) 
+	
+def completarRegistro(request): 
+	if request.method == 'POST':  # If the form has been submitted...
+		form = registroUsuario(request.POST) 
+		if form.is_valid():  # All validation rules pass
+			# Process the data in form.cleaned_data
+			usuario = Usuario.objects.create()
+			usuario.nombre = form.cleaned_data["nombre"]
+			usuario.email = form.cleaned_data["email"]
+			usuario.tipo = form.cleaned_data["tipo"] 
+			usuario.nick = request.user
+			usuario.save()  # Save new user attributes
+			
+			return HttpResponseRedirect('registrocorrecto')  # Redirect after POST
+	else: 
+		form = registroUsuario() 
+	return render_to_response('registroUsuarioCompleto.html', {'form': form}, context_instance=RequestContext(request)) 
 
 def usuarioRegistrado(request):
 	return render(request, 'usuarioRegistrado.html')

@@ -1,8 +1,7 @@
 from django.contrib import admin
-from plucoapp.models import Estudiante, Profesor, Asignatura
+from plucoapp.models import Usuario, Asignatura
 
 # Register your models here.
 
-admin.site.register(Estudiante)
-admin.site.register(Profesor)
+admin.site.register(Usuario)
 admin.site.register(Asignatura)

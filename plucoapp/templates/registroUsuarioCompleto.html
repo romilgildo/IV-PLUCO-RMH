@@ -3,13 +3,13 @@
 
     <div class="jumbotron">
         <div class="container" style="max-width: 35%">
-            <form role="form" class="form" method="post" action="{% url 'registro_usuario' %}">
+            <form role="form" class="form" method="post" action="{% url 'registro_usuarioC' %}">
                 {% csrf_token %}
                 <table>{{ form }}</table>
                 <br><br>
                 <div class="form-group">
                     <div class="col-sm-12">
-                         <input class="btn btn-primary" type="submit" value="Siguiente"/>
+                         <input class="btn btn-primary" type="submit" value="Registrar"/>
                     </div>
                 </div>
             </form>

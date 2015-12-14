@@ -1,5 +1,4 @@
-from models import Estudiante
-from models import Profesor
+from models import Usuario
 from models import Asignatura
 from nose.tools import assert_equal
 
@@ -7,14 +6,14 @@ from nose.tools import assert_equal
 
 class Test:
 	def testCrearEstudiante(self):
-		usuario = Estudiante(nombre='nuevoE', dni='12345678A')
+		usuario = Usuario(nombre='nuevoE', email='direccion@correo.ugr.es', tipo='Estudiante')
 		assert_equal(usuario.nombre, 'nuevoE')
-		assert_equal(usuario.dni, '12345678A')
+		assert_equal(usuario.email, 'direccion@correo.ugr.es') 
 		
 	def testCrearProfesor(self):
-		usuario = Profesor('nuevoP')
-		response = usuario.nombre
-		assert_equal(response, 'nuevoP') 
+		usuario = Usuario(nombre='nuevoP', email='direccion@ugr.es', tipo='Profesor')
+		assert_equal(usuario.nombre, 'nuevoP')
+		assert_equal(usuario.email, 'direccion@ugr.es') 
 		
 	def testCrearAsignatura(self):
 		asig = Asignatura('nuevaA')
