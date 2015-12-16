@@ -4,8 +4,8 @@
             <a class="dropdown-toggle" id="dropuser" data-toggle="dropdown"
                 href="#"><span class="glyphicon glyphicon-user"></span> Bienvenido, {{ user.username }} <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropuser">
-                <li><a href="">Mis asignaturas </a></li>
-                <li><a href="">Mi cuenta </a></li>
+                <li><a href="{% url 'lista_asignaturas' %}">Mis asignaturas </a></li>
+                <li><a href="{% url 'editar_usuario' %}">Editar cuenta </a></li>
                 <li class="divider"></li>
                 <li><a href="{% url 'django.contrib.auth.views.logout' %}">Desconectar <span class="glyphicon glyphicon-log-out"></span></a></li>
             </ul>
