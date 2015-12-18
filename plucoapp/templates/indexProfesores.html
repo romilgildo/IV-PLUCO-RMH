@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-{% if lista_profesores %}
-    <ul>
-    {% for profesor in lista_profesores %}
-        <li><a href="/profesores/{{ profesor.dni }}/">{{ profesor.nombre }}</a></li>
-    {% endfor %}
-    </ul>
+{% if user.is_authenticated %}
+	{% if lista_profesores %}
+		<ul>
+		{% for profesor in lista_profesores %}
+			<li><a href="/profesores/{{ profesor.dni }}/">{{ profesor.nombre }}</a></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<div class="alert alert-warning" role="alert"><p>No hay profesores disponibles</p></div>
+	{% endif %}
 {% else %}
-    <div class="alert alert-danger" role="alert"><p>No hay profesores disponibles</p></div>
+	<div class="alert alert-danger" role="alert"><p>Debes ingresar primero como usuario</p></div>
 {% endif %}
 
 {% endblock %}
