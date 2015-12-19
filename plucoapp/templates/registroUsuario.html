@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="jumbotron">
-        <div class="container" style="max-width: 35%">
+        <div class="container">
             <form role="form" class="form" method="post" action="{% url 'registro_usuario' %}">
                 {% csrf_token %}
                 <table>{{ form }}</table>
