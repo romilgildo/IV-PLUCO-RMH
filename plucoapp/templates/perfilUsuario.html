@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+		<div class="container">
+			<h3><b>Perfil de {{ nick }}</b></h3>
+			<br>
+			<p style="font-size:17px">
+			Nombre: {{ usuario.nombre }}
+			<br>
+			Email: {{ usuario.email }}
+			<br>
+			Tipo: {{ usuario.tipo }}
+			</p>
+		</div> <!-- /container -->
+	</div>
+    
+{% endblock %}

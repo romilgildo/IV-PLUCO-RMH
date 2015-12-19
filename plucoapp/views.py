@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Asignatura, Usuario
 from .forms import DatosUsuario
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -23,18 +24,16 @@ def listaEstudiantes(request):
 	lista_estudiantes = Usuario.objects.filter(tipo='ESTUDIANTE')
 	context = {'lista_estudiantes': lista_estudiantes}
 	return render(request, 'indexEstudiantes.html', context)
-    
-def getEstudiante(request, dni):
-	return HttpResponse("Estudiante con DNI = %s" % dni)
 
 def listaProfesores(request):
 	lista_profesores = Usuario.objects.filter(tipo='PROFESOR')
 	context = {'lista_profesores': lista_profesores}
 	return render(request, 'indexProfesores.html', context)
-    
-def getProfesor(request, dni):
-	return HttpResponse("Profesor con DNI = %s" % dni)
-	
+	    
+def getUsuario(request, nickuser):
+	usuario = Usuario.objects.get(nick = User.objects.get(username = nickuser))
+	return render_to_response('perfilUsuario.html', {'nick': nickuser, 'usuario': usuario}, context_instance=RequestContext(request))
+
 def registrarUsuario(request): 
 	if request.method == 'POST':  # If the form has been submitted...
 		form = UserCreationForm(request.POST) 

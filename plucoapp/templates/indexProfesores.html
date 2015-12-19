@@ -3,11 +3,17 @@
 
 {% if user.is_authenticated %}
 	{% if lista_profesores %}
-		<ul>
-		{% for profesor in lista_profesores %}
-			<li><a href="/profesores/{{ profesor.dni }}/">{{ profesor.nombre }}</a></li>
-		{% endfor %}
-		</ul>
+		<div class="jumbotron">
+			<div class="container">
+				<h2>Profesores</h2>
+				<br>
+				<ul>
+				{% for profesor in lista_profesores %}
+					<li><a href="/profesores/{{ profesor.nick }}/" style="font-size:17px">{{ profesor.nombre }}</a></li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
 	{% else %}
 		<div class="alert alert-warning" role="alert"><p>No hay profesores disponibles</p></div>
 	{% endif %}

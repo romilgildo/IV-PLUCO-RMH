@@ -3,11 +3,17 @@
 
 {% if user.is_authenticated %}
 	{% if lista_estudiantes %}
-		<ul>
-		{% for estudiante in lista_estudiantes %}
-			<li><a href="/estudiantes/{{ estudiante.dni }}/">{{ estudiante.nombre }}</a></li>
-		{% endfor %}
-		</ul>
+		<div class="jumbotron">
+			<div class="container">
+				<h2>Estudiantes</h2>
+				<br>
+				<ul>
+				{% for estudiante in lista_estudiantes %}
+					<li><a href="/estudiantes/{{ estudiante.nick }}/" style="font-size:17px">{{ estudiante.nombre }}</a></li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
 	{% else %}
 		<div class="alert alert-warning" role="alert"><p>No hay estudiantes disponibles</p></div>
 	{% endif %}
