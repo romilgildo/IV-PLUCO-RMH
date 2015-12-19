@@ -8,7 +8,7 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('auth', '0006_require_contenttypes_0002'),
     ]
 
     operations = [
@@ -22,10 +22,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Usuario',
             fields=[
+                ('nick', models.ForeignKey(primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('nombre', models.CharField(max_length=100)),
-                ('email', models.EmailField(max_length=254, serialize=False, primary_key=True)),
+                ('email', models.EmailField(max_length=254)),
                 ('tipo', models.CharField(default=b'ESTUDIANTE', max_length=10, choices=[(b'ESTUDIANTE', b'Estudiante'), (b'PROFESOR', b'Profesor')])),
-                ('nick', models.ForeignKey(to=settings.AUTH_USER_MODEL, null=True)),
             ],
         ),
     ]

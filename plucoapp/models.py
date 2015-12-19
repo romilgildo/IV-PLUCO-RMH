@@ -8,9 +8,9 @@ class Usuario(models.Model):
 		('ESTUDIANTE', 'Estudiante'),
 		('PROFESOR', 'Profesor')
 	)
-	nick = models.ForeignKey(User, null=True)
+	nick = models.ForeignKey(User, primary_key=True)
 	nombre = models.CharField(max_length=100)
-	email = models.EmailField(primary_key=True)
+	email = models.EmailField()
 	tipo = models.CharField(max_length=10, choices=OPCIONES, default="ESTUDIANTE")
 	
 	def __unicode__(self):

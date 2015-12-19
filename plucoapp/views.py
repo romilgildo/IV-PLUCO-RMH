@@ -51,9 +51,12 @@ def editarUsuario(request):
 	if request.method == 'POST':  # If the form has been submitted...
 		form = DatosUsuario(request.POST) 
 		if form.is_valid():  # All validation rules pass
-			# Process the data in form.cleaned_data
-			usuario = Usuario.objects.create(nick = request.user, nombre = form.cleaned_data["nombre"], email = form.cleaned_data["email"], tipo = form.cleaned_data["tipo"])
-			usuario.save()  # Save new user attributes
+			if Usuario.objects.filter(nick = request.user):  # If User exists, modify his data
+				Usuario.objects.filter(nick = request.user).update(nombre = form.cleaned_data["nombre"], email = form.cleaned_data["email"], tipo = form.cleaned_data["tipo"])
+			else:
+				# Process the data in form.cleaned_data
+				usuario = Usuario.objects.create(nick = request.user, nombre = form.cleaned_data["nombre"], email = form.cleaned_data["email"], tipo = form.cleaned_data["tipo"])
+				usuario.save()  # Save new user attributes
 			
 			return HttpResponseRedirect('/')  # Redirect after POST
 	else:
