@@ -57,11 +57,11 @@ Aquí una muestra del funcionamiento de nuestra app dentro del contenedor local,
 
 ### Creación del entorno de pruebas en Azure
 
-Para la instalación en una máquina virtual de Azure debemos seguir los siguientes pasos:, basta con crearla, y luego conectar a ella por ssh, clonar el repositorio, y hacer `make docker` dentro del directorio de la app. También necesitamos abrir el puerto que usa el servidor de Python y el de Docker. Todo este proceso se automatizará en los próximos hitos, con scripts de automatización y provisionamiento de la máquina virtual. 
+Para la instalación en una máquina virtual de Azure debemos seguir los siguientes pasos:
 
-1. Crear la máquina virtual en Azure: por ejemplo desde el panel de control web o mediante línea de comandos con la orden `azure  vm  create` que veremos más adelante.
+1. Crear la máquina virtual en Azure. Puedes consultar más detalles de este paso [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearAzure.md).
 
-2. Conectar a la máquina por SSH: `ssh romi@pruebasromi.cloudapp.net`
+2. Conectar a la máquina por SSH: `ssh romi@pluco-db.cloudapp.net`
 
 3. Instalar paquetes necesarios: `sudo apt-get update && sudo apt-get install -y git && sudo apt-get install -y build-essential`
 
@@ -69,7 +69,7 @@ Para la instalación en una máquina virtual de Azure debemos seguir los siguien
 
 5. Entrar en el directorio y preparar el contenedor: `cd IV-PLUCO-RMH && make docker`
 
-6. Añadimos el puerto 8000 a los extremos de Azure.
+6. Añadimos el puerto 8000 de nuestra app a los extremos de Azure.
 
 Contenedor creado en Azure:
 
