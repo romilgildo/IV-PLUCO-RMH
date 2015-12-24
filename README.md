@@ -90,7 +90,7 @@ Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/
 
 Docker es una plataforma que automatiza el despliegue de aplicaciones dentro de contenedores software, permitiendo probarla en un entorno aislado para posteriormente desplegarla a producción rápidamente.
 
-El repositorio de la Automated Build en Docker es [esta](https://hub.docker.com/r/romilgildo/pluco/)
+El repositorio de la Automated Build en Docker es [esta](https://hub.docker.com/r/romilgildo/pluco/).
 
 Aquí está funcionando el entorno de pruebas instalado en Azure: [http://pluco-db.cloudapp.net:8000/](http://pluco-db.cloudapp.net:8000/)
 
@@ -98,6 +98,6 @@ Para crear el entorno de pruebas el local, se debe ejecutar el comando:
 
 `make docker`
 
-Para más información del proceso, [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md)
+Para más información del proceso, [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md).
 
-Y si queremos realizar un despliegue automático remoto, usamos [Fabric](http://www.fabfile.org/). Más detalles [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md)
+Y si queremos realizar un despliegue automático remoto, usamos [Fabric](http://www.fabfile.org/). Más detalles [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md).
