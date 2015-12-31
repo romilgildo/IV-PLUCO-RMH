@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <div class="container">
+            <form role="form" class="form" method="post" action="{% url 'nueva_asignatura' %}">
+                {% csrf_token %}
+                <table>{{ form }}</table>
+                <br><br>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                         <input class="btn btn-primary" type="submit" value="Crear asignatura"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ 
+    {% if form.errors %}
+        <p>{{ form.errors }}</p>
+    {% endif %}
+ 
+{% endblock %}

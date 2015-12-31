@@ -3,13 +3,21 @@
 
 {% if user.is_authenticated %}
 	{% if lista_asignaturas %}
-		<ul>
-		{% for asignatura in lista_asignaturas %}
-			<li><a href="/asignaturas/{{ asignatura.nombre_id }}/">{{ asignatura.nombre }}</a></li>
-		{% endfor %}
-		</ul>
+		<div class="jumbotron">
+			<div class="container">
+				<p><a class="btn btn-primary" href="{% url 'nueva_asignatura' %}" role="button">Crear asignatura &raquo;</a></p>
+				<h2>Asignaturas</h2>
+				<br>
+				<ul>
+				{% for asignatura in lista_asignaturas %}
+					<li><a href="/asignaturas/{{ asignatura.nombre_id }}/" style="font-size:17px">{{ asignatura.nombre }}</a></li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
 	{% else %}
 		<div class="alert alert-warning" role="alert"><p>No hay asignaturas disponibles</p></div>
+		<p><a class="btn btn-primary" href="{% url 'nueva_asignatura' %}" role="button">Crear asignatura &raquo;</a></p>
 	{% endif %}
 {% else %}
 	<div class="alert alert-danger" role="alert"><p>Debes ingresar primero como usuario</p></div>

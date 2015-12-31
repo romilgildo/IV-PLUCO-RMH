@@ -4,7 +4,7 @@ from django.template import RequestContext, loader
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Asignatura, Usuario
-from .forms import DatosUsuario
+from .forms import DatosUsuario, DatosAsignatura
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -64,3 +64,27 @@ def editarUsuario(request):
 
 def usuarioRegistrado(request):
 	return render(request, 'usuarioRegistrado.html')
+	
+def crearAsignatura(request):
+	if request.method == 'POST':  # If the form has been submitted...
+		form = DatosAsignatura(request.POST) 
+		if form.is_valid():  # All validation rules pass
+			# Process the data in form.cleaned_data
+			usuario = Usuario.objects.get(nick = request.user)
+			asignatura = Asignatura.objects.create(
+				nombre = form.cleaned_data["nombre"],
+				nombre_id = form.cleaned_data["nombre_id"],
+				centro = form.cleaned_data["centro"],
+				titulacion = form.cleaned_data["titulacion"],
+				curso = form.cleaned_data["curso"],
+				creador = usuario.nombre
+			)
+			asignatura.save()  # Save new user attributes
+			
+			return HttpResponseRedirect('asignaturacreada')  # Redirect after POST
+	else: 
+		form = DatosAsignatura()  
+	return render_to_response('nuevaAsignatura.html', {'form': form}, context_instance=RequestContext(request)) 
+	
+def asignaturaCreada(request):
+	return render(request, 'asignaturaCreada.html')

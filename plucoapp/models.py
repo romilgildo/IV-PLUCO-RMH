@@ -2,23 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+	
+class Asignatura(models.Model):
+	nombre = models.CharField (max_length=100)
+	nombre_id = models.CharField (max_length=30, help_text="Nombre corto", primary_key=True)
+	centro = models.CharField (max_length=100)
+	titulacion = models.CharField (max_length=100)
+	curso = models.CharField (max_length=1, help_text="Numero de curso")
+	creador = models.CharField (max_length=100)
+	
+	def __unicode__(self):
+		return self.nombre
 
 class Usuario(models.Model):
 	OPCIONES = (
 		('ESTUDIANTE', 'Estudiante'),
 		('PROFESOR', 'Profesor')
 	)
-	nick = models.ForeignKey(User, primary_key=True)
+	nick = models.OneToOneField(User, primary_key=True)
 	nombre = models.CharField(max_length=100)
 	email = models.EmailField()
 	tipo = models.CharField(max_length=10, choices=OPCIONES, default="ESTUDIANTE")
-	
-	def __unicode__(self):
-		return self.nombre
-	
-class Asignatura(models.Model):
-	nombre = models.CharField (max_length=100)
-	nombre_id = models.CharField (max_length=30, default='nombre_id', primary_key=True)
+	asignaturas = models.ManyToManyField(Asignatura)
 	
 	def __unicode__(self):
 		return self.nombre
