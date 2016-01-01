@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+		<div class="container">
+			<h3><b>Datos de {{ nombre_id }}</b></h3>
+			<br>
+			<p style="font-size:17px">
+			Nombre: {{ asignatura.nombre }}
+			<br>
+			Centro: {{ asignatura.centro }}
+			<br>
+			Titulacion: {{ asignatura.titulacion }}
+			<br>
+			Curso: {{ asignatura.curso }}º
+			<br>
+			Profesor: {{ asignatura.creador }}
+			</p>
+			{% if usuario.tipo == 'ESTUDIANTE' %}
+				<br>
+				<p><a class="btn btn-primary" href="/unirse/{{nombre_id}}" role="button">Unirse &raquo;</a></p>   
+			{% endif %}
+		</div> <!-- /container -->
+	</div>
+    
+{% endblock %}

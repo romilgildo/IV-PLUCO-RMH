@@ -14,11 +14,27 @@ def index(request):
     
 def listaAsignaturas(request):
 	lista_asignaturas = Asignatura.objects.all()
-	context = {'lista_asignaturas': lista_asignaturas}
+	if User.is_authenticated:
+		if Usuario.objects.filter(nick = request.user):
+			usuario = Usuario.objects.get(nick = request.user)
+			context = {'lista_asignaturas': lista_asignaturas, 'usuario': usuario}
+		else:
+			context = {'lista_asignaturas': lista_asignaturas}
+	else:
+		context = {'lista_asignaturas': lista_asignaturas}
 	return render(request, 'indexAsignaturas.html', context)
     
-def getAsignatura(request, nombre_id):
-	return HttpResponse("Asignatura %s" % nombre_id)
+def getAsignatura(request, n_id):
+	asignatura = Asignatura.objects.get(nombre_id = n_id)
+	if User.is_authenticated:
+		if Usuario.objects.filter(nick = request.user):
+			usuario = Usuario.objects.get(nick = request.user)
+			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario}
+		else:
+			context = {'nombre_id': n_id, 'asignatura': asignatura}
+	else:
+		context = {'nombre_id': n_id, 'asignatura': asignatura}
+	return render(request, 'datosAsignatura.html', context)
 	
 def listaEstudiantes(request):
 	lista_estudiantes = Usuario.objects.filter(tipo='ESTUDIANTE')
@@ -91,8 +107,19 @@ def crearAsignatura(request):
 def asignaturaCreada(request):
 	return render(request, 'asignaturaCreada.html')
 	
-def misAsignaturas(request):
+def unirAsignatura(request, n_id):
+	asignatura = Asignatura.objects.get(nombre_id = n_id)
 	usuario = Usuario.objects.get(nick = request.user)
-	lista_asignaturas = Asignatura.objects.filter(creador = usuario.nombre)
-	context = {'lista_asignaturas': lista_asignaturas}
-	return render(request, 'asignaturasUsuario.html', context)
+	if not usuario.asignaturas.filter(nombre_id = n_id):
+		usuario.asignaturas.add(asignatura)
+		usuario.save()
+	return misAsignaturas(request)
+	
+	
+def misAsignaturas(request):
+	if Usuario.objects.filter(nick = request.user):
+		usuario = Usuario.objects.get(nick = request.user)
+		lista_asignaturas = usuario.asignaturas.all()
+		context = {'lista_asignaturas': lista_asignaturas}
+		return render(request, 'asignaturasUsuario.html', context)
+	return listaAsignaturas(request)

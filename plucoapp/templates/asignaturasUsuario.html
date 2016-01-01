@@ -14,7 +14,7 @@
 		</div>
 	</div>
 {% else %}
-	<div class="alert alert-warning" role="alert"><p>No estás en ninguna asignatura</p></div>
+	<div class="alert alert-warning" role="alert"><p>No estás en ninguna asignatura. Ver <a href="{% url 'lista_asignaturas' %}">asignaturas disponibles</a>.</p></div>
 {% endif %}
 
 {% endblock %}
