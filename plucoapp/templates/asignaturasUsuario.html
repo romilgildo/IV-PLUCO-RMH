@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if lista_asignaturas %}
+	<div class="jumbotron">
+		<div class="container">
+			<h2>Mis asignaturas</h2>
+			<br>
+			<ul>
+			{% for asignatura in lista_asignaturas %}
+				<li><a href="/asignaturas/{{ asignatura.nombre_id }}/" style="font-size:17px">{{ asignatura.nombre }}</a></li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% else %}
+	<div class="alert alert-warning" role="alert"><p>No estás en ninguna asignatura</p></div>
+{% endif %}
+
+{% endblock %}

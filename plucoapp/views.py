@@ -80,6 +80,8 @@ def crearAsignatura(request):
 				creador = usuario.nombre
 			)
 			asignatura.save()  # Save new user attributes
+			usuario.asignaturas.add(asignatura)
+			usuario.save()
 			
 			return HttpResponseRedirect('asignaturacreada')  # Redirect after POST
 	else: 
@@ -88,3 +90,9 @@ def crearAsignatura(request):
 	
 def asignaturaCreada(request):
 	return render(request, 'asignaturaCreada.html')
+	
+def misAsignaturas(request):
+	usuario = Usuario.objects.get(nick = request.user)
+	lista_asignaturas = Asignatura.objects.filter(creador = usuario.nombre)
+	context = {'lista_asignaturas': lista_asignaturas}
+	return render(request, 'asignaturasUsuario.html', context)
