@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Asignatura, Usuario
 from .forms import DatosUsuario, DatosAsignatura
 from django.contrib.auth.models import User
+from operator import attrgetter
 
 # Create your views here.
 
@@ -14,6 +15,7 @@ def index(request):
     
 def listaAsignaturas(request):
 	lista_asignaturas = Asignatura.objects.all()
+	lista_asignaturas = sorted(lista_asignaturas, key=attrgetter('nombre'))
 	if User.is_authenticated:
 		if Usuario.objects.filter(nick = request.user):
 			usuario = Usuario.objects.get(nick = request.user)
@@ -38,17 +40,22 @@ def getAsignatura(request, n_id):
 	
 def listaEstudiantes(request):
 	lista_estudiantes = Usuario.objects.filter(tipo='ESTUDIANTE')
+	lista_estudiantes = sorted(lista_estudiantes, key=attrgetter('nombre'))
 	context = {'lista_estudiantes': lista_estudiantes}
 	return render(request, 'indexEstudiantes.html', context)
 
 def listaProfesores(request):
 	lista_profesores = Usuario.objects.filter(tipo='PROFESOR')
+	lista_profesores = sorted(lista_profesores, key=attrgetter('nombre'))
 	context = {'lista_profesores': lista_profesores}
 	return render(request, 'indexProfesores.html', context)
 	    
 def getUsuario(request, nickuser):
-	usuario = Usuario.objects.get(nick = User.objects.get(username = nickuser))
-	return render_to_response('perfilUsuario.html', {'nick': nickuser, 'usuario': usuario}, context_instance=RequestContext(request))
+	if Usuario.objects.filter(nick = request.user):
+		usuario = Usuario.objects.get(nick = User.objects.get(username = nickuser))
+		return render_to_response('perfilUsuario.html', {'nick': nickuser, 'usuario': usuario}, context_instance=RequestContext(request))
+	else:
+		return render(request, 'avisoCuenta.html')
 
 def registrarUsuario(request): 
 	if request.method == 'POST':  # If the form has been submitted...
@@ -122,4 +129,7 @@ def misAsignaturas(request):
 		lista_asignaturas = usuario.asignaturas.all()
 		context = {'lista_asignaturas': lista_asignaturas}
 		return render(request, 'asignaturasUsuario.html', context)
-	return listaAsignaturas(request)
+	return render(request, 'avisoCuenta.html')
+	
+def miPerfil(request):
+	return getUsuario(request, request.user.username)
