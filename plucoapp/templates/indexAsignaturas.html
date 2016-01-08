@@ -12,16 +12,20 @@
 				<br>
 				<ul>
 				{% for asignatura in lista_asignaturas %}
-					<li><a href="/asignaturas/{{ asignatura.nombre_id }}/" style="font-size:17px">{{ asignatura.nombre }}</a></li>
+					<li><a href="/asignaturas/{{ asignatura.nombre_id }}/" style="font-size:17px">{{ asignatura.nombre }}</a> [ {{asignatura.centro}} | {{asignatura.titulacion}} | {{asignatura.curso}}º | {{asignatura.nombre_id}} ]</li>
 				{% endfor %}
 				</ul>
 			</div>
 		</div>
 	{% else %}
 		<div class="alert alert-warning" role="alert"><p>No hay asignaturas disponibles</p></div>
-		{% if usuario.tipo == 'PROFESOR' %}
-		<p><a class="btn btn-primary" href="{% url 'nueva_asignatura' %}" role="button">Crear asignatura &raquo;</a></p>
-		{% endif %}
+		<div class="jumbotron">
+			<div class="container">
+				{% if usuario.tipo == 'PROFESOR' %}
+				<p><a class="btn btn-primary" href="{% url 'nueva_asignatura' %}" role="button">Crear asignatura &raquo;</a></p>
+				{% endif %}
+			</div>
+		</div>
 	{% endif %}
 {% else %}
 	<div class="alert alert-danger" role="alert"><p>Debes ingresar primero como usuario</p></div>

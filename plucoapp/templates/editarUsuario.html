@@ -3,7 +3,7 @@
 
     <div class="jumbotron">
         <div class="container">
-            <form role="form" class="form" method="post" action="{% url 'editar_usuario' %}">
+            <form role="form" class="form" method="post" enctype="multipart/form-data" action="{% url 'editar_usuario' %}">
                 {% csrf_token %}
                 <table>{{ form }}</table>
                 <br><br>

@@ -7,6 +7,8 @@ from .models import Asignatura, Usuario
 from .forms import DatosUsuario, DatosAsignatura
 from django.contrib.auth.models import User
 from operator import attrgetter
+import settings
+import os
 
 # Create your views here.
 
@@ -71,13 +73,23 @@ def registrarUsuario(request):
 	
 def editarUsuario(request): 
 	if request.method == 'POST':  # If the form has been submitted...
-		form = DatosUsuario(request.POST) 
+		form = DatosUsuario(request.POST, request.FILES) 
 		if form.is_valid():  # All validation rules pass
 			if Usuario.objects.filter(nick = request.user):  # If User exists, modify his data
 				Usuario.objects.filter(nick = request.user).update(nombre = form.cleaned_data["nombre"], email = form.cleaned_data["email"], tipo = form.cleaned_data["tipo"])
+				usuario = Usuario.objects.get(nick = request.user)
+				if 'imagen' in request.FILES:
+					usuario.imagen = request.FILES['imagen']
+				else:
+					usuario.imagen = "perfiles/anonimo.png"
+				usuario.save()
 			else:
 				# Process the data in form.cleaned_data
 				usuario = Usuario.objects.create(nick = request.user, nombre = form.cleaned_data["nombre"], email = form.cleaned_data["email"], tipo = form.cleaned_data["tipo"])
+				if 'imagen' in request.FILES:
+					usuario.imagen = request.FILES['imagen']
+				else:
+					usuario.imagen = "perfiles/anonimo.png"
 				usuario.save()  # Save new user attributes
 			
 			return HttpResponseRedirect('/')  # Redirect after POST
@@ -100,6 +112,7 @@ def crearAsignatura(request):
 				centro = form.cleaned_data["centro"],
 				titulacion = form.cleaned_data["titulacion"],
 				curso = form.cleaned_data["curso"],
+				web = form.cleaned_data["web"],
 				creador = usuario.nombre
 			)
 			asignatura.save()  # Save new user attributes

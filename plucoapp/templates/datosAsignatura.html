@@ -16,6 +16,8 @@
 			Curso: {{ asignatura.curso }}º
 			<br>
 			Profesor: {{ asignatura.creador }}
+			<br>
+			Web: <a href="http://{{ asignatura.web }}" target="_blank">{{ asignatura.web }}</a>
 			</p>
 			{% if usuario.tipo == 'ESTUDIANTE' %}
 				<br>

@@ -6,7 +6,7 @@ from .models import Usuario, Asignatura
 class DatosUsuario(ModelForm):
     class Meta:
         model = Usuario
-        fields = ['nombre', 'email', 'tipo']
+        fields = ['nombre', 'email', 'tipo', 'imagen']
         widgets = {
 			'tipo': forms.RadioSelect()
 		}
@@ -14,4 +14,4 @@ class DatosUsuario(ModelForm):
 class DatosAsignatura(ModelForm):
 	class Meta:
 		model = Asignatura
-		fields = ['nombre', 'nombre_id', 'centro', 'titulacion', 'curso']
+		fields = ['nombre', 'nombre_id', 'centro', 'titulacion', 'curso', 'web']

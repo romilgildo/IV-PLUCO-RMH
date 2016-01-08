@@ -10,6 +10,7 @@ class Asignatura(models.Model):
 	titulacion = models.CharField (max_length=100)
 	curso = models.CharField (max_length=1, help_text="Numero de curso")
 	creador = models.CharField (max_length=100)
+	web = models.CharField (max_length=200, default='www.ugr.es')
 	
 	def __unicode__(self):
 		return self.nombre
@@ -24,6 +25,7 @@ class Usuario(models.Model):
 	email = models.EmailField()
 	tipo = models.CharField(max_length=10, choices=OPCIONES, default="ESTUDIANTE")
 	asignaturas = models.ManyToManyField(Asignatura)
+	imagen = models.ImageField(upload_to='perfiles/', blank=True)
 	
 	def __unicode__(self):
 		return self.nombre

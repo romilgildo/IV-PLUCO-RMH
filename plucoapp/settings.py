@@ -112,6 +112,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'plucoapp/media/')
+
+MEDIA_URL = '/media/'
+
 # Redirect when login is correct.
 LOGIN_REDIRECT_URL = "/"
 # Redirect when login is not correct.

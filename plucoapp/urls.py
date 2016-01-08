@@ -18,6 +18,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
 from plucoapp import views
+import settings
 
 urlpatterns = patterns ('',
     url(r'^$', views.index, name='index'),
@@ -41,3 +42,9 @@ urlpatterns = patterns ('',
 )
 
 urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT}))
