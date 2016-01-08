@@ -19,13 +19,9 @@
 		</div>
 	{% else %}
 		<div class="alert alert-warning" role="alert"><p>No hay asignaturas disponibles</p></div>
-		<div class="jumbotron">
-			<div class="container">
-				{% if usuario.tipo == 'PROFESOR' %}
-				<p><a class="btn btn-primary" href="{% url 'nueva_asignatura' %}" role="button">Crear asignatura &raquo;</a></p>
-				{% endif %}
-			</div>
-		</div>
+		{% if usuario.tipo == 'PROFESOR' %}
+		<p><a class="btn btn-primary" href="{% url 'nueva_asignatura' %}" role="button">Crear asignatura &raquo;</a></p>
+		{% endif %}
 	{% endif %}
 {% else %}
 	<div class="alert alert-danger" role="alert"><p>Debes ingresar primero como usuario</p></div>

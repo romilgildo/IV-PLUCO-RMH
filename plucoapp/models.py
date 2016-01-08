@@ -10,7 +10,7 @@ class Asignatura(models.Model):
 	titulacion = models.CharField (max_length=100)
 	curso = models.CharField (max_length=1, help_text="Numero de curso")
 	creador = models.CharField (max_length=100)
-	web = models.CharField (max_length=200, default='www.ugr.es')
+	web = models.URLField (default='http://www.ugr.es')
 	
 	def __unicode__(self):
 		return self.nombre
