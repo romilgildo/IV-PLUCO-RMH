@@ -18,7 +18,7 @@ def index(request):
 def listaAsignaturas(request):
 	lista_asignaturas = Asignatura.objects.all()
 	lista_asignaturas = sorted(lista_asignaturas, key=attrgetter('nombre'))
-	if User.is_authenticated:
+	if request.user.is_active:
 		if Usuario.objects.filter(nick = request.user):
 			usuario = Usuario.objects.get(nick = request.user)
 			context = {'lista_asignaturas': lista_asignaturas, 'usuario': usuario}
@@ -30,10 +30,11 @@ def listaAsignaturas(request):
     
 def getAsignatura(request, n_id):
 	asignatura = Asignatura.objects.get(nombre_id = n_id)
-	if User.is_authenticated:
+	profesor = Usuario.objects.get(nombre = asignatura.creador)
+	if request.user.is_active:
 		if Usuario.objects.filter(nick = request.user):
 			usuario = Usuario.objects.get(nick = request.user)
-			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario}
+			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario, 'profesor': profesor}
 		else:
 			context = {'nombre_id': n_id, 'asignatura': asignatura}
 	else:

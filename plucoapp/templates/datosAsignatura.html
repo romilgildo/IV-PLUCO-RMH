@@ -15,7 +15,7 @@
 			<br>
 			Curso: {{ asignatura.curso }}º
 			<br>
-			Profesor: {{ asignatura.creador }}
+			Profesor: <a href="/profesores/{{ profesor.nick }}/">{{ asignatura.creador }}</a>
 			<br>
 			Web: <a href="{{ asignatura.web }}" target="_blank">{{ asignatura.web }}</a>
 			</p>
