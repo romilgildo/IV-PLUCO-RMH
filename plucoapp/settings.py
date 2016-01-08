@@ -114,7 +114,7 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'plucoapp/media/')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'http://pluco-db.herokuapp.com/media/'
 
 # Redirect when login is correct.
 LOGIN_REDIRECT_URL = "/"
