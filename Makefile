@@ -38,3 +38,14 @@ docker:
 	sudo apt-get install -y docker.io
 	sudo docker pull romilgildo/pluco
 	sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
+	
+deploy:
+	sudo apt-get install nodejs-legacy
+	sudo apt-get install npm
+	sudo npm install -g azure-cli
+	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	sudo apt-get install -y vagrant
+	sudo apt-get install -y virtualbox virtualbox-dkms
+	vagrant plugin install vagrant-azure
+	export ANSIBLE_HOSTS=./ansible_hosts
+	sudo vagrant up --provider=azure
