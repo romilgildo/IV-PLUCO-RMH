@@ -47,5 +47,4 @@ deploy:
 	sudo apt-get install -y vagrant
 	sudo apt-get install -y virtualbox virtualbox-dkms
 	vagrant plugin install vagrant-azure
-	export ANSIBLE_HOSTS=./ansible_hosts
 	sudo vagrant up --provider=azure
