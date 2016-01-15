@@ -18,4 +18,4 @@
   - name: Instalar requisitos para la app
     shell: cd IV-PLUCO-RMH && make install
   - name: Ejecutar aplicacion
-    shell: cd IV-PLUCO-RMH && make run
+    command: chdir=IV-PLUCO-RMH nohup python manage.py runserver 0.0.0.0:8000
