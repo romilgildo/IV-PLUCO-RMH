@@ -1,4 +1,4 @@
-## Entorno de pruebas: [Docker](https://www.docker.com/)
+## Entorno de pruebas con Docker
 
 Para crear la imagen, Docker usa un fichero dentro del código de la aplicación llamado [Dockerfile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Dockerfile) para la construcción de la imagen, que en mi caso contiene lo siguiente:
 
@@ -30,7 +30,7 @@ Luego en la web de [Docker Hub](https://hub.docker.com/), creamos un "Automated 
 
 ![Automated Build Docker](http://i628.photobucket.com/albums/uu6/romilgildo/automatedbuildDocker_zpsh8ttavhh.png~original)
 
-A partir de ahora, todos los cambios realizados cobre el código del repositorio, se integran en tiempo real y de manera totalmente automatizada mediante Docker Hub, que rehará el build por su cuenta cada vez que hagamos "git push".
+A partir de ahora, todos los cambios realizados sobre el código del repositorio, se integran en tiempo real y de manera totalmente automatizada mediante Docker Hub, que rehará el build por su cuenta cada vez que hagamos "git push".
 
 ### Creación del entorno de pruebas en local
 
@@ -47,7 +47,9 @@ $ sudo docker pull romilgildo/pluco
 $ sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
 ```
 
-Es decir, instala Docker, crea el contenedor con la aplicación instalada en él, y arranca el entorno de pruebas. Dentro de este bastará con hacer `make run` en el directorio de la aplicación para ejecutar nuestra app como si estuviera localmente y así poder probar su correcto funcionamiento.
+Es decir, instala Docker, crea el contenedor con la aplicación instalada en él, y arranca el entorno de pruebas. En la última orden le indicamos que el puerto 8000 del contenedor corresponderá al 8000 de la máquina virtual, de forma que podamos tener acceso a él. 
+
+Una vez estemos dentro del contenedor, bastará con hacer `make run` en el directorio de la aplicación para ejecutar nuestra app como si estuviera localmente y así poder probar su correcto funcionamiento.
 
 Aquí una muestra del funcionamiento de nuestra app dentro del contenedor local, donde accedemos introduciendo la IP del contenedor Docker en el navegador del sistema anfitrión:
 
@@ -59,7 +61,7 @@ Aquí una muestra del funcionamiento de nuestra app dentro del contenedor local,
 
 Para la instalación en una máquina virtual de Azure debemos seguir los siguientes pasos:
 
-1. Crear la máquina virtual en Azure. Puedes consultar más detalles de este paso [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearAzure.md).
+1. Crear la máquina virtual en Azure y añadir el puerto 8000 a los extremos. Puedes consultar más detalles de este paso [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearAzure.md).
 
 2. Conectar a la máquina por SSH: `ssh romi@pluco-db.cloudapp.net`
 
@@ -69,8 +71,6 @@ Para la instalación en una máquina virtual de Azure debemos seguir los siguien
 
 5. Entrar en el directorio y preparar el contenedor: `cd IV-PLUCO-RMH && make docker`
 
-6. Añadimos el puerto 8000 de nuestra app a los extremos de Azure.
-
 Contenedor creado en Azure:
 
 ![Pluco funcionando en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/dockerenAzure_zpsszr0hu3b.png)
@@ -79,14 +79,8 @@ Puertos abiertos en Azure:
 
 ![Puertos abiertos en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/puertosAbiertosAzure_zpswdzdpte8.png)
 
-Por último, para poder conectar a nuestra aplicación funcionando desde el contenedor Docker creado, solo debemos arrancar el contenedor de la siguiente forma:
+Una vez arrancado el contenedor y estemos dentro, ya solo falta entrar al directorio de la app y arrancar el servidor. 
 
-`sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash`
-
-Donde le indicamos que el puerto 8000 del contenedor corresponderá al 8000 de la máquina virtual, de forma que podamos tener acceso a él. 
-
-Ya solo falta entrar al directorio de la app y arrancar el servidor. 
-
-`cd IV-PLUCO-RMH && make run`
+ `cd IV-PLUCO-RMH && make run`
 
 Aquí tenemos desplegado el contenedor Docker instalado en una máquina de Azure y disponible de manera online: [http://pluco-db.cloudapp.net:8000/](http://pluco-db.cloudapp.net:8000/)

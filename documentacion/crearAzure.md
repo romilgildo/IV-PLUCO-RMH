@@ -67,3 +67,7 @@ En las siguientes pantallas elegimos procesadores, memoria ram, almacenamiento y
 Con eso ya tenemos nuestra máquina lista, la cual podemos arrancar dando a Iniciar:
 
 ![Iniciar maquina virtual](https://www.dropbox.com/s/5m274ivj72kvzjj/iniciarMVenAzure.PNG?dl=1)
+
+Si tenéis alguna duda, podéis seguir el [tutorial](https://azure.microsoft.com/es-es/documentation/articles/virtual-machines-linux-tutorial-portal-rm/) de Microsoft Azure.
+
+Para abrir puertos en nuestra máquina virtual, debemos hacerlo como viene explicado [aquí](https://azure.microsoft.com/es-es/documentation/articles/virtual-machines-set-up-endpoints/).

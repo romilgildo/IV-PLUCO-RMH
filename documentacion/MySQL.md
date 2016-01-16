@@ -2,7 +2,7 @@
 
 Para esta instalación he seguido los siguientes pasos:
 
-Crear una máquina virtual como viene en el [tutorial](https://azure.microsoft.com/es-es/documentation/articles/virtual-machines-linux-tutorial-portal-rm/) de Microsoft Azure, y abrir puertos para http, ssh y mysql dentro de Azure como viene explicado [aquí](https://azure.microsoft.com/es-es/documentation/articles/virtual-machines-set-up-endpoints/).
+Crear una máquina virtual y abrir puertos para http, ssh y mysql dentro de Azure como expliqué [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearAzure.md).
 
 ![Extremos configurados en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/extremosAzure_zpsefcyvxtm.png)
 

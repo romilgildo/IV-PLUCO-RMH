@@ -35,6 +35,19 @@ El resto de mis compañeros deberán crear:
 
 Al final del proyecto, deberemos enlazar en conjunto las tres partes del proyecto, y realizar el despliegue correcto sobre cualquier infraestructura virtual.
 
+### Descarga de la app
+
+Para realizar cualquiera de las funcionalidades que vienen en esta documentación, necesitaremos antes descargar antes la aplicación en nuestro ordenador, y a partir de ahí podremos realizar tests, desplegar la app o simplemente arrancarla localmente. 
+
+Para ello ejecutamos los siguientes comandos:
+
+```
+$ sudo apt-get install git
+$ sudo apt-get install make
+$ git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
+$ cd IV-PLUCO-RMH/
+``` 
+
 ### Instalación de MySQL en Azure
 
 Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. 
@@ -72,15 +85,25 @@ En mi caso, estoy haciendo la integración contínua con [Shippable](https://www
 Para ejecutar la aplicación en nuestro propio ordenador, ejecutamos los siguientes comandos:
 
 ```
-$ sudo apt-get install git
-$ sudo apt-get install make
-$ git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
-$ cd IV-PLUCO-RMH/
 $ make install
 $ make run
 ```
 
 Si todo ha ido bien, ya podremos acceder a nuestra app introduciendo `localhost:8000` en nuestro navegador web.
+
+### Entorno de pruebas con Docker
+
+[Docker](https://www.docker.com/) es una plataforma que automatiza el despliegue de aplicaciones dentro de contenedores software, permitiendo probarla en un entorno aislado para posteriormente desplegarla a producción rápidamente.
+
+El repositorio de mi app en Docker se actualiza automáticamente cada vez que hago un 'push' de git. La Automated Build de mi app es [esta](https://hub.docker.com/r/romilgildo/pluco/).
+
+Aquí está funcionando el entorno de pruebas instalado en Azure: [http://pluco-db.cloudapp.net:8000/](http://pluco-db.cloudapp.net:8000/)
+
+Para crear dicho entorno, se debe ejecutar el siguiente comando en local:
+
+ `make docker`
+
+Para más información del proceso, accede [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md).
 
 ### Despliegue en un PaaS: [Heroku](https://www.heroku.com/)
 
@@ -90,18 +113,6 @@ Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/
 
 [Más info](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md)
 
-### Entorno de pruebas: [Docker](https://www.docker.com/)
-
-Docker es una plataforma que automatiza el despliegue de aplicaciones dentro de contenedores software, permitiendo probarla en un entorno aislado para posteriormente desplegarla a producción rápidamente.
-
-El repositorio de la Automated Build en Docker es [esta](https://hub.docker.com/r/romilgildo/pluco/).
-
-Aquí está funcionando el entorno de pruebas instalado en Azure: [http://pluco-db.cloudapp.net:8000/](http://pluco-db.cloudapp.net:8000/)
-
-Para crear el entorno de pruebas el local, se debe ejecutar el comando:
-
-`make docker`
-
-Para más información del proceso, [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md).
+### Despliegue remoto:
 
 Y si queremos realizar un despliegue automático remoto, usamos [Fabric](http://www.fabfile.org/). Más detalles [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md).
