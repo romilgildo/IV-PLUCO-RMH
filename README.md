@@ -103,7 +103,7 @@ Para crear dicho entorno, se debe ejecutar el siguiente comando en local:
 
  `make docker`
 
-Para más información del proceso, accede [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md).
+[Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md).
 
 ### Despliegue remoto con Fabric
 
@@ -120,3 +120,9 @@ Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/
 [Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md)
 
 ### Despliegue en un IaaS: Azure
+
+Para el despliegue en un IaaS, he usado Azure. La aplicación se despliega automáticamente con solo ejecutar `make azure` gracias a Vagrant y Ansible.
+
+Si el cŕedito de Azure no se me ha agotado o la ejecución del servidor no ha muerto, la aplicación web debería estar funcionando en esta dirección: [http://pluco-iv.cloudapp.net/](http://pluco-iv.cloudapp.net/)
+
+[Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueAzure.md).
