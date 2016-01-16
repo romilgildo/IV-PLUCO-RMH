@@ -21,7 +21,16 @@
 			</p>
 			{% if usuario.tipo == 'ESTUDIANTE' %}
 				<br>
-				<p><a class="btn btn-primary" href="/unirse/{{nombre_id}}" role="button">Unirse &raquo;</a></p>   
+				{% if not dentro %}
+					<p><a class="btn btn-primary" href="/unirse/{{nombre_id}}" role="button">Unirse &raquo;</a></p>   
+				{% else %}
+					<p><a class="btn btn-primary" href="/salirse/{{nombre_id}}" role="button">Salirse &raquo;</a></p>   
+				{% endif %}
+			{% elif usuario.tipo == 'PROFESOR' %}
+				{% if usuario.nombre == asignatura.creador %}
+					<br>
+					<p><a class="btn btn-primary" href="/borrarasignatura/{{nombre_id}}" role="button">Borrar asignatura</a></p>
+				{% endif %}
 			{% endif %}
 		</div> <!-- /container -->
 	</div>

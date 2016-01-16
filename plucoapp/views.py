@@ -34,7 +34,11 @@ def getAsignatura(request, n_id):
 	if request.user.is_active:
 		if Usuario.objects.filter(nick = request.user):
 			usuario = Usuario.objects.get(nick = request.user)
-			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario, 'profesor': profesor}
+			if usuario.asignaturas.filter(nombre = asignatura.nombre):
+				dentro=True
+			else:
+				dentro=False
+			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario, 'profesor': profesor, 'dentro': dentro}
 		else:
 			context = {'nombre_id': n_id, 'asignatura': asignatura, 'profesor': profesor}
 	else:
@@ -128,6 +132,13 @@ def crearAsignatura(request):
 def asignaturaCreada(request):
 	return render(request, 'asignaturaCreada.html')
 	
+def borrarAsignatura(request, n_id):
+	asignatura = Asignatura.objects.get(nombre_id = n_id)
+	for usuario in Usuario.objects.all():
+		usuario.asignaturas.remove(asignatura)
+	Asignatura.objects.get(nombre = asignatura.nombre).delete()
+	return misAsignaturas(request)
+	
 def unirAsignatura(request, n_id):
 	asignatura = Asignatura.objects.get(nombre_id = n_id)
 	usuario = Usuario.objects.get(nick = request.user)
@@ -136,7 +147,14 @@ def unirAsignatura(request, n_id):
 		usuario.save()
 	return misAsignaturas(request)
 	
-	
+def salirAsignatura(request, n_id):
+	asignatura = Asignatura.objects.get(nombre_id = n_id)
+	usuario = Usuario.objects.get(nick = request.user)
+	if usuario.asignaturas.filter(nombre_id = n_id):
+		usuario.asignaturas.remove(asignatura)
+		usuario.save()
+	return misAsignaturas(request)	
+
 def misAsignaturas(request):
 	if Usuario.objects.filter(nick = request.user):
 		usuario = Usuario.objects.get(nick = request.user)
