@@ -127,6 +127,8 @@ Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/
 
 Para el despliegue en un IaaS, he usado Azure. La aplicación se despliega automáticamente con solo ejecutar `make azure` gracias a Vagrant y Ansible.
 
-Si el crédito de Azure no se me ha agotado o la ejecución del servidor no ha muerto, la aplicación web debería estar funcionando en esta dirección: [http://pluco-iv.cloudapp.net/](http://pluco-iv.cloudapp.net/)
+Con el comando `make push` podemos actualizar al mismo tiempo los archivos en el repositorio de Git y luego en nuestra máquina de Azure.
+
+Si el crédito de Azure no se me ha agotado o la ejecución del servidor no ha muerto, la aplicación web totalmente actualizada debería estar funcionando en esta dirección: [http://pluco-iv.cloudapp.net/](http://pluco-iv.cloudapp.net/)
 
 [Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueAzure.md)

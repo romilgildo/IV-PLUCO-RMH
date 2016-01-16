@@ -11,12 +11,14 @@ Una vez hecho eso, el único comando que se debe ejecutar para realizar el despl
 Esta orden hace automáticamente lo siguiente:
 
 ```
+sudo apt-get update
 sudo apt-get install nodejs-legacy
 sudo apt-get install npm
 sudo npm install -g azure-cli
 sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 sudo apt-get install -y vagrant
 sudo apt-get install -y virtualbox virtualbox-dkms
+sudo apt-get install -y fabric
 vagrant plugin install vagrant-azure
 sudo vagrant up --provider=azure
 ```
@@ -99,4 +101,9 @@ Tras varios minutos de espera, al final tendremos nuestra [aplicación desplegad
 
 ![Pluco funcionando en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/plucoAzure_zpsgoj0dimp.png~original)
 
-Para actualizar nuestra aplicación web en Azure cada vez que introduzcamos unos nuevos cambios al código, solo tendremos que ejecutar `make push`.
+Para actualizar nuestra aplicación web en Azure cada vez que introduzcamos unos nuevos cambios al código, solo tendremos que ejecutar `make push`, que hace esto:
+
+```
+git push
+fab -H pluco@pluco-iv.cloudapp.net actualizar
+```

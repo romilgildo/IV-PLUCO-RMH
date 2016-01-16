@@ -30,7 +30,7 @@ def instalar():
 
 #Sincronizacion de la aplicacion
 def actualizar():
-	run('cd IV-PLUCO-RMH && git pull')
+	run('cd IV-PLUCO-RMH && sudo git pull')
 
 #Ejecucion de test
 def test():

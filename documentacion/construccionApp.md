@@ -58,14 +58,14 @@ azure:
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 	sudo apt-get install -y vagrant
 	sudo apt-get install -y virtualbox virtualbox-dkms
+	sudo apt-get install -y fabric
 	vagrant plugin install vagrant-azure
 	sudo vagrant up --provider=azure
 	
 push:
 	git push
-	sudo apt-get update
-	sudo apt-get install fabric
 	fab -H pluco@pluco-iv.cloudapp.net actualizar
+
 ```
 
 Con la orden `make clean` limpiaremos los directorios en local de archivos temporales que no influyen en el correcto funcionamiento de la aplicación.
