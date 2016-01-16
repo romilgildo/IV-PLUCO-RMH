@@ -51,7 +51,7 @@ Para ejecutar la herramienta de construcción, simplemente debemos escribir en l
 
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas [Nose](https://nose.readthedocs.org/en/latest/), que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
 
-Aquí está el archivo [tests.py](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/plucoapp/tests.py) actualizado con los tests correspondientes.
+Aquí está el archivo [tests.py](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/plucoapp/tests.py) actualizado con los tests correspondientes para manejar los modelos de la app.
 
 Para ejecutar los tests localmente, hacer `make test`.
 
@@ -63,9 +63,9 @@ Aquí vemos como la aplicación pasa el test de pruebas inicial:
 
 El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
 
-En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/) y [Travis](https://travis-ci.org/), ya que me parecieron muy sencillos en cuanto a su manejo y muy completos, aunque también se podrían usar otros sistemas iguales de buenos como puede ser [Jenkins](https://jenkins-ci.org/). 
+En mi caso, estoy haciendo la integración contínua con [Shippable](https://www.shippable.com/), [Travis](https://travis-ci.org/) y [Snap-CI](https://snap-ci.com/)
 
-[Más info](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/integracionContinua.md)
+[Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/integracionContinua.md)
 
 ### Instalación local de la app
 
