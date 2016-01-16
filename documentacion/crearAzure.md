@@ -1,6 +1,8 @@
 ## Creación de máquina virtual en Azure
 
-Aquí tenéis los pasos a seguir para crear una máquina virtual con Ubuntu Server 14.04 en Azure. Hay dos formas de hacer esto, o mediante el panel de control web o por línea de órdenes. Lo primero que necesitamos tener es una cuenta en [Azure](https://azure.microsoft.com/es-es/) y crédito en ella para utilizar sus servicios. 
+Lo primero que necesitamos tener es una cuenta en [Azure](https://azure.microsoft.com) y crédito en ella para utilizar sus servicios. 
+
+Aquí tenéis los pasos a seguir para crear una máquina virtual con Ubuntu Server 14.04 en Azure. Hay varias formas de hacer esto, como vamos a ver a continuación:
 
 ### Mediante línea de órdenes
 
@@ -16,58 +18,62 @@ Ahora vamos a conectar con nuestra cuenta de Azure:
 
 - Creamos la configuración pública para nuestra cuenta: `azure account download`
 
-![Creación de claves Azure](https://www.dropbox.com/s/3lcu5ns8pkz28wm/creacionClavesAzure.PNG?dl=1)
+![Creación de claves Azure](http://i628.photobucket.com/albums/uu6/romilgildo/creacionClavesAzure_zpsccrqzinn.png)
 
 - Descargamos el archivo en el enlace de la captura anterior:
 
-![Obtención de claves Azure](https://www.dropbox.com/s/cxu5anvhz4f312s/clavesAzure.PNG?dl=1)
+![Obtención de claves Azure](http://i628.photobucket.com/albums/uu6/romilgildo/clavesAzure_zpsrjeihqcs.png~original)
 
-- Importamos el pase de Azure que nos hemos descargado: `azure account import <file location>`. En <file location> ponemos la ubicación del archivo descargado.
+- Importamos el pase de Azure que nos hemos descargado: `azure account import file_location`. En "file_location" ponemos la ubicación del archivo descargado.
 
-![Importar pase de Azure](https://www.dropbox.com/s/ofm30xuwoy5cwcf/ImportamospaseAzure.PNG?dl=1)
+![Importar pase de Azure](http://i628.photobucket.com/albums/uu6/romilgildo/ImportamospaseAzure_zpsauod82ho.png)
 
-- Creamos el sitio web con el comando `azure site create --location "West US" <web site>`. En <web site> ponemos el nombre que queremos que tenga la página que acceda a nuestra máquina virtual.
+- Creamos el sitio web con el comando `azure site create --location "West US" web_site`. En "web_site" ponemos el nombre que queremos que tenga la página que acceda a nuestra máquina virtual.
 
-![Creación del sitio web](https://www.dropbox.com/s/w5uysgzon8dd11i/creacionwebAzure.PNG?dl=1)
+![Creación del sitio web](http://i628.photobucket.com/albums/uu6/romilgildo/creacionwebAzure_zpsikfsp3et.png)
 
 Ya tenemos nuestra máquina en marcha:
 
-![Acceso web a la máquina Azure](https://www.dropbox.com/s/7l32ag6dmcwz8eq/sitiowebFuncionando.PNG?dl=1)
+![Acceso web a la máquina Azure](http://i628.photobucket.com/albums/uu6/romilgildo/sitiowebFuncionando_zpstzasx1u9.png~original)
 
 Ahora vamos a instalar Ubuntu en ella:
 
 - Buscamos la imagen que queremos de entre las disponibles: `azure vm image list westus ubuntuserver`
 
-![Imágenes dispnibles en Azure](https://www.dropbox.com/s/wxri8ctmgog25sz/imagenesAzure.PNG?dl=1)
+![Imágenes dispnibles en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/imagenesAzure_zpsdyfa5kxh.png~original)
 
 - Instalamos la imagen en la máquina virtual: `azure vm create <web site> b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB <user> <password> --location "North Europe" --ssh`
 
-![Maquina creada con Ubuntu](https://www.dropbox.com/s/9kumm7jq9hg7y3x/maquinacreadaAzure.png?dl=1)
+![Maquina creada con Ubuntu](http://i628.photobucket.com/albums/uu6/romilgildo/maquinacreadaAzure_zpskx4h0fkh.png)
 
 Ya podemos arrancarla con la orden `azure vm start pruebaiv-romi`:
 
-![Arrancar máquina en Azure](https://www.dropbox.com/s/7z6jw3goxpn2npe/arrancarmaquinaAzure.PNG?dl=1)
+![Arrancar máquina en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/arrancarmaquinaAzure_zps1kw8qb4f.png)
 
 ### Mediante el panel de control web
 
-Nos logueamos en [Portal](https://manage.windowsazure.com) de Azure, y en el panel de control de la izquierda selecciónamos Máquinas virtuales, y luego damos en Nuevo:
+Nos logueamos en [Portal](https://manage.windowsazure.com) de Azure, y en el panel de control de la izquierda selecciónamos "Máquinas virtuales", y luego damos en "Nuevo":
 
-![Crear maquina virtual en Azure](https://www.dropbox.com/s/zjief2ttmheaw09/crearMVenAzure.PNG?dl=1)
+![Crear maquina virtual en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/crearMVenAzure_zps03693mc0.png~original)
 
 Elegimos el SO que queremos y rellenamos campos como el nombre de la máquina, el nombre de usuario y la suscripción de Azure:
 
-![Elegir SO en Azure](https://www.dropbox.com/s/2tnl39i89lf2cll/elegirSOenAzure.PNG?dl=1)
+![Elegir SO en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/elegirSOenAzure_zpsovpjnktr.png~original)
 
 En las siguientes pantallas elegimos procesadores, memoria ram, almacenamiento y red, hasta que llegamos al resumen donde aceptamos la máquina y empieza a crearla:
 
-![Eleccion de nucleos](https://www.dropbox.com/s/h7vme0o14whnx1i/NucleosAzure.PNG?dl=1)
+![Eleccion de nucleos](http://i628.photobucket.com/albums/uu6/romilgildo/NucleosAzure_zpsbqjxnkck.png~original)
 
-![Resumen final de la máquina](https://www.dropbox.com/s/itnrr2t326qq0ft/resumenMVenAzure.PNG?dl=1)
+![Resumen final de la máquina](http://i628.photobucket.com/albums/uu6/romilgildo/resumenMVenAzure_zpsy5c0ropw.png~original)
 
-Con eso ya tenemos nuestra máquina lista, la cual podemos arrancar dando a Iniciar:
+Con eso ya tenemos nuestra máquina lista, la cual podemos arrancar dando a "Iniciar" abajo:
 
-![Iniciar maquina virtual](https://www.dropbox.com/s/5m274ivj72kvzjj/iniciarMVenAzure.PNG?dl=1)
+![Iniciar maquina virtual](http://i628.photobucket.com/albums/uu6/romilgildo/iniciarMVenAzure_zpsgyvraxmz.png)
 
 Si tenéis alguna duda, podéis seguir el [tutorial](https://azure.microsoft.com/es-es/documentation/articles/virtual-machines-linux-tutorial-portal-rm/) de Microsoft Azure.
 
 Para abrir puertos en nuestra máquina virtual, debemos hacerlo como viene explicado [aquí](https://azure.microsoft.com/es-es/documentation/articles/virtual-machines-set-up-endpoints/).
+
+### Mediante gestor de configuración con Vagrant
+
+Esta parte la realizo a la hora de realizar el despliegue de la aplicación en Azure. La podéis ver [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueAzure.md)

@@ -105,13 +105,15 @@ Para crear dicho entorno, se debe ejecutar el siguiente comando en local:
 
 Para más información del proceso, accede [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md).
 
-### Despliegue en un PaaS: [Heroku](https://www.heroku.com/)
+### Despliegue en un PaaS: Heroku
 
-Nos decantamos por Heroku, debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora.
+Nos decantamos por [Heroku](https://www.heroku.com/), debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora en ella.
+
+Gracias a Snap-CI, tenemos un proceso de integración contínua en la que se actualiza la aplicación en Heroku cada vez que actualizamos el repositorio en GitHub. 
 
 Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/](https://pluco-db.herokuapp.com/)
 
-[Más info](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md)
+[Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md)
 
 ### Despliegue remoto:
 
