@@ -92,4 +92,4 @@ Finalmente guardamos y ya tenemos nuestra integración con Snap-CI funcionando:
 
 ![Snap-CI funcionando](http://i628.photobucket.com/albums/uu6/romilgildo/SnapTests_zpsg8ue4ynt.png~original)
 
-Como podéis ver, yo estoy usando otro paso más en la integración para desplegar en Heroku. Esa configuración la podéis ver [aquí]((https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md).
+Como podéis ver, yo estoy usando otro paso más en la integración para desplegar en Heroku. Esa configuración la podéis ver [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md).
