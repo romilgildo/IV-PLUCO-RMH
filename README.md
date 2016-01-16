@@ -72,11 +72,15 @@ En mi caso, estoy haciendo la integración contínua con [Shippable](https://www
 Para ejecutar la aplicación en nuestro propio ordenador, ejecutamos los siguientes comandos:
 
 ```
+$ sudo apt-get install git
+$ sudo apt-get install make
 $ git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
 $ cd IV-PLUCO-RMH/
 $ make install
 $ make run
 ```
+
+Si todo ha ido bien, ya podremos acceder a nuestra app introduciendo `localhost:8000` en nuestro navegador web.
 
 ### Despliegue en un PaaS: [Heroku](https://www.heroku.com/)
 
