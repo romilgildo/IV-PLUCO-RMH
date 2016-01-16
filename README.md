@@ -41,13 +41,13 @@ Para poder tener disponible desde cualquier lugar nuestra base de datos, he deci
 
 [Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/MySQL.md)
 
-### Herramienta de construcción
+### Herramienta de construcción con Make
 
-Para ello, he creado un [Makefile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) con las opciones de limpieza, realización de tests, ejecución del servidor y opciones de despliegue.
+Para la construcción automática de la app, he usado [Make](https://www.gnu.org/software/make/). Para su funcionamiento, he creado un [Makefile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) con las opciones de limpieza, realización de tests, ejecución del servidor y opciones de despliegue.
 
 Para ejecutar la herramienta de construcción, simplemente debemos escribir en la terminal el comando **make** seguido de la opción que queramos ejecutar (clean, test, run...).
 
-### Realización de tests: Nose
+### Realización de tests con Nose
 
 Para la realización de tests que permitan comprobar que el código creado funciona correctamente, he usado para mi código escrito en Python, el sistema de pruebas [Nose](https://nose.readthedocs.org/en/latest/), que está basado en funciones de [Unittest](https://docs.python.org/2/library/unittest.html). Existen otras alternativas para Python como pueden ser [Tox](https://testrun.org/tox/latest/) y [Pytest](http://pytest.org/latest/), pero he escogido Nose por ser el más conocido.
 
@@ -59,7 +59,7 @@ Aquí vemos como la aplicación pasa el test de pruebas inicial:
 
 ![Ejecucion Nosetest](http://i628.photobucket.com/albums/uu6/romilgildo/nosetest_zpsa0tx2byz.png)
 
-### Integración contínua 
+### Integración contínua
 
 El siguiente paso es elegir un sistema de integración contínua de modo que cada cambio realizado en el repositorio, implique una ejecución de los tests anteriores comprobando y asegurandonos de que el programa sigue funcionando.
 
