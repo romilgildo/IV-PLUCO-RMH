@@ -2,7 +2,7 @@
 
 Para realizar el despliegue en una máquina de Azure, voy a usar [Vagrant](https://www.vagrantup.com/) para la creación de la máquina virtual, y luego [Ansible](http://www.ansible.com/) para provisionar la máquina y desplegar la app.
 
-Lo primero que debemos hacer es crear los certificados necesarios para conectar con Azure. El proceso de cómo hacerlo lo tienes [aqui](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/crearCertificados.yml).
+Lo primero que debemos hacer es crear los certificados necesarios para conectar con Azure. El proceso de cómo hacerlo lo tienes [aqui](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/crearCertificados.md).
 
 Una vez hecho eso, el único comando que se debe ejecutar para realizar el despliegue es:
 
