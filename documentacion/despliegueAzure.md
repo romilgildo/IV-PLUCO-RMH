@@ -98,3 +98,5 @@ En este fichero empezamos poniendo como host el "localhost", ya que esto se ejec
 Tras varios minutos de espera, al final tendremos nuestra [aplicación desplegada y funcionando](http://pluco-iv.cloudapp.net/) como en mi caso:
 
 ![Pluco funcionando en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/plucoAzure_zpsgoj0dimp.png~original)
+
+Para actualizar nuestra aplicación web en Azure cada vez que introduzcamos unos nuevos cambios al código, solo tendremos que ejecutar `make push`.

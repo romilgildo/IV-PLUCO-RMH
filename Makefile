@@ -40,6 +40,7 @@ docker:
 	sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
 	
 azure:
+	sudo apt-get update
 	sudo apt-get install nodejs-legacy
 	sudo apt-get install npm
 	sudo npm install -g azure-cli
@@ -48,3 +49,9 @@ azure:
 	sudo apt-get install -y virtualbox virtualbox-dkms
 	vagrant plugin install vagrant-azure
 	sudo vagrant up --provider=azure
+	
+push:
+	git push
+	sudo apt-get update
+	sudo apt-get install fabric
+	fab -H pluco@pluco-iv.cloudapp.net actualizar

@@ -36,9 +36,9 @@ def getAsignatura(request, n_id):
 			usuario = Usuario.objects.get(nick = request.user)
 			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario, 'profesor': profesor}
 		else:
-			context = {'nombre_id': n_id, 'asignatura': asignatura}
+			context = {'nombre_id': n_id, 'asignatura': asignatura, 'profesor': profesor}
 	else:
-		context = {'nombre_id': n_id, 'asignatura': asignatura}
+		context = {'nombre_id': n_id, 'asignatura': asignatura, 'profesor': profesor}
 	return render(request, 'datosAsignatura.html', context)
 	
 def listaEstudiantes(request):

@@ -56,9 +56,11 @@ Para poder tener disponible desde cualquier lugar nuestra base de datos, he deci
 
 ### Herramienta de construcción con Make
 
-Para la construcción automática de la app, he usado [Make](https://www.gnu.org/software/make/). Para su funcionamiento, he creado un [Makefile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) con las opciones de limpieza, realización de tests, ejecución del servidor y opciones de despliegue.
+Para la construcción automática de la app, he usado [Make](https://www.gnu.org/software/make/). Para su funcionamiento, he creado un [Makefile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) con las distintas opciones.
 
 Para ejecutar la herramienta de construcción, simplemente debemos escribir en la terminal el comando **make** seguido de la opción que queramos ejecutar (clean, test, run...).
+
+[Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/construccionApp.md)
 
 ### Realización de tests con Nose
 
@@ -107,7 +109,9 @@ Para crear dicho entorno, se debe ejecutar el siguiente comando en local:
 
 ### Despliegue remoto con Fabric
 
-Si queremos realizar una administración remota del despliegue de manera automática, podemos usar [Fabric](http://www.fabfile.org/). Más detalles [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md).
+Si queremos realizar una administración remota del despliegue de manera automática, podemos usar [Fabric](http://www.fabfile.org/). 
+
+[Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md)
 
 ### Despliegue en un PaaS: Heroku
 
