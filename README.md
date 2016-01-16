@@ -105,6 +105,10 @@ Para crear dicho entorno, se debe ejecutar el siguiente comando en local:
 
 Para más información del proceso, accede [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/entornoDocker.md).
 
+### Despliegue remoto con Fabric
+
+Si queremos realizar una administración remota del despliegue de manera automática, podemos usar [Fabric](http://www.fabfile.org/). Más detalles [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md).
+
 ### Despliegue en un PaaS: Heroku
 
 Nos decantamos por [Heroku](https://www.heroku.com/), debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora en ella.
@@ -115,6 +119,4 @@ Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/
 
 [Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md)
 
-### Despliegue remoto:
-
-Y si queremos realizar un despliegue automático remoto, usamos [Fabric](http://www.fabfile.org/). Más detalles [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md).
+### Despliegue en un IaaS: Azure

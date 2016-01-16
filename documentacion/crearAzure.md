@@ -50,6 +50,16 @@ Ya podemos arrancarla con la orden `azure vm start pruebaiv-romi`:
 
 ![Arrancar máquina en Azure](http://i628.photobucket.com/albums/uu6/romilgildo/arrancarmaquinaAzure_zps1kw8qb4f.png)
 
+Para abrir puertos en Azure desde línea de comandos, ejecutamos:
+
+ `azure vm endpoint create nombre-VM 8000 8000`
+ 
+Donde pone "nombre-VM" ponemos el de nuestra máquina, que si no estamos seguro de como se llamaba podemos mirarlo con `azure vm list` que nos muestra las máquinas virtuales creadas.
+
+![Abrir puerto para nuestra app](http://i628.photobucket.com/albums/uu6/romilgildo/abrirpuertosAzurePluco_zps8pxbjzik.png~original)
+
+En mi caso me dice que ya existe el puerto porque lo creé anteriormente.
+
 ### Mediante el panel de control web
 
 Nos logueamos en [Portal](https://manage.windowsazure.com) de Azure, y en el panel de control de la izquierda selecciónamos "Máquinas virtuales", y luego damos en "Nuevo":

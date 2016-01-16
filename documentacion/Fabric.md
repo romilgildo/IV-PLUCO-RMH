@@ -1,26 +1,14 @@
-## Despliegue remoto: [Fabric](http://www.fabfile.org/)
+## Despliegue remoto con Fabric
 
-Fabric es un biblioteca de Python que se usa para automatizar tareas de administración o despliegues de aplicaciones a través de SSH.
+[Fabric](http://www.fabfile.org/) es un biblioteca de Python que se usa para automatizar tareas de administración o despliegues de aplicaciones a través de SSH.
 
 Se puede instalar con `sudo apt-get install fabric`.
 
 En nuestro caso, vamos a realizar el despliegue en nuestra máquina virtual de Azure que creamos anteriormente [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearAzure.md).
 
-Pero antes de crear el contenedor, nos vamos a asegurar de que tenemos el puerto que usamos para la app abierto en Azure. Para ello ejecutamos:
-
- `azure vm endpoint create <nombre-MV> 8000 8000`
- 
-Donde pone <nombre-MV> ponemos el de nuestra máquina, que si no estamos seguro de como se llamaba podemos mirarlo con `azure vm list` que nos muestra las máquinas virtuales creadas.
-
-![Abrir puerto para nuestra app](https://www.dropbox.com/s/i74lfgesu7m4l1k/abrirpuertosAzurePluco.PNG?dl=1)
-
-En mi caso me dice que ya existe el puerto porque lo cree anteriormente.
-
-### El rey del mambo: nuestro Fabfile
-
 Mediante un fichero llamado [fabfile.py](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/fabfile.py), se describen las distintas tareas de administración y despliegue que se quieran realizar de manera remota.
 
-Este es el contenido de dicho fichero:
+Este es el contenido de mi fichero:
 
 ```
 from fabric.api import run, local, hosts, cd
@@ -52,7 +40,6 @@ def test():
 def ejecutar():
 	run('cd IV-PLUCO-RMH && make run')
 
-#Ejecucion remota del docker
 #Instalacion de docker, descarga de la imagen y ejecucion
 def montar_docker():
 	run('sudo apt-get update')
@@ -67,11 +54,11 @@ Para ver que funciona vamos a empezar usando uno de los comandos que hemos metid
 
  `fab -p mipassword -H romi@pluco-db.cloudapp.net informacion`
 
-Con dicho comando le estamos diciendo que conecte por ssh a nuestra maquina de Azure metida tras la opción -H, con la password tras la opción -p, y que ejecute la función informacion del fabfile. Nos debería mostrar algo como esto:
+Con dicho comando le estamos diciendo que conecte por ssh a nuestra maquina de Azure metida tras la opción -H, con la password tras la opción -p, y que ejecute la función "informacion" del fabfile. Nos debería mostrar algo como esto:
 
-![Mostrar infomracion del host](https://www.dropbox.com/s/19e38anvtx6v7dq/infoHost.PNG?dl=1)
+![Mostrar infomracion del host](http://i628.photobucket.com/albums/uu6/romilgildo/infoHost_zpsaxaizyqm.png)
 
-Ahora procedemos a realizar el despliegue:
+Ahora procedemos a realizar el despliegue en Docker:
 
  `fab -p mipassword -H romi@pluco-db.cloudapp.net montar_docker`
  
@@ -79,6 +66,6 @@ Y una vez termine y estemos dentro del contenedor, ya solo falta entrar al direc
 
  `cd IV-PLUCO-RMH && make run`
  
-![Arrancar servidor python](https://www.dropbox.com/s/stj4lrn6fmw5lpf/ejecutarappDocker.PNG?dl=1)
+![Arrancar servidor python](http://i628.photobucket.com/albums/uu6/romilgildo/ejecutarappDocker_zpstvbm6wfq.png~original)
 
 [Aquí](http://pluco-db.cloudapp.net:8000/) podemos ver el contenedor Docker funcionando de modo online.

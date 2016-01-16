@@ -27,7 +27,6 @@ def test():
 def ejecutar():
 	run('cd IV-PLUCO-RMH && make run')
 
-#Ejecucion remota del docker
 #Instalacion de docker, descarga de la imagen y ejecucion
 def montar_docker():
 	run('sudo apt-get update')
