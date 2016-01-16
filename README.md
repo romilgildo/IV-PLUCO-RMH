@@ -5,7 +5,7 @@ Autor: Rubén Martín Hidalgo
 [![Travis](https://secure.travis-ci.org/romilgildo/IV-PLUCO-RMH.png)](http://travis-ci.org/romilgildo/IV-PLUCO-RMH) [![Shippable](https://img.shields.io/shippable/54d119db5ab6cc13528ab183.svg)](https://app.shippable.com/projects/561d708d1895ca44741d9f63)
 [![Snap CI](https://snap-ci.com/romilgildo/IV-PLUCO-RMH/branch/master/build_image)](https://snap-ci.com/romilgildo/IV-PLUCO-RMH/branch/master)
 
-[![Heroku](https://www.herokucdn.com/deploy/button.png)](http://pluco-db.herokuapp.com/)
+[![Heroku](https://www.herokucdn.com/deploy/button.png)](http://pluco-db.herokuapp.com/) [![Docker](http://i628.photobucket.com/albums/uu6/romilgildo/b36f4e9c-7378-403f-a29e-7323245a92d6_zpsrnqa98eg.png)](https://hub.docker.com/r/romilgildo/pluco/) [![Azure](http://azuredeploy.net/deploybutton.png)](http://pluco-iv.cloudapp.net/)
 
 [Apuntado en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
 
