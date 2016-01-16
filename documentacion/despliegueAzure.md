@@ -2,7 +2,9 @@
 
 Para realizar el despliegue en una máquina de Azure, voy a usar [Vagrant](https://www.vagrantup.com/) para la creación de la máquina virtual, y luego [Ansible](http://www.ansible.com/) para provisionar la máquina y desplegar la app.
 
-El único comando que se debe ejecutar para realizar el despliegue es:
+Lo primero que debemos hacer es crear los certificados necesarios para conectar con Azure. El proceso de cómo hacerlo lo tienes [aqui](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/crearCertificados.yml).
+
+Una vez hecho eso, el único comando que se debe ejecutar para realizar el despliegue es:
 
  `make azure`
  
@@ -61,7 +63,7 @@ end
 
 En este fichero le estamos indicando en el primer bloque que queremos una máquina de azure, que tenga acceso desde Internet mediante una red pública, y por último le aplicaremos "localhost" como hostname para que Ansible pueda conectar con la máquina.
 
-En el segundo bloque, configuramos las propiedades de nuestro servicio en Azure. En él hay que poner el certificado creado [aqui](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/crearCertificados.yml), el "endpoint" usad el mismo que he puesto, la ID de vuestra suscripción, y luego datos como el sistema operativo de la máquina, el usuario, localización del servidor, etc. En este apartado hay que tener en cuenta que lo que pongamos en "cloud_service_name" será luego el nombre de dominio de nuestra aplicación web (A esto le añade además .cloudapp.net). Y que en "tcp_endpoints" debemos poner el puerto privado a la izquierda y el público a la derecha.
+En el segundo bloque, configuramos las propiedades de nuestro servicio en Azure. En él hay que poner el certificado creado anteriormente, el "endpoint" usad el mismo que he puesto, la ID de vuestra suscripción, y luego datos como el sistema operativo de la máquina, el usuario, localización del servidor, etc. En este apartado hay que tener en cuenta que lo que pongamos en "cloud_service_name" será luego el nombre de dominio de nuestra aplicación web (A esto le añade además .cloudapp.net). Y que en "tcp_endpoints" debemos poner el puerto privado a la izquierda y el público a la derecha.
 
 Y para finalizar en la parte de provisión, se ejecuta el "playbook" de Ansible llamado [desplieguePLUCO.yml](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/desplieguePLUCO.yml).
 

@@ -16,6 +16,8 @@ sudo npm install -g azure-cli
 
 Ahora vamos a conectar con nuestra cuenta de Azure:
 
+- Antes de todo deberíamos de hacer `azure config mode asm`
+
 - Creamos la configuración pública para nuestra cuenta: `azure account download`
 
 ![Creación de claves Azure](http://i628.photobucket.com/albums/uu6/romilgildo/creacionClavesAzure_zpsccrqzinn.png)
