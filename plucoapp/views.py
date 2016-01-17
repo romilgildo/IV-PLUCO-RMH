@@ -38,7 +38,12 @@ def getAsignatura(request, n_id):
 				dentro=True
 			else:
 				dentro=False
-			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario, 'profesor': profesor, 'dentro': dentro}
+			alumnos = Usuario.objects.filter(tipo='ESTUDIANTE')
+			lista_alumnos = []
+			for alumno in alumnos:
+				if alumno.asignaturas.filter(nombre_id = n_id):
+					lista_alumnos.append(alumno)
+			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario, 'profesor': profesor, 'dentro': dentro, 'lista_alumnos': lista_alumnos}
 		else:
 			context = {'nombre_id': n_id, 'asignatura': asignatura, 'profesor': profesor}
 	else:

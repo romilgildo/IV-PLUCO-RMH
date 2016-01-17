@@ -15,9 +15,14 @@
 			<br>
 			Curso: {{ asignatura.curso }}º
 			<br>
-			Profesor: <a href="/profesores/{{ profesor.nick }}/">{{ asignatura.creador }}</a>
-			<br>
 			Web: <a href="{{ asignatura.web }}" target="_blank">{{ asignatura.web }}</a>
+			<br>
+			Profesor: <a href="/profesores/{{ profesor.nick }}/">{{ asignatura.creador }}</a>		
+			<br>
+			Alumnos:<br>
+			{% for alumno in lista_alumnos %}
+				<a href="/estudiantes/{{ alumno.nick }}/">{{ alumno.nombre }}</a><br>
+			{% endfor %}
 			</p>
 			{% if usuario.tipo == 'ESTUDIANTE' %}
 				<br>
