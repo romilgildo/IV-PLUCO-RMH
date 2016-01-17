@@ -32,20 +32,20 @@ def getAsignatura(request, n_id):
 	asignatura = Asignatura.objects.get(nombre_id = n_id)
 	profesor = Usuario.objects.get(nombre = asignatura.creador)
 	if request.user.is_active:
+		alumnos = Usuario.objects.filter(tipo='ESTUDIANTE')
+		lista_alumnos = []
+		for alumno in alumnos:
+			if alumno.asignaturas.filter(nombre_id = n_id):
+				lista_alumnos.append(alumno)
 		if Usuario.objects.filter(nick = request.user):
 			usuario = Usuario.objects.get(nick = request.user)
 			if usuario.asignaturas.filter(nombre = asignatura.nombre):
 				dentro=True
 			else:
 				dentro=False
-			alumnos = Usuario.objects.filter(tipo='ESTUDIANTE')
-			lista_alumnos = []
-			for alumno in alumnos:
-				if alumno.asignaturas.filter(nombre_id = n_id):
-					lista_alumnos.append(alumno)
 			context = {'nombre_id': n_id, 'asignatura': asignatura, 'usuario': usuario, 'profesor': profesor, 'dentro': dentro, 'lista_alumnos': lista_alumnos}
 		else:
-			context = {'nombre_id': n_id, 'asignatura': asignatura, 'profesor': profesor}
+			context = {'nombre_id': n_id, 'asignatura': asignatura, 'profesor': profesor, 'lista_alumnos': lista_alumnos}
 	else:
 		context = {'nombre_id': n_id, 'asignatura': asignatura, 'profesor': profesor}
 	return render(request, 'datosAsignatura.html', context)
