@@ -47,6 +47,7 @@ def crear_mysql():
 	run('cd IV-PLUCO-RMH && sudo cp my.cnf /etc/mysql/')
 	run('cd IV-PLUCO-RMH && sudo cp hosts.allow /etc/')
 	run('sudo /etc/init.d/mysql restart')
+	run('sudo apt-get install -y make')
 	run('cd IV-PLUCO-RMH && make install')
 	run('cd IV-PLUCO-RMH && python manage.py syncdb')
 
