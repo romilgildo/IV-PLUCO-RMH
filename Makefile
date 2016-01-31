@@ -16,6 +16,19 @@ install:
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install -r requirements.txt
+	
+mysql:
+	sudo apt-get update
+	sudo apt-get install -y nodejs-legacy
+	sudo apt-get install -y npm
+	sudo npm install -g azure-cli
+	azure config mode asm
+	azure site create --location "North Europe" pluco-db
+	azure vm create pluco-db b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB# --location "North Europe" --ssh
+	azure vm start pluco-db
+	azure vm endpoint create pluco-db 22 22
+	azure vm endpoint create pluco-db 3306 3306
+	fab -H pluco@pluco-db.cloudapp.net crear_mysql
 
 test: 
 	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
@@ -41,8 +54,8 @@ docker:
 	
 azure:
 	sudo apt-get update
-	sudo apt-get install nodejs-legacy
-	sudo apt-get install npm
+	sudo apt-get -y install nodejs-legacy
+	sudo apt-get -y install npm
 	sudo npm install -g azure-cli
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 	sudo apt-get install -y vagrant

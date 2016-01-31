@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mysql',
-        'USER': 'admin',
-        'PASSWORD': 'manager',
+        'USER': 'root',
+        'PASSWORD': 'PlucoDB#',
         'HOST': 'pluco-db.cloudapp.net',
         'PORT': '3306',
     }
