@@ -6,7 +6,9 @@ Autor: Rubén Martín Hidalgo
 [<img src="https://api.shippable.com/projects/561d708d1895ca44741d9f63/badge/master" alt="Shippable" height=20>](https://app.shippable.com/projects/561d708d1895ca44741d9f63)
 [![Snap CI](https://snap-ci.com/romilgildo/IV-PLUCO-RMH/branch/master/build_image)](https://snap-ci.com/romilgildo/IV-PLUCO-RMH/branch/master)
 
-[![Heroku](https://www.herokucdn.com/deploy/button.png)](http://pluco-db.herokuapp.com/) [![Azure](http://azuredeploy.net/deploybutton.png)](http://pluco-iv.cloudapp.net/) [![Docker](http://i628.photobucket.com/albums/uu6/romilgildo/dockericon_zpswj3ifwrw.png)](https://hub.docker.com/r/romilgildo/pluco/)
+[![Heroku](https://www.herokucdn.com/deploy/button.png)](http://pluco-db.herokuapp.com/) 
+[<img src="http://azuredeploy.net/deploybutton.png" alt="Azure" height=32>](http://pluco-iv.cloudapp.net/) 
+[<img src="http://i628.photobucket.com/albums/uu6/romilgildo/dockericon_zpswj3ifwrw.png" alt="Docker" height=32>](https://hub.docker.com/r/romilgildo/pluco/)
 
 [Apuntado en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
 
