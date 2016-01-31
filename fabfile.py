@@ -35,14 +35,16 @@ def montar_docker():
 	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
 	
 def crear_mysql():
-	sudo apt-get update   # actualizamos repositorios
-	sudo apt-get install -y apache2   # instalar apache
-	sudo apt-get install -y mysql-server mysql-client   # instalar mysql
-	sudo apt-get install -y libapache2-mod-php5 php5 php5-mcrypt   # instalamos php
-	sudo php5enmod mcrypt
-	sudo service apache2 restart   # reiniciar apache
-	sudo apt-get -y install phpmyadmin   # instalar phpmyadmin
-	cp my.cnf /etc/mysql/my.cnf
-	echo "mysqld: all" >> /etc/hosts.allow
-	sudo /etc/init.d/mysql restart
+	run('sudo apt-get update') # actualizamos repositorios
+	run('sudo apt-get install -y apache2')   # instalar apache
+	run('sudo apt-get install -y mysql-server mysql-client')   # instalar mysql
+	run('sudo apt-get install -y libapache2-mod-php5 php5 php5-mcrypt')   # instalamos php
+	run('sudo php5enmod mcrypt')
+	run('sudo service apache2 restart')   # reiniciar apache
+	run('sudo apt-get -y install phpmyadmin')   # instalar phpmyadmin
+	run('sudo apt-get install -y git')
+	run('sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git')
+	run('cd IV-PLUCO-RMH && sudo cp my.cnf /etc/mysql/')
+	run('ecd IV-PLUCO-RMH && sudo cp my.cnf hosts.allow /etc/hosts.allow')
+	run('sudo /etc/init.d/mysql restart')
 	

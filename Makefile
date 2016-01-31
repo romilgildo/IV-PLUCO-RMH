@@ -22,11 +22,12 @@ mysql:
 	sudo apt-get install -y nodejs-legacy
 	sudo apt-get install -y npm
 	sudo npm install -g azure-cli
+	sudo rm -R ~/.azure
 	azure config mode asm
+	azure login
 	azure site create --location "North Europe" pluco-db
-	azure vm create pluco-db b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB# --location "North Europe" --ssh
+	azure vm create pluco-db b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB2# --location "North Europe" --ssh
 	azure vm start pluco-db
-	azure vm endpoint create pluco-db 22 22
 	azure vm endpoint create pluco-db 3306 3306
 	fab -H pluco@pluco-db.cloudapp.net crear_mysql
 

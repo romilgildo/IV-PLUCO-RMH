@@ -55,6 +55,8 @@ $ cd IV-PLUCO-RMH/
 
 Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. 
 
+Para ello, bastará con ejecutar `make mysql` y hacer lo que nos pida por la terminal.
+
 [Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/MySQL.md)
 
 ### Herramienta de construcción con Make
