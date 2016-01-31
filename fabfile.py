@@ -49,6 +49,7 @@ def crear_mysql():
 	run('sudo /etc/init.d/mysql restart')
 	run('sudo apt-get install -y make')
 	run('cd IV-PLUCO-RMH && make install')
+	run('mysql -u root -p')
 	run('cd IV-PLUCO-RMH && python manage.py syncdb')
 
 	
