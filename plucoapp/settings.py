@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mysql',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'pluco',
         'HOST': 'pluco-db.cloudapp.net',
         'PORT': '3306',
     }

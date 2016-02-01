@@ -32,24 +32,18 @@ def montar_docker():
 	run('sudo apt-get update')
 	run('sudo apt-get install -y docker.io')
 	run('sudo docker pull romilgildo/pluco')
-	run('sudo docker run -p 8000:80 -t -i romilgildo/pluco /bin/bash')
+	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
 	
 def crear_mysql():
 	run('sudo apt-get update') # actualizamos repositorios
-	run('sudo apt-get install -y apache2')   # instalar apache
 	run('sudo apt-get install -y mysql-server mysql-client')   # instalar mysql
-	run('sudo apt-get install -y libapache2-mod-php5 php5 php5-mcrypt')   # instalamos php
-	run('sudo php5enmod mcrypt')
-	run('sudo service apache2 restart')   # reiniciar apache
-	run('sudo apt-get -y install phpmyadmin')   # instalar phpmyadmin
 	run('sudo apt-get install -y git')
 	run('sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git')
-	run('cd IV-PLUCO-RMH && sudo cp my.cnf /etc/mysql/')
-	run('cd IV-PLUCO-RMH && sudo cp hosts.allow /etc/')
+	run('cd IV-PLUCO-RMH/despliegueMySQL && cp my.cnf /etc/mysql/')
+	run('cd IV-PLUCO-RMH/despliegueMySQL && cp hosts.allow /etc/')
 	run('sudo /etc/init.d/mysql restart')
-	run('sudo apt-get install -y make')
-	run('cd IV-PLUCO-RMH && make install')
-	run('mysql -u root -p')
+	run('sudo apt-get install -y python-pip')
+	run('sudo pip install --upgrade pip')
+	run('sudo pip install -r requirements.txt')
 	run('cd IV-PLUCO-RMH && sudo python manage.py syncdb')
-
 	
