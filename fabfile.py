@@ -1,5 +1,6 @@
 from fabric.api import run, local, hosts, cd
 from fabric.contrib import django
+import time
 
 #Muestra infomacion del host
 def informacion():
@@ -29,14 +30,17 @@ def ejecutar():
 
 #Instalacion de docker, descarga de la imagen y ejecucion
 def montar_docker():
+	time.sleep(5)
 	run('sudo apt-get update')
 	run('sudo apt-get install -y docker.io')
 	run('sudo docker pull romilgildo/pluco')
 	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
 	
 def crear_mysql():
+	time.sleep(5)
 	run('sudo apt-get update') # actualizamos repositorios
 	run('sudo apt-get install -y mysql-server mysql-client')   # instalar mysql
+	run('sudo apt-get install -y libmysqlclient-dev')
 	run('sudo apt-get install -y git')
 	run('sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git')
 	run('cd IV-PLUCO-RMH/despliegueMySQL && sudo cp my.cnf /etc/mysql/')
