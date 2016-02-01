@@ -52,7 +52,7 @@ docker:
 	azure site create --location "North Europe" pruebas-pluco
 	azure vm create pruebas-pluco b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB2# --location "North Europe" --ssh
 	azure vm start pruebas-pluco
-	azure vm endpoint create pruebas-pluco 8000 8000
+	azure vm endpoint create pruebas-pluco 8000 80
 	fab -p PlucoDB2# -H pluco@pruebas-pluco.cloudapp.net montar_docker
 	
 azure:

@@ -104,7 +104,7 @@ Si todo ha ido bien, ya podremos acceder a nuestra app introduciendo `localhost:
 
 El repositorio de mi app en Docker se actualiza automáticamente cada vez que hago un 'push' de git. La Automated Build de mi app es [esta](https://hub.docker.com/r/romilgildo/pluco/).
 
-Aquí está funcionando el entorno de pruebas instalado en Azure: [http://pluco-db.cloudapp.net:8000/](http://pluco-db.cloudapp.net:8000/)
+Aquí está funcionando el entorno de pruebas instalado en Azure: [http://pluco-db.cloudapp.net](http://pluco-db.cloudapp.net)
 
 Para crear dicho entorno, se debe ejecutar el siguiente comando en local:
 
