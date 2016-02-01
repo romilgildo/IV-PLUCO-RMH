@@ -30,14 +30,12 @@ def ejecutar():
 
 #Instalacion de docker, descarga de la imagen y ejecucion
 def montar_docker():
-	time.sleep(5)
 	run('sudo apt-get update')
 	run('sudo apt-get install -y docker.io')
 	run('sudo docker pull romilgildo/pluco')
 	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
 	
 def crear_mysql():
-	time.sleep(5) # lo pongo porque parece que si lo hace directo no le da tiempo a abrir el puerto 22
 	run('sudo apt-get update') # actualizamos repositorios
 	run('sudo apt-get install -y mysql-server mysql-client')   # instalar mysql
 	run('sudo apt-get install -y git')
