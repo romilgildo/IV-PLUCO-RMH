@@ -30,9 +30,8 @@ mysql:
 	azure vm create pluco-db b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB2# --location "North Europe" --ssh
 	azure vm start pluco-db
 	azure vm endpoint create pluco-db 3306 3306
-	ssh-copy-id -i ~/.ssh/id_dsa.pub pluco@pluco-db.cloudapp.net
-	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_dsa
+	ssh-keygen -R pluco-db.cloudapp.net
+	ssh-copy-id -i ~/.ssh/id_rsa.pub pluco@pluco-db.cloudapp.net
 	export ANSIBLE_HOSTS=./despliegueMySQL/ansible_hosts
 	ansible-playbook -u pluco despliegueMySQL/crearMYSQL.yml
 
