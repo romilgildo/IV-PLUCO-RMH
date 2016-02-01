@@ -42,8 +42,8 @@ def crear_mysql():
 	run('sudo apt-get install -y mysql-server mysql-client')   # instalar mysql
 	run('sudo apt-get install -y git')
 	run('sudo apt-get install -y make')
-	run('cd IV-PLUCO-RMH && make install')
 	run('sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git')
+	run('cd IV-PLUCO-RMH && make install')
 	run('cd IV-PLUCO-RMH/despliegueMySQL && sudo cp my.cnf /etc/mysql/')
 	run('cd IV-PLUCO-RMH/despliegueMySQL && sudo cp hosts.allow /etc/')
 	run('sudo /etc/init.d/mysql restart')
