@@ -13,8 +13,8 @@
   - name: Clonar repositorio desde git
     git: repo=https://github.com/romilgildo/IV-PLUCO-RMH.git dest=IV-PLUCO-RMH clone=yes force=yes
   - name: Configurar MySQL
-    shell: cd IV-PLUCO-RMH && cp my.cnf /etc/mysql/
-    shell: cd IV-PLUCO-RMH && cp hosts.allow /etc/
+    shell: cd IV-PLUCO-RMH/mysql && cp my.cnf /etc/mysql/
+    shell: cd IV-PLUCO-RMH/mysql && cp hosts.allow /etc/
   - name: Instalar requisitos para la BD
     shell: cd IV-PLUCO-RMH && make install
   - name: Sincronizar base de datos
