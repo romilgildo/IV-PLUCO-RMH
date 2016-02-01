@@ -37,17 +37,15 @@ def montar_docker():
 	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
 	
 def crear_mysql():
-	time.sleep(5)
+	time.sleep(5) # lo pongo porque parece que si lo hace directo no le da tiempo a abrir el puerto 22
 	run('sudo apt-get update') # actualizamos repositorios
 	run('sudo apt-get install -y mysql-server mysql-client')   # instalar mysql
-	run('sudo apt-get install -y libmysqlclient-dev')
 	run('sudo apt-get install -y git')
+	run('sudo apt-get install -y make')
+	run('cd IV-PLUCO-RMH && make install')
 	run('sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git')
 	run('cd IV-PLUCO-RMH/despliegueMySQL && sudo cp my.cnf /etc/mysql/')
 	run('cd IV-PLUCO-RMH/despliegueMySQL && sudo cp hosts.allow /etc/')
 	run('sudo /etc/init.d/mysql restart')
-	run('sudo apt-get install -y python-pip')
-	run('sudo pip install --upgrade pip')
-	run('cd IV-PLUCO-RMH && sudo pip install -r requirements.txt')
 	run('cd IV-PLUCO-RMH && sudo python manage.py syncdb')
 	
