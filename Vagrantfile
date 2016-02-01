@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "ansible" do |ansible|
 	ansible.sudo = true
-    ansible.playbook = "desplieguePLUCO.yml"
+    ansible.playbook = "despliegueAzure.yml"
 	ansible.verbose = "v"
 	ansible.host_key_checking = false 
   end
