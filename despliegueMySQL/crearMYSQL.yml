@@ -1,5 +1,5 @@
 ---
-- hosts: AzureDB
+- hosts: localhost
   sudo: yes
   remote_user: pluco
   tasks:
