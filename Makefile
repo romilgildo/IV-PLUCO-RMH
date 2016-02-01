@@ -27,8 +27,6 @@ mysql:
 	azure vm start pluco-db
 	azure vm endpoint create pluco-db 3306 3306
 	fab -p PlucoDB2# -H pluco@pluco-db.cloudapp.net crear_mysql
-	fab -p PlucoDB2# -H pluco@pluco-db.cloudapp.net crear_mysql
-	fab -p PlucoDB2# -H pluco@pluco-db.cloudapp.net crear_mysql
 
 test: 
 	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
@@ -53,8 +51,6 @@ docker:
 	azure vm create pruebas-pluco b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB2# --location "North Europe" --ssh
 	azure vm start pruebas-pluco
 	azure vm endpoint create pruebas-pluco 8000 8000
-	fab -p PlucoDB2# -H pluco@pruebas-pluco.cloudapp.net montar_docker
-	fab -p PlucoDB2# -H pluco@pruebas-pluco.cloudapp.net montar_docker
 	fab -p PlucoDB2# -H pluco@pruebas-pluco.cloudapp.net montar_docker
 	
 azure:

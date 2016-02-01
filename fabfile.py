@@ -39,11 +39,11 @@ def crear_mysql():
 	run('sudo apt-get install -y mysql-server mysql-client')   # instalar mysql
 	run('sudo apt-get install -y git')
 	run('sudo git clone https://github.com/romilgildo/IV-PLUCO-RMH.git')
-	run('cd IV-PLUCO-RMH/despliegueMySQL && cp my.cnf /etc/mysql/')
-	run('cd IV-PLUCO-RMH/despliegueMySQL && cp hosts.allow /etc/')
+	run('cd IV-PLUCO-RMH/despliegueMySQL && sudo cp my.cnf /etc/mysql/')
+	run('cd IV-PLUCO-RMH/despliegueMySQL && sudo cp hosts.allow /etc/')
 	run('sudo /etc/init.d/mysql restart')
 	run('sudo apt-get install -y python-pip')
 	run('sudo pip install --upgrade pip')
-	run('sudo pip install -r requirements.txt')
+	run('cd IV-PLUCO-RMH && sudo pip install -r requirements.txt')
 	run('cd IV-PLUCO-RMH && sudo python manage.py syncdb')
 	
