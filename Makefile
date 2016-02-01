@@ -22,15 +22,16 @@ mysql:
 	sudo apt-get install -y nodejs-legacy
 	sudo apt-get install -y npm
 	sudo npm install -g azure-cli
+	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 	sudo rm -R ~/.azure
 	azure config mode asm
 	azure login
 	azure site create --location "North Europe" pluco-db
 	azure vm create pluco-db b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB2# --location "North Europe" --ssh
 	azure vm start pluco-db
-	azure vm endpoint create pluco-db 80 80
 	azure vm endpoint create pluco-db 3306 3306
-	fab -H pluco@pluco-db.cloudapp.net crear_mysql
+	export ANSIBLE_HOSTS=./ansible_hosts
+	ansible-playbook -u pluco crearMYSQL.yml
 
 test: 
 	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
@@ -50,9 +51,17 @@ heroku:
 
 docker:
 	sudo apt-get update
-	sudo apt-get install -y docker.io
-	sudo docker pull romilgildo/pluco
-	sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
+	sudo apt-get install -y fabric
+	sudo apt-get install -y nodejs-legacy
+	sudo apt-get install -y npm
+	sudo npm install -g azure-cli
+	sudo rm -R ~/.azure
+	azure config mode asm
+	azure site create --location "North Europe" pluco-db
+	azure vm create pruebas-pluco b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB2# --location "North Europe" --ssh
+	azure vm start pruebas-pluco
+	azure vm endpoint create pruebas-pluco 80 80
+	fab -H pluco@pruebas-pluco.cloudapp.net montar_docker
 	
 azure:
 	sudo apt-get update

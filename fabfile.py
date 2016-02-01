@@ -32,7 +32,7 @@ def montar_docker():
 	run('sudo apt-get update')
 	run('sudo apt-get install -y docker.io')
 	run('sudo docker pull romilgildo/pluco')
-	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
+	run('sudo docker run -p 8000:80 -t -i romilgildo/pluco /bin/bash')
 	
 def crear_mysql():
 	run('sudo apt-get update') # actualizamos repositorios
@@ -50,6 +50,6 @@ def crear_mysql():
 	run('sudo apt-get install -y make')
 	run('cd IV-PLUCO-RMH && make install')
 	run('mysql -u root -p')
-	run('cd IV-PLUCO-RMH && python manage.py syncdb')
+	run('cd IV-PLUCO-RMH && sudo python manage.py syncdb')
 
 	
