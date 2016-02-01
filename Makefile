@@ -31,8 +31,8 @@ mysql:
 	azure vm start pluco-db
 	azure vm endpoint create pluco-db 3306 3306
 	ssh-keygen -R pluco-db.cloudapp.net
-	ssh-copy-id -i ~/.ssh/id_rsa.pub pluco@pluco-db.cloudapp.net
 	export ANSIBLE_HOSTS=./despliegueMySQL/ansible_hosts
+	ssh-copy-id -i ~/.ssh/id_rsa.pub pluco@pluco-db.cloudapp.net
 	ansible-playbook -u pluco despliegueMySQL/crearMYSQL.yml
 
 test: 
