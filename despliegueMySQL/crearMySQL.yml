@@ -25,5 +25,7 @@
     shell: cd IV-PLUCO-RMH/despliegueMySQL && mysql -u root < usuarioMySQL
   - name: Instalar requisitos para la BD
     shell: cd IV-PLUCO-RMH && make install
-  - name: Crear base de datos Pluco
-    shell: cd IV-PLUCO-RMH && sudo python manage.py migrate
+  - name: Preparar modelos base de datos
+    shell: cd IV-PLUCO-RMH && python manage.py makemigrations plucoapp
+  - name: Crear tablas base de datos
+    shell: cd IV-PLUCO-RMH && python manage.py migrate
