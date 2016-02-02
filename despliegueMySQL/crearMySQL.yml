@@ -26,4 +26,4 @@
   - name: Instalar requisitos para la BD
     shell: cd IV-PLUCO-RMH && make install
   - name: Crear base de datos Pluco
-    command: chdir IV-PLUCO-RMH python manage.py migrate
+    shell: cd IV-PLUCO-RMH && sudo python manage.py migrate
