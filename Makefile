@@ -1,7 +1,7 @@
 #Makefile
 
 clean:
-	rm -rf *~* && find . -name '*.pyc' -exec rm {} \;
+	rm -i -rf *~* && find . -name '*.pyc' -exec rm {} \;
 	
 install:
 	sudo apt-get update 
@@ -45,16 +45,15 @@ heroku:
 
 docker:
 	sudo apt-get install -y fabric
-	sudo apt-get install -y nodejs-legacy
-	sudo apt-get install -y npm
-	sudo npm install -g azure-cli
-	azure config mode asm
-	azure login
-	azure site create --location "North Europe" pruebas-pluco
-	azure vm create pruebas-pluco b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB pluco PlucoDB2# --location "North Europe" --ssh
-	azure vm start pruebas-pluco
-	azure vm endpoint create pruebas-pluco 8000 80
-	fab -p PlucoDB2# -H pluco@pruebas-pluco.cloudapp.net montar_docker
+	sudo apt-get install -y virtualbox virtualbox-dkms
+	sudo apt-get install -y vagrant
+	vagrant plugin install vagrant-azure
+	sudo apt-get install -y python-pip
+	sudo pip install --upgrade pip
+	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	cd despliegueDocker && sudo vagrant up --provider=azure
+	cd ..
+	fab -p PlucoDB1# -H pluco@pruebas-pluco.cloudapp.net montar_docker
 	
 azure:
 	sudo apt-get install -y fabric
@@ -66,9 +65,11 @@ azure:
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 	cd despliegueAzure && sudo vagrant up --provider=azure
 	cd ..
+	ssh-copy-id -i ~/.ssh/id_rsa.pub pluco@pluco-iv.cloudapp.net
 	
 push:
-	git add -u .
+	git add -A .
+	git status
 	sudo despliegueAzure/escribirCommit.sh
 	git push
 	fab -H pluco@pluco-iv.cloudapp.net actualizar

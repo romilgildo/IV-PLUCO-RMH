@@ -32,5 +32,5 @@ def montar_docker():
 	run('sudo apt-get update')
 	run('sudo apt-get install -y docker.io')
 	run('sudo docker pull romilgildo/pluco')
-	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
+	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco sh -c "cd IV-PLUCO-RMH && make run"')
 	
