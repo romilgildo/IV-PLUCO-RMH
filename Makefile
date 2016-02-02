@@ -64,13 +64,11 @@ azure:
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 	cd despliegueAzure && sudo vagrant up --provider=azure
-	cd ..
-	ssh-copy-id -i ~/.ssh/id_rsa.pub pluco@pluco-iv.cloudapp.net
 	
 push:
 	git add -A .
 	git status
 	sudo despliegueAzure/escribirCommit.sh
 	git push
-	fab -H pluco@pluco-iv.cloudapp.net actualizar
+	fab -p PlucoDB1# -H pluco@pluco-iv.cloudapp.net actualizar
 	python manage.py syncdb
