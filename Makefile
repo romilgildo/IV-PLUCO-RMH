@@ -25,9 +25,7 @@ mysql:
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 	cd despliegueMySQL && sudo vagrant up --provider=azure
-	cd ..
-	python manage.py makemigrations plucoapp
-	python manage.py migrate
+	cd ..	
 
 test: 
 	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
