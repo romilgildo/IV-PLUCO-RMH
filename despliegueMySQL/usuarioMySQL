@@ -1,0 +1,4 @@
+use mysql
+GRANT ALL PRIVILEGES ON *.* TO admin@"%" IDENTIFIED BY 'manager' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+quit

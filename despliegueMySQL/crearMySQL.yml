@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  sudo: yes
+  remote_user: pluco
+  tasks:
+  - name: Actualizar sistema base
+    apt: update_cache=yes upgrade=dist 
+  - name: Instalar paquetes necesarios
+    action: apt pkg={{ item }} state=installed
+    with_items:
+      - mysql-server
+      - git
+  - name: Clonar repositorio desde git
+    git: repo=https://github.com/romilgildo/IV-PLUCO-RMH.git dest=IV-PLUCO-RMH clone=yes force=yes
+  - name: Configurar MySQL
+    shell: cd IV-PLUCO-RMH/despliegueMySQL && cp my.cnf /etc/mysql/
+    shell: cd IV-PLUCO-RMH/despliegueMySQL && cp hosts.allow /etc/
+    shell: sudo killall mysqld
+    shell: sudo /etc/init.d/mysql restart
+    shell: mysql -u root < usuarioMySQL
