@@ -12,9 +12,13 @@
       - git
   - name: Clonar repositorio desde git
     git: repo=https://github.com/romilgildo/IV-PLUCO-RMH.git dest=IV-PLUCO-RMH clone=yes force=yes
-  - name: Configurar MySQL
-    shell: cd IV-PLUCO-RMH/despliegueMySQL && cp my.cnf /etc/mysql/
-    shell: cd IV-PLUCO-RMH/despliegueMySQL && cp hosts.allow /etc/
+  - name: Configurar fichero my.cnf
+    shell: cd IV-PLUCO-RMH/despliegueMySQL && sudo cp my.cnf /etc/mysql/
+  - name: Configurar fichero hosts.allow
+    shell: cd IV-PLUCO-RMH/despliegueMySQL && sudo cp hosts.allow /etc/
+  - name: Matar proceso mysqld
     shell: sudo killall mysqld
+  - name: Reiniciar servidor mysql
     shell: sudo /etc/init.d/mysql restart
-    shell: mysql -u root < usuarioMySQL
+  - name: Crear usuario admin
+    shell: cd IV-PLUCO-RMH/despliegueMySQL && mysql -u root < usuarioMySQL
