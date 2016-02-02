@@ -1,3 +1,6 @@
+# Distribucion de desarrollo
+build_environment: Ubuntu 14.04
+
 # Selección del lenguaje, en nuestro caso python. 
 language: python   
 

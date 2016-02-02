@@ -10,6 +10,7 @@
     with_items:
       - mysql-server
       - git
+      - make
   - name: Clonar repositorio desde git
     git: repo=https://github.com/romilgildo/IV-PLUCO-RMH.git dest=IV-PLUCO-RMH clone=yes force=yes
   - name: Configurar fichero my.cnf
@@ -22,3 +23,5 @@
     shell: sudo /etc/init.d/mysql restart
   - name: Crear usuario admin
     shell: cd IV-PLUCO-RMH/despliegueMySQL && mysql -u root < usuarioMySQL
+  - name: Instalar requisitos para la BD
+    shell: cd IV-PLUCO-RMH && make install
