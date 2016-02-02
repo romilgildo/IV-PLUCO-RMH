@@ -68,5 +68,10 @@ azure:
 	cd ..
 	
 push:
+	git add -u .
+	echo "Introduce el mensaje del commit: "
+	read COMMIT
+	git commit -m "$COMMIT"
 	git push
 	fab -H pluco@pluco-iv.cloudapp.net actualizar
+	python manage.py syncdb
