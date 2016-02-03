@@ -100,6 +100,14 @@ Si queremos realizar el despliegue en Azure y poner en marcha toda la app en la 
 
  `sudo ./desplegarPLUCO.sh`
  
+Dicho script instalará todo lo necesario, crea las bases de datos y despliega la aplicación en Azure con los siguientes comandos:
+
+```
+make install
+make mysql
+make azure
+```
+ 
 ### Instalación de MySQL en Azure
 
 Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. 
