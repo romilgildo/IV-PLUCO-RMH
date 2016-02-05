@@ -4,8 +4,6 @@
 
 Se puede instalar con `sudo apt-get install fabric`.
 
-En nuestro caso, vamos a realizar el despliegue en nuestra máquina virtual de Azure que creamos anteriormente [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearAzure.md).
-
 Mediante un fichero llamado [fabfile.py](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/fabfile.py), se describen las distintas tareas de administración y despliegue que se quieran realizar de manera remota.
 
 Este es el contenido de mi fichero:
@@ -45,7 +43,7 @@ def montar_docker():
 	run('sudo apt-get update')
 	run('sudo apt-get install -y docker.io')
 	run('sudo docker pull romilgildo/pluco')
-	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash')
+	run('sudo docker run -p 8000:8000 -t -i romilgildo/pluco sh -c "cd IV-PLUCO-RMH && make run"')
 ```
 
 Los siguientes comandos con Fabric, siempre se ejecutan desde nuestra máquina anfitriona.
@@ -58,14 +56,4 @@ Con dicho comando le estamos diciendo que conecte por ssh a nuestra maquina de A
 
 ![Mostrar infomracion del host](http://i628.photobucket.com/albums/uu6/romilgildo/infoHost_zpsaxaizyqm.png)
 
-Ahora procedemos a realizar el despliegue en Docker:
-
- `fab -p mipassword -H romi@pluco-db.cloudapp.net montar_docker`
- 
-Y una vez termine y estemos dentro del contenedor, ya solo falta entrar al directorio de la app y arrancar el servidor. 
-
- `cd IV-PLUCO-RMH && make run`
- 
-![Arrancar servidor python](http://i628.photobucket.com/albums/uu6/romilgildo/ejecutarappDocker_zpstvbm6wfq.png~original)
-
-[Aquí](http://pluco-db.cloudapp.net:8000/) podemos ver el contenedor Docker funcionando de modo online.
+[Volver atrás](https://github.com/romilgildo/IV-PLUCO-RMH#administración-remota-con-fabric)
