@@ -1,7 +1,7 @@
 #Makefile
 
 clean:
-	rm -i -rf *~* && find . -name '*.pyc' -exec rm {} \;
+	sudo rm -i -rf *~* && find . -name '*.pyc' -exec rm {} \;
 	
 install:
 	sudo apt-get update 
