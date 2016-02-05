@@ -110,7 +110,7 @@ make mysql
 make azure
 ```
 
-Para eliminar cualquiera de las máquinas creadas con Vagrant, bastará con ejecutar `vagrant destroy` dentro del directorio donde se encuentre el fichero Vagrantfile que crea dicha máquina.
+Para eliminar cualquiera de las máquinas creadas con Vagrant, bastará con ejecutar `sudo vagrant destroy` dentro del directorio donde se encuentre el fichero Vagrantfile que crea dicha máquina.
 
 ### Instalación de MySQL en Azure
 
