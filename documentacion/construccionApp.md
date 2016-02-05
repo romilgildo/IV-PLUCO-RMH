@@ -53,7 +53,13 @@ heroku:
 	heroku ps:scale web=1
 	heroku open
 
-docker:
+docker_Local:
+	sudo apt-get update
+	sudo apt-get install -y docker.io
+	sudo docker pull romilgildo/pluco
+	sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
+
+docker_Azure:
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
 	sudo apt-get install -y vagrant
@@ -96,7 +102,9 @@ Con `make run` ejecutamos la aplicación por el puerto 8000.
 
 La orden `make heroku` sirve para desplegar la aplicación en Heroku.
 
-Con `make docker` creamos un contenedor Docker en una máquina de Azure con la aplicación instalada en éĺ y la ejecuta automáticamente.
+El comando `make docker_Local` crea un contenedor Docker en nuestro ordenador con la app instalada dentro.
+
+Con `make docker_Azure` creamos un contenedor Docker en una máquina de Azure con la aplicación instalada en éĺ y la ejecuta automáticamente.
 
 Si ejecutamos `make azure` se realizará el despliegue en una máquina virtual de Azure, quedando la aplicación accesible de manera online.
 

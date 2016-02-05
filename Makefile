@@ -42,7 +42,13 @@ heroku:
 	heroku ps:scale web=1
 	heroku open
 
-docker:
+docker_Local:
+	sudo apt-get update
+	sudo apt-get install -y docker.io
+	sudo docker pull romilgildo/pluco
+	sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
+
+docker_Azure:
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
 	sudo apt-get install -y vagrant

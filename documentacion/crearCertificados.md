@@ -45,3 +45,5 @@ En el portal de Azure, pinchamos en Configuración > Certificados de administrac
 Y seleccionamos el archivo "azure.cer". Ya habremos terminado.
 
 ![Certificado cargado](http://i628.photobucket.com/albums/uu6/romilgildo/certificadoAzureVagrant_zpsvc2noghr.png)
+
+[Volver atrás](https://github.com/romilgildo/IV-PLUCO-RMH#despliegue-de-la-app)
