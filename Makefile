@@ -74,6 +74,6 @@ push:
 	sudo git add -A .
 	git status
 	sudo despliegueAzure/escribirCommit.sh
-	sudo git push
+	git push
 	fab -p PlucoDB1# -H pluco@pluco-iv.cloudapp.net actualizar
 	sudo python manage.py syncdb
