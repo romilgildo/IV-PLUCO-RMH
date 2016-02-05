@@ -49,7 +49,7 @@ Para la instalación en una máquina virtual de Azure debemos ejecutar `make doc
 	fab -p PlucoDB1# -H pluco@pruebas-pluco.cloudapp.net montar_docker
 ```
 
-Instala todo lo necesario para crear el contenedor en Azure, con Vagrant y Ansible crea la máquina virtual y luego con Fabric crea el contenedor en dicha máquina. La función de Fabric usada es la siguiente:
+Instala todo lo necesario para crear el contenedor en Azure, con Vagrant y Ansible crea la máquina virtual y luego con **Fabric** crea el contenedor en dicha máquina. La función de Fabric usada es la siguiente:
 
 ```
 def montar_docker():
@@ -61,7 +61,7 @@ def montar_docker():
 
 Esto instala Docker, se descarga la imagen de nuestro repositorio y arranca el contenedor, además de ejecutar la aplicación de manera automatizada. 
 
-Aquí tenemos desplegado el contenedor Docker instalado en una máquina de Azure y disponible de manera online: [http://pluco-db.cloudapp.net:8000/](http://pruebas-pluco.cloudapp.net)
+Aquí tenemos desplegado el contenedor Docker instalado en una máquina de Azure y disponible de manera online: [http://pruebas-pluco.cloudapp.net](http://pruebas-pluco.cloudapp.net)
 
 ### Creación del entorno de pruebas en local
 
@@ -86,7 +86,7 @@ Una vez estemos dentro del contenedor, bastará con hacer `make run` en el direc
 
 Aquí una muestra de nuestra app funcionando dentro del contenedor local, donde accedemos introduciendo la IP del contenedor Docker en el navegador del sistema anfitrión:
 
-![Cogemos la ip del contenedor](http://i628.photobucket.com/albums/uu6/romilgildo/ipDockerLocal_zpsfmgomfwl.png)
+![Cogemos la ip del contenedor](http://i628.photobucket.com/albums/uu6/romilgildo/ipDockerLocal_zpsq7bcrgak.png)
 
 ![Pluco funcionando en Docker](http://i628.photobucket.com/albums/uu6/romilgildo/plucoenDocker_zps6tmscobl.png~original)
 

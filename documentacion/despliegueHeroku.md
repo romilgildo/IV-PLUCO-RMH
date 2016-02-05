@@ -1,4 +1,4 @@
-## Despliegue en un PaaS: Heroku
+## Despliegue en Heroku
 
 Para realizar el despliegue, se deben añadir los siguientes archivos:
 
@@ -17,7 +17,7 @@ MySQL-python==1.2.3
 Django==1.8.5
 nose==1.3.7
 gunicorn==19.3.0
-pillow==3.0.0
+pillow==3.1.0
 ```
 
 Este fichero instalará aquellos paquetes que necesite la app pero que no estén instalados en Heroku.
@@ -56,3 +56,5 @@ Realizamos la siguiente configuración desde la interfaz web de Snap CI:
 ![Configuracion Snap 3](http://i628.photobucket.com/albums/uu6/romilgildo/herokupluco3_zpsft62am70.png~original)
 
 Y ya tenemos la integración contínua que actualiza la aplicación en Heroku al hacer git push a nuestro repositorio de GitHub, siempre que esta pase los tests.
+
+[Volver atrás](https://github.com/romilgildo/IV-PLUCO-RMH#despliegue-en-un-paas-heroku)

@@ -109,7 +109,9 @@ make install
 make mysql
 make azure
 ```
- 
+
+Para eliminar cualquiera de las máquinas creadas con Vagrant, bastará con ejecutar `vagrant destroy` dentro del directorio donde se encuentre el fichero Vagrantfile que crea dicha máquina.
+
 ### Instalación de MySQL en Azure
 
 Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. 
@@ -134,9 +136,7 @@ Para crear dicho entorno, se debe ejecutar el siguiente comando en local:
 
 ### Despliegue en un PaaS: Heroku
 
-Nos decantamos por [Heroku](https://www.heroku.com/), debido a que funciona realmente bien y es bastante sencillo de hacer que nuestra aplicación funcione desde primera hora en ella.
-
-Gracias a Snap-CI, tenemos un proceso de integración contínua en la que se actualiza la aplicación en Heroku cada vez que actualizamos el repositorio en GitHub. 
+Nos decantamos por [Heroku](https://www.heroku.com/), debido a que funciona realmente bien y su sencilla configuración para integración contínua. Otra alternativa de PaaS puede ser [OpenShift](https://www.openshift.com/).
 
 Esta es la aplicación ya desplegada en Heroku: [https://pluco-db.herokuapp.com/](https://pluco-db.herokuapp.com/)
 

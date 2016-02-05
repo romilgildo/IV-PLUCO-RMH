@@ -71,9 +71,9 @@ azure:
 	cd despliegueAzure && sudo vagrant up --provider=azure
 	
 push:
-	git add -A .
+	sudo git add -A .
 	git status
 	sudo despliegueAzure/escribirCommit.sh
-	git push
+	sudo git push
 	fab -p PlucoDB1# -H pluco@pluco-iv.cloudapp.net actualizar
-	python manage.py syncdb
+	sudo python manage.py syncdb
