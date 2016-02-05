@@ -1,4 +1,4 @@
-## Creación de certificados Azure
+## Creación de certificado para Azure
 
 Para poder conectar con Azure desde línea de comandos o desde otros programas como Ansible o Juju, debemos realizar una serie de tareas.
 

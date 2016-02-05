@@ -72,7 +72,7 @@ En mi caso, estoy haciendo la integración contínua con [Shippable](https://www
 
 ## Descarga de la app
 
-Para realizar cualquiera de las funcionalidades que vienen en esta documentación, necesitaremos antes descargar antes la aplicación en nuestro ordenador, y a partir de ahí podremos realizar tests, desplegar la app o simplemente arrancarla localmente. 
+Para realizar cualquiera de las funcionalidades que vienen en esta documentación, necesitaremos descargar antes la aplicación en nuestro ordenador, y a partir de ahí podremos realizar tests, desplegar la app o simplemente arrancarla localmente. 
 
 Para ello ejecutamos los siguientes comandos:
 
@@ -92,11 +92,13 @@ $ make install
 $ make run
 ```
 
-Si todo ha ido bien, ya podremos acceder a nuestra app introduciendo `localhost:8000` en nuestro navegador web.
+Si todo ha ido bien, ya podremos acceder a nuestra app introduciendo `localhost:8000` en nuestro navegador web. Debemos asegurarnos antes de que tenemos las bases de datos ya montadas, sino habría que hacer `make mysql`.
 
 ## Despliegue de la app
 
-Si queremos realizar el despliegue en Azure y poner en marcha toda la app en la web de manera totalemente automatizada, basta con ejecutar lo siguiente:
+Para desplegar la aplicación en Azure, lo primero que debemos hacer es [crear el certificado para Azure](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearCertificados.md).
+
+Una vez hecho el paso anterior, ya podemos poner en marcha toda la app en la web de manera totalemente automatizada con solo ejecutar lo siguiente:
 
  `sudo ./desplegarPLUCO.sh`
  
