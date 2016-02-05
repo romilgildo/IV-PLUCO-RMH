@@ -48,7 +48,7 @@ Para ejecutar la herramienta de construcción, simplemente debemos escribir en l
 
 ## Integración contínua
 
-La integración contínua consiste en hacer integraciones automáticas de un proyecto lo más a menudo posible para así poder detectar fallos cuanto antes. Este proceso conlleva la compilación y ejecución de pruebas del proyecto.
+La integración contínua consiste en hacer integraciones automáticas de un proyecto cada vez que actualizamos el repositorio para así poder detectar fallos cuanto antes. Este proceso conlleva la ejecución de pruebas del proyecto.
 
 ### Realización de tests con Nose
 

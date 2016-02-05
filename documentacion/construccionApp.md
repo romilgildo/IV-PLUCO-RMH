@@ -102,5 +102,4 @@ Si ejecutamos `make azure` se realizará el despliegue en una máquina virtual d
 
 El comando `make push` actualiza el repositorio y luego entra en nuestra máquina de Azure para actualizar la aplicación y así quede actualizada en la web.
 
-
-[Volver atrás](https://github.com/romilgildo/IV-PLUCO-RMH)
+[Volver atrás](https://github.com/romilgildo/IV-PLUCO-RMH#herramienta-de-construcción-con-make)

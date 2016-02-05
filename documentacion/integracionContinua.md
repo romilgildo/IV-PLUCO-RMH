@@ -36,6 +36,9 @@ Aquí tenemos una captura de como está funcionando correctamente la integració
 Con este sistema hacemos lo mismo que con el anterior, crear el fichero YML que en este caso se llamará [.travis.yml](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/.travis.yml), con el siguiente contenido:
 
 ```
+# Distribucion de desarrollo
+build_environment: Ubuntu 14.04
+
 # Selección del lenguaje, en nuestro caso python. 
 language: python   
 
@@ -63,7 +66,6 @@ notifications:   # Notificamos los resultados de los test por correo
   email:
     on_success: change
     on_failure: always
-
 ```
 
 Aquí una captura pasando los test en Travis:
@@ -93,3 +95,5 @@ Finalmente guardamos y ya tenemos nuestra integración con Snap-CI funcionando:
 ![Snap-CI funcionando](http://i628.photobucket.com/albums/uu6/romilgildo/SnapTests_zpsg8ue4ynt.png~original)
 
 Como podéis ver, yo estoy usando otro paso más en la integración para desplegar en Heroku. Esa configuración la podéis ver [aquí](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/despliegueHeroku.md).
+
+[Volver atrás](https://github.com/romilgildo/IV-PLUCO-RMH#herramientas-de-integración-contínua)
