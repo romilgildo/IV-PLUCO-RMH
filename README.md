@@ -30,7 +30,7 @@ La base de datos usada es **MySQL** y contiene información sobre las asignatura
 
 Como lenguaje de programación se usa **Python**. Además utilizamos **Django** como framework para agilizar el desarrollo web.  
 
-El resto de mis compañeros han creado: 
+El resto de mis compañeros están creando: 
 
 1. Un [sistema web/red social](https://github.com/rafaellg8/IV-PLUCO-RLG) de foros y dudas similar a Stackoverflow. Lleva detrás un servidor web para alojar las páginas y otro servidor para la base de datos de los usuarios.
 

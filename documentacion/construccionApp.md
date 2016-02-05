@@ -12,7 +12,7 @@ Mi [Makefile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) c
 
 ```
 clean:
-	rm -rf *~* && find . -name '*.pyc' -exec rm {} \;
+	rm -i -rf *~* && find . -name '*.pyc' -exec rm {} \;
 	
 install:
 	sudo apt-get update 
@@ -27,6 +27,15 @@ install:
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install -r requirements.txt
+	
+mysql:
+	sudo apt-get install -y virtualbox virtualbox-dkms
+	sudo apt-get install -y vagrant
+	vagrant plugin install vagrant-azure
+	sudo apt-get install -y python-pip
+	sudo pip install --upgrade pip
+	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	cd despliegueMySQL && sudo vagrant up --provider=azure
 
 test: 
 	export DJANGO_SETTINGS_MODULE=plucoapp.settings && nosetests
@@ -45,32 +54,41 @@ heroku:
 	heroku open
 
 docker:
-	sudo apt-get update
-	sudo apt-get install -y docker.io
-	sudo docker pull romilgildo/pluco
-	sudo docker run -p 8000:8000 -t -i romilgildo/pluco /bin/bash
+	sudo apt-get install -y fabric
+	sudo apt-get install -y virtualbox virtualbox-dkms
+	sudo apt-get install -y vagrant
+	vagrant plugin install vagrant-azure
+	sudo apt-get install -y python-pip
+	sudo pip install --upgrade pip
+	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	cd despliegueDocker && sudo vagrant up --provider=azure
+	cd ..
+	fab -p PlucoDB1# -H pluco@pruebas-pluco.cloudapp.net montar_docker
 	
 azure:
-	sudo apt-get update
-	sudo apt-get install nodejs-legacy
-	sudo apt-get install npm
-	sudo npm install -g azure-cli
-	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
-	sudo apt-get install -y vagrant
-	sudo apt-get install -y virtualbox virtualbox-dkms
 	sudo apt-get install -y fabric
+	sudo apt-get install -y virtualbox virtualbox-dkms
+	sudo apt-get install -y vagrant
 	vagrant plugin install vagrant-azure
-	sudo vagrant up --provider=azure
+	sudo apt-get install -y python-pip
+	sudo pip install --upgrade pip
+	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	cd despliegueAzure && sudo vagrant up --provider=azure
 	
 push:
+	git add -A .
+	git status
+	sudo despliegueAzure/escribirCommit.sh
 	git push
-	fab -H pluco@pluco-iv.cloudapp.net actualizar
-
+	fab -p PlucoDB1# -H pluco@pluco-iv.cloudapp.net actualizar
+	python manage.py syncdb
 ```
 
 Con la orden `make clean` limpiaremos los directorios en local de archivos temporales que no influyen en el correcto funcionamiento de la aplicación.
 
 Con `make install` se instalan los paquetes necesarios para el correcto funcionamiento de la app. 
+
+La orden `make mysql` crea las bases de datos oportunas en una máquina virtual de Azure independiente.
 
 El comando `make test` realizará los tests que tengamos en el archivo destinado para ello. Indica dónde se encuentra el settings de Django y ejecuta nosetests.
 
@@ -78,8 +96,8 @@ Con `make run` ejecutamos la aplicación por el puerto 8000.
 
 La orden `make heroku` sirve para desplegar la aplicación en Heroku.
 
-Con `make docker` creamos un contenedor en docker con la aplicación instalada en eĺ y entramos en dicho contenedor automáticamente.
+Con `make docker` creamos un contenedor Docker en una máquina de Azure con la aplicación instalada en éĺ y la ejecuta automáticamente.
 
 Si ejecutamos `make azure` se realizará el despliegue en una máquina virtual de Azure, quedando la aplicación accesible de manera online.
 
-El comando `make push` actualiza el repositorio y luego entra en nuestra máquina de Azure para actualizar la aplicación y así quede actualizada mediante web.
+El comando `make push` actualiza el repositorio y luego entra en nuestra máquina de Azure para actualizar la aplicación y así quede actualizada en la web.
