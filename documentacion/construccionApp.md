@@ -24,14 +24,15 @@ install:
 	sudo apt-get install -y libfreetype6-dev
 	sudo apt-get install -y liblcms1-dev
 	sudo apt-get install -y libwebp-dev
-	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install -r requirements.txt
 	
 mysql:
 	sudo apt-get install -y virtualbox virtualbox-dkms
+	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 	sudo dpkg -i vagrant_1.8.1_x86_64.deb
+	rm vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
@@ -64,7 +65,9 @@ docker_Local:
 docker_Azure:
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
+	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 	sudo dpkg -i vagrant_1.8.1_x86_64.deb
+	rm vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
@@ -77,7 +80,9 @@ docker_Azure:
 azure:
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
+	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 	sudo dpkg -i vagrant_1.8.1_x86_64.deb
+	rm vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
