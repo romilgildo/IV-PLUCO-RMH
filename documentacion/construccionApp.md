@@ -69,9 +69,6 @@ docker_Azure:
 	sudo dpkg -i vagrant_1.8.1_x86_64.deb
 	rm vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
-	sudo apt-get install -y python-pip
-	sudo pip install --upgrade pip
-	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
 	sudo vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueDocker && sudo vagrant up --provider=azure
 	cd ..
