@@ -12,7 +12,7 @@ Mi [Makefile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/Makefile) c
 
 ```
 clean:
-	rm -i -rf *~* && find . -name '*.pyc' -exec rm {} \;
+	sudo rm -i -rf *~* && find . -name '*.pyc' -exec rm {} \;
 	
 install:
 	sudo apt-get update 
@@ -24,17 +24,19 @@ install:
 	sudo apt-get install -y libfreetype6-dev
 	sudo apt-get install -y liblcms1-dev
 	sudo apt-get install -y libwebp-dev
+	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install -r requirements.txt
 	
 mysql:
 	sudo apt-get install -y virtualbox virtualbox-dkms
-	sudo apt-get install -y vagrant
+	sudo dpkg -i vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueMySQL && sudo vagrant up --provider=azure
 
 test: 
@@ -62,11 +64,12 @@ docker_Local:
 docker_Azure:
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
-	sudo apt-get install -y vagrant
+	sudo dpkg -i vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueDocker && sudo vagrant up --provider=azure
 	cd ..
 	fab -p PlucoDB1# -H pluco@pruebas-pluco.cloudapp.net montar_docker
@@ -74,20 +77,22 @@ docker_Azure:
 azure:
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
-	sudo apt-get install -y vagrant
+	sudo dpkg -i vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueAzure && sudo vagrant up --provider=azure
 	
 push:
-	git add -A .
+	sudo git add -A .
 	git status
 	sudo despliegueAzure/escribirCommit.sh
 	git push
 	fab -p PlucoDB1# -H pluco@pluco-iv.cloudapp.net actualizar
-	python manage.py syncdb
+	sudo python manage.py syncdb
+
 ```
 
 Con la orden `make clean` limpiaremos los directorios en local de archivos temporales que no influyen en el correcto funcionamiento de la aplicación.
