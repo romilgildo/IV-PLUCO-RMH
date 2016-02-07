@@ -37,7 +37,7 @@ mysql:
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
-	vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
+	sudo vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueMySQL && sudo vagrant up --provider=azure
 
 test: 
@@ -72,7 +72,7 @@ docker_Azure:
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
-	vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
+	sudo vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueDocker && sudo vagrant up --provider=azure
 	cd ..
 	fab -p PlucoDB1# -H pluco@pruebas-pluco.cloudapp.net montar_docker
@@ -87,7 +87,7 @@ azure:
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
-	vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
+	sudo vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueAzure && sudo vagrant up --provider=azure
 	
 push:

@@ -6,17 +6,20 @@ Dicho comando hace lo siguiente:
 
 ```
 	sudo apt-get install -y virtualbox virtualbox-dkms
-	sudo apt-get install -y vagrant
+	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+	sudo dpkg -i vagrant_1.8.1_x86_64.deb
+	rm vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	sudo vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueMySQL && sudo vagrant up --provider=azure
 ```
 
 Instala **Virtualbox** para la creación de máquinas virtuales, instala **Vagrant** y su plugin de Azure para la configuración de dicha máquina y luego instala **Ansible** para provisionarla.
 
-En el último comando crea la máquina virtual en Azure y la provisiona con MySQL. El fichero [Vagrantfile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/despliegueMySQL/Vagrantfile) que ejecuta contiene lo siguiente:
+En los dos últimos comandos añade la caja de Azure a Vagrant y crea la máquina virtual en Azure provisionándola con MySQL. El fichero [Vagrantfile](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/despliegueMySQL/Vagrantfile) que ejecuta contiene lo siguiente:
 
 ```
 VAGRANTFILE_API_VERSION = '2'
@@ -54,7 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 ```
 
-Esto creará la máquina usando nuestro certificado. Para usar el vuestro, deberéis añadir vuestra *subscription_id* y la ubicación del certificado en vuestro ordenador.
+Esto creará la máquina usando nuestro certificado. Para usar el vuestro, deberéis añadir vuestra *subscription_id* y la ubicación del certificado en vuestro ordenador, que por defecto la he puesto en el home del usuario con nombre "azure.pem".
 
 Como podéis ver, le damos el nombre a la web con "cloud_service_name" y abrimos el puerto para MySQL con "tcp_endpoints".
 

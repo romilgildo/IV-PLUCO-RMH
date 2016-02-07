@@ -39,17 +39,53 @@ Para la instalación en una máquina virtual de Azure debemos ejecutar `make doc
 ```
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
-	sudo apt-get install -y vagrant
+	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+	sudo dpkg -i vagrant_1.8.1_x86_64.deb
+	rm vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
-	sudo apt-get install -y python-pip
-	sudo pip install --upgrade pip
-	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	sudo vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueDocker && sudo vagrant up --provider=azure
 	cd ..
 	fab -p PlucoDB1# -H pluco@pruebas-pluco.cloudapp.net montar_docker
 ```
 
-Instala todo lo necesario para crear el contenedor en Azure, con Vagrant y Ansible crea la máquina virtual y luego con **Fabric** crea el contenedor en dicha máquina. La función de Fabric usada es la siguiente:
+Instala todo lo necesario para crear el contenedor en Azure, con Vagrant crea la máquina virtual y luego con **Fabric** crea el contenedor en dicha máquina. 
+
+Este es el contenido de los ficheros necesarios:
+
+**Vagrantfile**:
+
+```
+VAGRANTFILE_API_VERSION = '2'
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = 'azure'
+  config.vm.network "public_network"
+  config.vm.define "localhost" do |l|
+	l.vm.hostname = "localhost"
+  end
+    
+  config.vm.provider :azure do |azure|
+    azure.mgmt_certificate = File.expand_path('~/azure.pem')
+    azure.mgmt_endpoint = 'https://management.core.windows.net'
+    azure.subscription_id = 'a5c45913-5302-4f3e-9ac2-77b0c0883196'
+    azure.vm_image = 'b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_3-LTS-amd64-server-20151218-en-us-30GB'
+    azure.vm_name = 'pruebas-pluco'
+    azure.vm_user = 'pluco'
+    azure.vm_password = 'PlucoDB1#'
+    azure.vm_location = 'Central US' 
+    azure.cloud_service_name = 'pruebas-pluco'
+    azure.ssh_port = '22'
+    azure.tcp_endpoints = '8000:80'
+  end
+  
+  config.ssh.username = 'pluco' 
+  config.ssh.password = 'PlucoDB1#'
+
+end 
+```
+
+**fabfile.py**:
 
 ```
 def montar_docker():

@@ -13,11 +13,14 @@ Esta orden hace automáticamente lo siguiente:
 ```
 	sudo apt-get install -y fabric
 	sudo apt-get install -y virtualbox virtualbox-dkms
-	sudo apt-get install -y vagrant
+	wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb
+	sudo dpkg -i vagrant_1.8.1_x86_64.deb
+	rm vagrant_1.8.1_x86_64.deb
 	vagrant plugin install vagrant-azure
 	sudo apt-get install -y python-pip
 	sudo pip install --upgrade pip
 	sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+	sudo vagrant box add azure https://github.com/msopentech/vagrant-azure/raw/master/dummy.box --force
 	cd despliegueAzure && sudo vagrant up --provider=azure
 ```
 
@@ -113,7 +116,7 @@ Para actualizar nuestra aplicación web en Azure cada vez que introduzcamos unos
 	sudo despliegueAzure/escribirCommit.sh
 	git push
 	fab -p PlucoDB1# -H pluco@pluco-iv.cloudapp.net actualizar
-	sudo python manage.py syncdb
+	python manage.py syncdb
 ```
 
 Esto añade los ficheros editados, escribimos el commit y sube los cambios al repositorio. Luego actualiza la app en la máquina de Azure con la siguiente función de Fabric:
