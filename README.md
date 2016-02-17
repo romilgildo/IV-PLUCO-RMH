@@ -2,12 +2,12 @@
 
 Autor: Rubén Martín Hidalgo
 
-[![Travis](https://secure.travis-ci.org/romilgildo/IV-PLUCO-RMH.png)](http://travis-ci.org/romilgildo/IV-PLUCO-RMH) 
+[![Travis](https://secure.travis-ci.org/romilgildo/IV-PLUCO-RMH.png)](http://travis-ci.org/romilgildo/IV-PLUCO-RMH)
 [<img src="https://api.shippable.com/projects/561d708d1895ca44741d9f63/badge/master" alt="Shippable" height=20>](https://app.shippable.com/projects/561d708d1895ca44741d9f63)
 [![Snap CI](https://snap-ci.com/romilgildo/IV-PLUCO-RMH/branch/master/build_image)](https://snap-ci.com/romilgildo/IV-PLUCO-RMH/branch/master)
 
-[![Heroku](https://www.herokucdn.com/deploy/button.png)](http://pluco-db.herokuapp.com/) 
-[<img src="http://azuredeploy.net/deploybutton.png" alt="Azure" height=32>](http://pluco-iv.cloudapp.net/) 
+[![Heroku](https://www.herokucdn.com/deploy/button.png)](http://pluco-db.herokuapp.com/)
+[<img src="http://azuredeploy.net/deploybutton.png" alt="Azure" height=32>](http://pluco-iv.cloudapp.net/)
 [<img src="http://i628.photobucket.com/albums/uu6/romilgildo/dockericon_zpswj3ifwrw.png" alt="Docker" height=32>](https://hub.docker.com/r/romilgildo/pluco/)
 
 [Apuntado en el proyecto de software libre de la oficina OSL](http://osl.ugr.es/bases-de-los-premios-a-proyectos-libres-de-la-ugr/)
@@ -22,15 +22,15 @@ En cuanto a la seguridad de nuestra plataforma los objetivos son: Permitir tener
 
 ## Infraestuctura
 
-En mi infraestructura, se realiza un despliegue sobre **Azure** de un sistema de organización y gestión de datos de los usuarios de la plataforma, permitiendo recuperar la información de los usuarios, consultar sus datos asociados, modificar los datos, además de los procesos asociados a dar de alta o baja a los usuarios. 
+En mi infraestructura, se realiza un despliegue sobre **Azure** de un sistema de organización y gestión de datos de los usuarios de la plataforma, permitiendo recuperar la información de los usuarios, consultar sus datos asociados, modificar los datos, además de los procesos asociados a dar de alta o baja a los usuarios.
 
-Va instalado sobre una máquina virtual que actúa como servidor, disponiendo de acceso a la información almacenada mediante una página web, cuyo servidor web está alojado en un servidor distinto al de la base de datos, con el objetivo de repartir la carga y dar mayor seguridad a la infraestructura. 
+Va instalado sobre una máquina virtual que actúa como servidor, disponiendo de acceso a la información almacenada mediante una página web, cuyo servidor web está alojado en un servidor distinto al de la base de datos, con el objetivo de repartir la carga y dar mayor seguridad a la infraestructura.
 
-La base de datos usada es **MySQL** y contiene información sobre las asignaturas matriculadas e información personal de los usuarios. 
+La base de datos usada es **MySQL** y contiene información sobre las asignaturas matriculadas e información personal de los usuarios.
 
 Como lenguaje de programación se usa **Python**. Además utilizamos **Django** como framework para agilizar el desarrollo web.  
 
-El resto de mis compañeros están creando: 
+El resto de mis compañeros están creando:
 
 1. Un [sistema web/red social](https://github.com/rafaellg8/IV-PLUCO-RLG) de foros y dudas similar a Stackoverflow. Lleva detrás un servidor web para alojar las páginas y otro servidor para la base de datos de los usuarios.
 
@@ -72,7 +72,7 @@ En mi caso, estoy haciendo la integración contínua con [Shippable](https://www
 
 ## Descarga de la app
 
-Para realizar cualquiera de las funcionalidades que vienen en esta documentación, necesitaremos descargar antes la aplicación en nuestro ordenador, y a partir de ahí podremos realizar tests, desplegar la app o simplemente arrancarla localmente. 
+Para realizar cualquiera de las funcionalidades que vienen en esta documentación, necesitaremos descargar antes la aplicación en nuestro ordenador, y a partir de ahí podremos realizar tests, desplegar la app o simplemente arrancarla localmente.
 
 Para ello ejecutamos los siguientes comandos:
 
@@ -81,7 +81,7 @@ $ sudo apt-get install git
 $ sudo apt-get install make
 $ git clone https://github.com/romilgildo/IV-PLUCO-RMH.git
 $ cd IV-PLUCO-RMH/
-``` 
+```
 
 ## Instalación local de la app
 
@@ -98,10 +98,30 @@ Si todo ha ido bien, ya podremos acceder a nuestra app introduciendo `localhost:
 
 Para desplegar la aplicación en Azure, lo primero que debemos hacer es [crear el certificado para Azure](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/crearCertificados.md).
 
-Una vez hecho el paso anterior, ya podemos poner en marcha toda la app en la web de manera totalemente automatizada con solo ejecutar lo siguiente:
+Se necesita crear un fichero variables_entorno.sh con el siguiente contenido:
+
+```
+#!/bin/bash
+
+archivo=./despliegueMySQL/.env
+
+echo 'VM_USER=""' > $archivo
+echo 'VM_PASS=""' >> $archivo
+echo 'AZURE_PEM=""' >> $archivo
+echo 'SUBSCRIPTION_ID=""' >> $archivo
+echo 'VM_MYSQL_NAME=""' >> $archivo
+echo 'VM_DOCKER_NAME=""' >> $archivo
+echo 'VM_APP_NAME=""' >> $archivo
+
+cp $archivo ./despliegueAzure
+cp $archivo ./despliegueDocker
+
+```
+
+Una vez hecho los pasos anteriores, ya podemos poner en marcha toda la app en la web de manera totalemente automatizada con solo ejecutar lo siguiente:
 
  `sudo ./desplegarPLUCO.sh`
- 
+
 Dicho script instalará todo lo necesario, crea las bases de datos y despliega la aplicación en Azure con los siguientes comandos:
 
 ```
@@ -114,7 +134,7 @@ Para eliminar cualquiera de las máquinas creadas con Vagrant, bastará con ejec
 
 ### Instalación de MySQL en Azure
 
-Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure. 
+Para poder tener disponible desde cualquier lugar nuestra base de datos, he decidido instalar y configurar la app con MySQL en una máquina virtual independiente dentro de Azure.
 
 Para ello, bastará con ejecutar `make mysql` y automáticamente se crearán las bases de datos en una máquina independiente en Azure.
 
@@ -154,6 +174,6 @@ Si el crédito de Azure no se ha agotado, tendré la aplicación web totalmente 
 
 ## Administración remota con Fabric
 
-Si queremos realizar una administración remota del despliegue de manera automática, podemos usar [Fabric](http://www.fabfile.org/). 
+Si queremos realizar una administración remota del despliegue de manera automática, podemos usar [Fabric](http://www.fabfile.org/).
 
 [Más información](https://github.com/romilgildo/IV-PLUCO-RMH/blob/master/documentacion/Fabric.md)
